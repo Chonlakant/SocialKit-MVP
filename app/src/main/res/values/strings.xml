@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">socialkit:unsplash</string>
+    <string name="app_name">MVP</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
@@ -16,4 +16,35 @@
 
 
     <string name="txt_yo_yo">Yo Yo</string>
+    <string name="placeholder_query_input">What do you feel like eating?</string>
+    <string name="drawer_open">open drawer</string>
+    <string name="drawer_close">close drawer</string>
+    <string name="feeling_lucky">Search ชื่อพันธุ์ข้าว</string>
+    <string name="home">Home</string>
+    <string name="my_recipes">My recipes</string>
+    <string name="bookmarks">Bookmarks</string>
+    <string name="people">People</string>
+    <string name="others">Others</string>
+    <string name="settings">Settings</string>
+    <string name="help_and_feedback"><![CDATA[Help & Feedback]]></string>
+    <string name="rejasupotaro">rejasupotaro</string>
+
+
+    <string name="error_title">Something went wrong!</string>
+    <string name="error_occurred">An error occurred. We\'re deeply sorry.</string>
+    <string name="error_details">Error details:</string>
+    <string name="unknown_exception">Unknown exception</string>
+    <string name="restart_app">Restart app</string>
+    <string name="close_app">Close app</string>
+
+    <!-- We define some custom strings for the default error activity -->
+    <!-- This only applies when using the default error activity, of course! -->
+    <!-- To see them, disable the custom error activity in SampleCrashingApplication -->
+    <string name="customactivityoncrash_error_activity_error_occurred_explanation">An error occurred in this sample app. This is the default error activity with customized strings.</string>
+    <string name="customactivityoncrash_error_activity_unknown_exception">No stacktrace available!</string>
+    <string name="customactivityoncrash_error_activity_restart_app">Restart now</string>
+    <string name="customactivityoncrash_error_activity_close_app">Close now</string>
+    <string name="customactivityoncrash_error_activity_error_details">Error information</string>
+    <string name="customactivityoncrash_error_activity_error_details_title">Error information</string>
+    <string name="customactivityoncrash_error_activity_error_details_close">OK</string>
 </resources>
