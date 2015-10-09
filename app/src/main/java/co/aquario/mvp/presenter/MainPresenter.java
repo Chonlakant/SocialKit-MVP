@@ -102,16 +102,38 @@ public class MainPresenter implements Presenter<TopMovieListView> {
                         JSONArray ja = response.getJSONArray("products");
                         for (int i = 0; i < ja.length(); i++) {
                             JSONObject obj = ja.getJSONObject(i);
-                            String name = obj.getString("name_th");
+                            int productId = obj.optInt("productId");
+                            int lineProductId = obj.optInt("lineProductId");
+                            int farmerId = obj.optInt("farmerId");
+                            int catId = obj.optInt("catId");
+                            String nameTh = obj.getString("name_th");
+                            String nameEn = obj.getString("name");
+                            String name2 = obj.getString("name2");
                             String image = obj.getString("image");
                             String url = obj.optString("thumb");
+                            Double price = obj.optDouble("price");
+                            String howtouse = obj.optString("howtouse");
+                            String nutrition = obj.optString("nutrition");
+                            int stock = obj.optInt("stock");
+                            Double size = obj.optDouble("size");
                             String description = obj.optString("desc");
 
                             PostDataNew mainModel = new PostDataNew();
-                            mainModel.setName(name);
+                            mainModel.setNameTh(nameTh);
+                            mainModel.setName2(name2);
+                            mainModel.setName(nameEn);
                             mainModel.setImage(image);
-                            mainModel.setUrl(url);
-                            mainModel.setDescription(description);
+                            mainModel.setThumb(url);
+                            mainModel.setLineProductId(lineProductId);
+                            mainModel.setProductId(productId);
+                            mainModel.setFarmerId(farmerId);
+                            mainModel.setCatId(catId);
+                            mainModel.setPrice(price);
+                            mainModel.setHowtouse(howtouse);
+                            mainModel.setNutrition(nutrition);
+                            mainModel.setStock(stock);
+                            mainModel.setSize(size);
+                            mainModel.setDesc(description);
 
                             list.add(mainModel);
                             mMainView.setArticles(list);
