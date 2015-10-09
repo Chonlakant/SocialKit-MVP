@@ -102,7 +102,7 @@ public class MainPresenter implements Presenter<TopMovieListView> {
                         JSONArray ja = response.getJSONArray("products");
                         for (int i = 0; i < ja.length(); i++) {
                             JSONObject obj = ja.getJSONObject(i);
-                            String name = obj.getString("name");
+                            String name = obj.getString("name_th");
                             String image = obj.getString("image");
                             String url = obj.optString("thumb");
                             String description = obj.optString("desc");
