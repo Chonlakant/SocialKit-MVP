@@ -21,6 +21,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:src="@drawable/ic_plus"
+            app:backgroundTint="@color/md_green_800"
+            app:fabSize="normal" />
     </FrameLayout>
 
     <android.support.design.widget.NavigationView

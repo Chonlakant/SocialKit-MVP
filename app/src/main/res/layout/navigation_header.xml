@@ -12,14 +12,14 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/user"
+        android:src="@drawable/ic_folkrice"
         app:riv_oval="true" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_medium"
-        android:text="@string/rejasupotaro"
+        android:text="Folkrice"
         android:textSize="@dimen/text_size_medium"
         android:textStyle="bold" />
 

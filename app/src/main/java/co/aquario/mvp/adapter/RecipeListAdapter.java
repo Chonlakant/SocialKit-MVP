@@ -1,6 +1,8 @@
 package co.aquario.mvp.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +16,13 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import co.aquario.mvp.activities.ItemActivity;
 import co.aquario.mvp.model.PostDataNew;
 import co.chonlakant.mvp.R;
 
 
 public class RecipeListAdapter extends BindableAdapter<PostDataNew> {
+
     public RecipeListAdapter(Context context, List<PostDataNew> recipes) {
         super(context, recipes);
     }
@@ -59,11 +63,19 @@ public class RecipeListAdapter extends BindableAdapter<PostDataNew> {
 //                .into(holder.userImageView);
 
         holder.userNameTextView.setText(recipe.getName());
-        holder.titleTextView.setText(recipe.getName());
+        holder.titleTextView.setText(recipe.getNameTh());
+
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(),recipe.getName(),Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getContext(), ItemActivity.class);
+                intent.putExtra("productId",recipe.getProductId());
+                Log.e("AdapterClick",recipe.getProductId()+"");
+                intent.putExtra("title",recipe.getName());
+                intent.putExtra("price",recipe.getPrice());
+                intent.putExtra("decs",recipe.getDesc());
+                intent.putExtra("urlImage", recipe.getImage());
+                getContext().startActivity(intent);
             }
         });
 

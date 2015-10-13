@@ -39,12 +39,16 @@ public class PostDataNew {
     private String image;
     @SerializedName("thumb")
     private String thumb;
+    boolean mHeart;
 
+    private int quantity;
+
+    public boolean selected;
     public PostDataNew(){
 
     }
 
-    public PostDataNew(int productId, int lineProductId, int farmerId, int catId, String name, String name2, String nameTh, String desc, double price, String howtouse, String nutrition, int stock, double size, String image, String thumb) {
+    public PostDataNew(int productId, int lineProductId, int farmerId, int catId, String name, String name2, String nameTh, String desc, double price, String howtouse, String nutrition, int stock, double size, String image, String thumb,int quantity) {
         this.productId = productId;
         this.lineProductId = lineProductId;
         this.farmerId = farmerId;
@@ -60,6 +64,8 @@ public class PostDataNew {
         this.size = size;
         this.image = image;
         this.thumb = thumb;
+        mHeart = false;
+        this.quantity = quantity;
     }
 
     public int getProductId() {
@@ -180,5 +186,27 @@ public class PostDataNew {
 
     public void setThumb(String thumb) {
         this.thumb = thumb;
+    }
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+    public boolean ismHeart() {
+        return mHeart;
+    }
+
+    public void setmHeart(boolean mHeart) {
+        this.mHeart = mHeart;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

@@ -1,5 +1,7 @@
 package co.aquario.mvp.presenter;
 
+import android.util.Log;
+
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
@@ -117,6 +119,8 @@ public class MainPresenter implements Presenter<TopMovieListView> {
                             int stock = obj.optInt("stock");
                             Double size = obj.optDouble("size");
                             String description = obj.optString("desc");
+
+                            Log.e("vvvvvv",productId+"");
 
                             PostDataNew mainModel = new PostDataNew();
                             mainModel.setNameTh(nameTh);

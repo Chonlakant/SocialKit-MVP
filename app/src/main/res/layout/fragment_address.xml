@@ -1,0 +1,134 @@
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/action_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="top"
+            android:background="@color/md_green_600"
+            android:elevation="1dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="ที่อยู่จัดส่ง"
+                android:textColor="#ffffff"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </android.support.v7.widget.Toolbar>
+
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/et_name"
+                android:windowSoftInputMode="stateAlwaysHidden"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:hint="ชื่อ"
+                android:textSize="15sp"
+                app:met_baseColor="#000"
+                app:met_floatingLabel="highlight"
+                app:met_primaryColor="@color/md_green_600"
+                app:met_singleLineEllipsis="true" />
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/et_phone"
+                android:windowSoftInputMode="stateAlwaysHidden"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:hint="หมายเลขโทรศัพท์"
+                android:textSize="15sp"
+                app:met_baseColor="#000"
+                app:met_floatingLabel="highlight"
+                app:met_primaryColor="@color/md_green_600"
+                app:met_singleLineEllipsis="true" />
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/et_contry"
+                android:windowSoftInputMode="stateAlwaysHidden"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:hint="จังหวัด"
+                android:textSize="15sp"
+                app:met_baseColor="#000"
+                app:met_floatingLabel="highlight"
+                app:met_primaryColor="@color/md_green_600"
+                app:met_singleLineEllipsis="true" />
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/et_district"
+                android:windowSoftInputMode="stateAlwaysHidden"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:hint="เขต/อำเภอ"
+                android:textSize="12sp"
+                app:met_baseColor="#000"
+                app:met_floatingLabel="highlight"
+                app:met_primaryColor="@color/md_green_600"
+                app:met_singleLineEllipsis="true" />
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/et_postal"
+                android:windowSoftInputMode="stateAlwaysHidden"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:hint="รหัสไปรษณีย์"
+                android:textSize="12sp"
+                app:met_baseColor="#000"
+                app:met_floatingLabel="highlight"
+                app:met_primaryColor="@color/md_green_600"
+                app:met_singleLineEllipsis="true" />
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/et_home"
+                android:windowSoftInputMode="stateAlwaysHidden"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:hint="บ้านเลขที่,ซอย,ถนน,แขวง"
+                android:textSize="15sp"
+                app:met_baseColor="#000"
+                app:met_floatingLabel="highlight"
+                app:met_primaryColor="@color/md_green_600"
+                app:met_singleLineEllipsis="true" />
+
+
+            <Button
+                android:id="@+id/btn_add"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="15dp"
+                android:background="@color/md_green_600"
+                android:text="ดำเนินการต่อ"
+                android:textColor="@android:color/white"
+                android:textSize="15sp" />
+        </LinearLayout>
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>
