@@ -239,17 +239,18 @@ public class CartFragment extends DialogFragment {
                     // ShoppingCartHelper.setQuantity(p, quantity);
 
                     priceSum1 = p.getPrice();
-
+                    productPriceTextView.setText("ราคารวม:" + priceSum1);
+                    number_items.setText("จำนวน: " + quantity);
                 }
 
 
                 if (mAdapter != null) {
                     mAdapter.notifyDataSetChanged();
-
+                    productPriceTextView.setText("ราคารวม:" + priceSum1);
+                    number_items.setText("จำนวน: " + quantity);
                 }
 
-                productPriceTextView.setText("ราคารวม:" + priceSum1);
-                number_items.setText("จำนวน: " + quantity);
+
 
             }
         });
