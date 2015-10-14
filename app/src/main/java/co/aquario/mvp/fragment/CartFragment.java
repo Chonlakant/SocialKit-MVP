@@ -33,6 +33,7 @@ import co.aquario.mvp.activities.Activity_main_Buy;
 import co.aquario.mvp.activities.Activity_main_PaymentDetail;
 import co.aquario.mvp.activities.Activity_main_login;
 import co.aquario.mvp.activities.Activity_main_register;
+import co.aquario.mvp.activities.MainActivity;
 import co.aquario.mvp.adapter.ProductAdapter;
 import co.aquario.mvp.model.PostData;
 import co.aquario.mvp.model.PostDataNew;
@@ -104,9 +105,8 @@ public class CartFragment extends DialogFragment {
         list.setAdapter(mAdapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                removeItemFromList(i);
-
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                removeItemFromList(position);
             }
         });
         cancelBtn.setOnClickListener(new View.OnClickListener() {
@@ -215,6 +215,14 @@ public class CartFragment extends DialogFragment {
                 // TOD O Auto-generated method stub
 
                 // main code on after clicking yes
+
+
+                for(int i = 0 ; i< mCartList.size();i++){
+                    Log.e("i",i+"");
+                }
+
+
+                ShoppingCartHelper.removeProduct(mCartList.get(deletePosition));
 
                 mCartList.remove(deletePosition);
                 Log.e("99999", mCartList.size() + "");

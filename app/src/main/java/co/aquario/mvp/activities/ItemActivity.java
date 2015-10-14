@@ -57,7 +57,9 @@ public class ItemActivity extends AppCompatActivity {
         aController = (MainApplication) getApplicationContext();
 
         //editTextQuantity.setInputType(InputType.TYPE_NULL);
-
+        int one = 0;
+        String i = String.valueOf(one);
+        editTextQuantity.setText(i);
         textCount1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
