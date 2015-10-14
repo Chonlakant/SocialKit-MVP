@@ -66,7 +66,7 @@ public class FragmentPayMentsDetail extends BaseFragment {
     List<JsonArr> productJson = new ArrayList<>();
     JsonArray myCustomArray;
     TextView txtName, txtCountry, txtDistrict, txtPostal, txtHome, sumPrice, sum;
-
+    PostDataNew p;
     public static FragmentPayMentsDetail newInstance(int page) {
         Bundle args = new Bundle();
         args.putInt(ARG_PAGE, page);
@@ -81,7 +81,7 @@ public class FragmentPayMentsDetail extends BaseFragment {
 //        mPage = getArguments().getInt(ARG_PAGE);
         pref = MainApplication.getPrefManager();
         Log.e("aaaaa", (pref == null) + "");
-        mCartList = ShoppingCartHelper.getCartList();
+
 
     }
 
@@ -89,7 +89,7 @@ public class FragmentPayMentsDetail extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.main_list_buy, container, false);
         list = (ListView) rootView.findViewById(R.id.cart_items_list);
-
+        mCartList = ShoppingCartHelper.getCartList();
 
 
         mAdapter = new ProductAdapter(mCartList, getActivity().getLayoutInflater(), true, getActivity());
@@ -110,8 +110,24 @@ public class FragmentPayMentsDetail extends BaseFragment {
             }
         }
 
+        double i = 40.00;
+        for (PostDataNew p : mCartList) {
+            sumAll += p.getPrice() ;
+            subTotal = sumAll + i;
+        }
+
+
         sum.setText("ราคารวม:" + subTotal);
+        Log.e("affffaaa",subTotal+"");
         sumPrice.setText(sumAll + "บาท");
+
+
+
+
+//        sum.setText("ราคารวม:" + subTotal);
+//        sumPrice.setText(sumAll + "บาท");
+
+
 
         list.setAdapter(mAdapter);
         String name = pref.name().getOr("");
@@ -144,6 +160,7 @@ public class FragmentPayMentsDetail extends BaseFragment {
         myCustomArray = gson.toJsonTree(productJson).getAsJsonArray();
         Log.e("2222", myCustomArray + "");
 
+
         btn_price.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -152,7 +169,6 @@ public class FragmentPayMentsDetail extends BaseFragment {
                 FragmentPayMents oneFragment = new FragmentPayMents();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.container, oneFragment);
-                transaction.addToBackStack(null);
                 transaction.commit();
 
             }
@@ -180,31 +196,30 @@ public class FragmentPayMentsDetail extends BaseFragment {
     public void updateProduct(String url, JSONObject jo, AjaxStatus status)
             throws JSONException {
         Log.e("hahaha", jo.toString(4));
-        Toast.makeText(getActivity(), "Update complete!", Toast.LENGTH_LONG).show();
     }
 
 
     @Override
     public void onResume() {
         super.onResume();
-        double i = 40.00;
-        // Refresh the data
-        if (mAdapter != null) {
-            mAdapter.notifyDataSetChanged();
-        }
-
-        int quantity = 0;
-        for (PostDataNew p : mCartList) {
-            quantity = ShoppingCartHelper.getProductQuantity(p);
-            sumAll += p.getPrice() * quantity;
-            subTotal = sumAll + i;
-            ShoppingCartHelper.setQuantity(p, quantity);
 
 
-        }
-        sum.setText("ราคารวม:" + subTotal);
-
-        sumPrice.setText(sumAll + "บาท");
+//        double i = 40.00;
+//        // Refresh the data
+//        if (mAdapter != null) {
+//            mAdapter.notifyDataSetChanged();
+//        }
+//
+//        int quantity = 0;
+//        for (PostDataNew p : mCartList) {
+//            quantity = ShoppingCartHelper.getProductQuantity(p);
+//            sumAll += p.getPrice() * quantity;
+//            subTotal = sumAll + i;
+//            ShoppingCartHelper.setQuantity(p, quantity);
+//        }
+//        sum.setText("ราคารวม:" + subTotal);
+//
+//        sumPrice.setText(sumAll + "บาท");
 
 //        number_items.setText("จำนวน: " + quantity);
     }
