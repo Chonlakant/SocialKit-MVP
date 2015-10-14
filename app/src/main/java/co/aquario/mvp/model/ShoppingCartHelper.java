@@ -52,10 +52,6 @@ public class ShoppingCartHelper  {
         cartMap.remove(product);
     }
 
-    public static void removeListProduct(List<PostDataNew> product) {
-        cartMap.remove(product);
-    }
-
     public static List<PostDataNew> getCartList() {
         List<PostDataNew> cartList = new Vector<PostDataNew>(cartMap.keySet().size());
         for(PostDataNew p : cartMap.keySet()) {

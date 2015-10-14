@@ -62,6 +62,7 @@ public class MainApplication extends Application {
         return (MainApplication) context.getApplicationContext();
     }
 
+
     public static PrefManager getPrefManager() {
         return prefManager;
     }

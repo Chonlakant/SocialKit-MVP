@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="top"
-        android:background="@color/md_green_600"
+        android:background="@color/md_green_800"
         android:elevation="1dp"
         android:gravity="center">
 
@@ -48,7 +48,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:background="@color/md_green_600"
+            android:background="@color/md_green_800"
             android:text="กลับหน้าซื้อสินค้า"
             android:textColor="@android:color/white"
             android:textSize="15sp" />

@@ -96,11 +96,6 @@ public class FragmentPayMents extends StatedFragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i == 0) {
-//                    PaypalFragment oneFragment = new PaypalFragment();
-//                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//                    transaction.replace(R.id.container, oneFragment);
-//                    transaction.addToBackStack(null);
-//                    transaction.commit();
                     onBuyPressed();
                 }
                 if (i == 1) {
@@ -122,9 +117,13 @@ public class FragmentPayMents extends StatedFragment {
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                for(int i=0; i< mCartList.size();i++){
+                    ShoppingCartHelper.removeProduct(mCartList.get(i));
+                }
+                mCartList.clear();
                 Intent i = new Intent(getActivity(), MainActivity.class);
                 startActivity(i);
-                mCartList.remove(mCartList);
                 getActivity().finish();
             }
         });
@@ -135,14 +134,13 @@ public class FragmentPayMents extends StatedFragment {
     public void onResume() {
         super.onResume();
 
-
+        double i = 40.00;
         subTotal = 0;
-        double sumAll = 0;
         int quantity = 0;
         for (PostDataNew p : mCartList) {
             quantity = ShoppingCartHelper.getProductQuantity(p);
-            subTotal += p.getPrice() * quantity + 40;
-            sumAll += p.getPrice() * quantity;
+            subTotal += p.getPrice() * quantity + i ;
+
             ShoppingCartHelper.setQuantity(p, quantity);
             name = p.getName();
 

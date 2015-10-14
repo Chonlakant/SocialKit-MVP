@@ -1,15 +1,15 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/card_view"
-    android:background="#ffffff"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/spacing_medium"
+    android:background="#ffffff"
     android:padding="@dimen/spacing_medium">
 
     <LinearLayout
-        android:background="#ffffff"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:background="#ffffff"
         android:orientation="vertical">
 
 
@@ -39,34 +39,43 @@
 
 
         <LinearLayout
-            android:background="#ffffff"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:background="#ffffff"
             android:orientation="vertical">
 
             <ImageView
-                android:layout_marginTop="-25dp"
-                android:background="#ffffff"
                 android:id="@+id/recipe_image"
                 android:layout_width="match_parent"
-                android:layout_height="180dp" />
+                android:layout_height="180dp"
+                android:layout_marginTop="-25dp"
+                android:background="#ffffff" />
 
-            <TextView
+            <co.aquario.mvp.MyCustomTextView
                 android:id="@+id/user_name_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:textColor="#484432"
                 android:textSize="@dimen/text_size_xsmall" />
 
-            <TextView
+            <co.aquario.mvp.MyCustomTextView
+                android:id="@+id/text_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#c41411"
+                android:textSize="@dimen/text_size_xsmall" />
+
+            <co.aquario.mvp.MyCustomTextView
                 android:id="@+id/title_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ellipsize="end"
+                android:layout_gravity="center_horizontal"
                 android:padding="@dimen/spacing_medium"
+                android:textColor="#484432"
                 android:textSize="@dimen/text_size_medium"
-                android:textStyle="bold"
-                android:layout_gravity="center_horizontal" />
+                android:textStyle="bold" />
 
 
         </LinearLayout>

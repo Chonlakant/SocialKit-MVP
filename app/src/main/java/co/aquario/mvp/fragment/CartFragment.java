@@ -21,6 +21,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.inthecheesefactory.thecheeselibrary.fragment.support.v4.app.StatedFragment;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,6 +50,7 @@ public class CartFragment extends DialogFragment {
     private static final int REQUEST_SIMPLE_DIALOG = 42;
     private List<PostDataNew> mCartList = new ArrayList<>();
     ProductAdapter mAdapter;
+
     TextView productPriceTextView, number_items;
     ListView list;
     PostData curProduct;
@@ -55,11 +58,15 @@ public class CartFragment extends DialogFragment {
     UserManager mManager;
     PrefManager pref;
     Boolean isLogin = false;
-    double subTotal = 0 ;
+    PostDataNew productList;
+    double subTotal = 0;
+    MainApplication aController;
+    TextView cancelBtn;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        mCartList = ShoppingCartHelper.getCartList();
         // Initialize items
     }
 
@@ -71,14 +78,17 @@ public class CartFragment extends DialogFragment {
 
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_cart, container, false);
+        cancelBtn = (TextView) v.findViewById(R.id.cancelBtn);
         pref = MainApplication.getPrefManager();
         mMaterialDialog = new MaterialDialog(getActivity());
-        mManager  = new UserManager(getActivity());
+        mManager = new UserManager(getActivity());
+        aController = (MainApplication) getActivity().getApplicationContext();
 
-        mCartList = ShoppingCartHelper.getCartList();
+
         productPriceTextView = (TextView) v.findViewById(R.id.textView2);
         number_items = (TextView) v.findViewById(R.id.number_items);
 
+        Log.e("555555", mCartList.size() + "");
 
         if (mAdapter != null) {
             mAdapter.notifyDataSetChanged();
@@ -96,9 +106,18 @@ public class CartFragment extends DialogFragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 removeItemFromList(i);
+
             }
         });
-
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (int i = 0; i < mCartList.size(); i++) {
+                    ShoppingCartHelper.removeProduct(mCartList.get(i));
+                }
+                getDialog().dismiss();
+            }
+        });
         // Cancel button
         ImageView cancelButton = (ImageView) v.findViewById(R.id.x_button);
         cancelButton.setOnClickListener(new View.OnClickListener() {
@@ -135,14 +154,14 @@ public class CartFragment extends DialogFragment {
 
                                             isLogin = pref.isLogin().getOr(false);
                                             if (pref.isLogin().getOr(true) && !isLogin) {
-                                                Intent i =new Intent(getActivity(), Activity_main_login.class);
+                                                Intent i = new Intent(getActivity(), Activity_main_login.class);
                                                 startActivity(i);
                                                 isLogin = true;
                                                 pref.isLogin().put(isLogin);
                                                 pref.commit();
                                                 mMaterialDialog.dismiss();
                                             } else {
-                                                Intent i =new Intent(getActivity(), Activity_main_PaymentDetail.class);
+                                                Intent i = new Intent(getActivity(), Activity_main_PaymentDetail.class);
                                                 startActivity(i);
                                             }
 
@@ -154,7 +173,7 @@ public class CartFragment extends DialogFragment {
                                         @Override
                                         public void onClick(View v) {
                                             mMaterialDialog.dismiss();
-                                            Intent i =new Intent(getActivity(), Activity_main_Buy.class);
+                                            Intent i = new Intent(getActivity(), Activity_main_Buy.class);
                                             startActivity(i);
                                         }
                                     }
@@ -182,7 +201,7 @@ public class CartFragment extends DialogFragment {
         return v;
     }
 
-    protected void removeItemFromList(int position) {
+    protected void removeItemFromList(final int position) {
         final int deletePosition = position;
 
         AlertDialog.Builder alert = new AlertDialog.Builder(
@@ -196,25 +215,32 @@ public class CartFragment extends DialogFragment {
                 // TOD O Auto-generated method stub
 
                 // main code on after clicking yes
-                mCartList.remove(deletePosition);
-                mAdapter.notifyDataSetChanged();
-                mAdapter.notifyDataSetInvalidated();
-                // Refresh the data
-                if (mAdapter != null) {
-                    mAdapter.notifyDataSetChanged();
-                }
 
+                mCartList.remove(deletePosition);
+                Log.e("99999", mCartList.size() + "");
+
+
+                // Refresh the data
+                double priceSum1 = 0;
 
                 int quantity = 0;
                 for (PostDataNew p : mCartList) {
                     quantity = ShoppingCartHelper.getProductQuantity(p);
                     subTotal += p.getPrice() * quantity;
 
-                    ShoppingCartHelper.setQuantity(p, quantity);
-                    productPriceTextView.setText("ราคารวม:" + subTotal);
+                    // ShoppingCartHelper.setQuantity(p, quantity);
+
+                    priceSum1 = p.getPrice();
 
                 }
 
+
+                if (mAdapter != null) {
+                    mAdapter.notifyDataSetChanged();
+
+                }
+
+                productPriceTextView.setText("ราคารวม:" + priceSum1);
                 number_items.setText("จำนวน: " + quantity);
 
             }
@@ -246,6 +272,7 @@ public class CartFragment extends DialogFragment {
         // Refresh the data
         if (mAdapter != null) {
             mAdapter.notifyDataSetChanged();
+
         }
 
         int quantity = 0;

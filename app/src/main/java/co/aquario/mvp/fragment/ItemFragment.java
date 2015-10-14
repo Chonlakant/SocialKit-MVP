@@ -36,6 +36,7 @@ public class ItemFragment extends Fragment {
     String decs;
     String urlImage;
     int productId;
+    TextView nutrition_button;
     public static ItemFragment newInstance(String title , Double price ,String decs , String image , int productId) {
         ItemFragment frag = new ItemFragment();
         Bundle args = new Bundle();
@@ -83,6 +84,7 @@ public class ItemFragment extends Fragment {
         TextView priceTitle = (TextView) v.findViewById(R.id.price);
         TextView nameTitle = (TextView) v.findViewById(R.id.name);
         TextView descTitle = (TextView) v.findViewById(R.id.item_desc);
+        nutrition_button = (TextView) v.findViewById(R.id.nutrition_button);
         priceTitle.setText(price+"บาท");
         nameTitle.setText(title);
         descTitle.setText(decs);
@@ -91,6 +93,13 @@ public class ItemFragment extends Fragment {
         mAdapter = new ImagePagerAdapter(getActivity(), mItem);
         mViewPager.setAdapter(mAdapter);
         //mViewPager.setOffscreenPageLimit(1);
+
+        nutrition_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         // Initialize the pager indicator
 //        CirclePageIndicator indicator = (CirclePageIndicator) v.findViewById(R.id.pager_indicator);

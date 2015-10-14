@@ -67,9 +67,9 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:textStyle="bold"
-                    android:textSize="15dp"
+                    android:textSize="40dp"
                     android:text="+"
-                    android:textColor="#000000" />
+                    android:textColor="#ffffff" />
 
             </LinearLayout>
 
@@ -79,14 +79,16 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <EditText
+                <TextView
                     android:id="@+id/editTextQuantity"
                     android:layout_width="60dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:textColor="#ffffff"
                     android:gravity="center"
+                    android:textSize="30dp"
                     android:inputType="number"
-                    android:text="1" />
+                    android:text="0" />
             </LinearLayout>
 
             <LinearLayout
@@ -99,13 +101,13 @@
                 <TextView
                     android:id="@+id/textCount2"
                     android:textStyle="bold"
-                    android:textSize="15dp"
+                    android:textSize="45dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="-"
-                    android:textColor="#000000" />
+                    android:textColor="#ffffff" />
             </LinearLayout>
 
 

@@ -24,8 +24,11 @@
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fabBtn"
+            android:layout_marginBottom="@dimen/codelab_fab_margin_bottom"
+            android:layout_marginRight="@dimen/codelab_fab_margin_right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:elevation="5dp"
             android:layout_gravity="bottom|right"
             android:src="@drawable/ic_plus"
             app:backgroundTint="@color/md_green_800"

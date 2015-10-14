@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="top"
-            android:background="@color/md_green_600"
+            android:background="@color/md_green_800"
             android:elevation="1dp"
             android:gravity="center">
 
@@ -50,7 +50,7 @@
                 android:textSize="15sp"
                 app:met_baseColor="#000"
                 app:met_floatingLabel="highlight"
-                app:met_primaryColor="@color/md_green_600"
+                app:met_primaryColor="@color/md_green_800"
                 app:met_singleLineEllipsis="true" />
 
             <com.rengwuxian.materialedittext.MaterialEditText
@@ -63,7 +63,7 @@
                 android:textSize="15sp"
                 app:met_baseColor="#000"
                 app:met_floatingLabel="highlight"
-                app:met_primaryColor="@color/md_green_600"
+                app:met_primaryColor="@color/md_green_800"
                 app:met_singleLineEllipsis="true" />
 
             <com.rengwuxian.materialedittext.MaterialEditText
@@ -76,7 +76,7 @@
                 android:textSize="15sp"
                 app:met_baseColor="#000"
                 app:met_floatingLabel="highlight"
-                app:met_primaryColor="@color/md_green_600"
+                app:met_primaryColor="@color/md_green_800"
                 app:met_singleLineEllipsis="true" />
 
             <com.rengwuxian.materialedittext.MaterialEditText
@@ -89,7 +89,7 @@
                 android:textSize="12sp"
                 app:met_baseColor="#000"
                 app:met_floatingLabel="highlight"
-                app:met_primaryColor="@color/md_green_600"
+                app:met_primaryColor="@color/md_green_800"
                 app:met_singleLineEllipsis="true" />
 
             <com.rengwuxian.materialedittext.MaterialEditText
@@ -102,7 +102,7 @@
                 android:textSize="12sp"
                 app:met_baseColor="#000"
                 app:met_floatingLabel="highlight"
-                app:met_primaryColor="@color/md_green_600"
+                app:met_primaryColor="@color/md_green_800"
                 app:met_singleLineEllipsis="true" />
 
             <com.rengwuxian.materialedittext.MaterialEditText
@@ -115,7 +115,7 @@
                 android:textSize="15sp"
                 app:met_baseColor="#000"
                 app:met_floatingLabel="highlight"
-                app:met_primaryColor="@color/md_green_600"
+                app:met_primaryColor="@color/md_green_800"
                 app:met_singleLineEllipsis="true" />
 
 
@@ -125,7 +125,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="15dp"
-                android:background="@color/md_green_600"
+                android:background="@color/md_green_800"
                 android:text="ดำเนินการต่อ"
                 android:textColor="@android:color/white"
                 android:textSize="15sp" />

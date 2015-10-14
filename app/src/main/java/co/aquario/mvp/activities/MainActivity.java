@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import com.etsy.android.grid.StaggeredGridView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -28,6 +30,7 @@ import co.aquario.mvp.di.components.DrawerHeaderView;
 import co.aquario.mvp.di.components.SearchView;
 import co.aquario.mvp.fragment.CartFragment;
 import co.aquario.mvp.model.PostDataNew;
+import co.aquario.mvp.model.ShoppingCartHelper;
 import co.aquario.mvp.presenter.MainPresenter;
 import co.aquario.mvp.services.ChannelService;
 import co.chonlakant.mvp.R;
@@ -57,6 +60,8 @@ public class MainActivity extends BaseActivity implements TopMovieListView {
     private Subscription querySubscription = Subscriptions.empty();
     private Subscription suggestionsSubscription = Subscriptions.empty();
 
+    private List<PostDataNew> mCartList = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,14 +73,16 @@ public class MainActivity extends BaseActivity implements TopMovieListView {
         fabBtn = (FloatingActionButton) findViewById(R.id.fabBtn);
         View header = layoutInflater.inflate(R.layout.list_header_channel_recipe, null);
         recipeListView.addHeaderView(header);
-
+        mCartList = ShoppingCartHelper.getCartList();
+        Log.e("mCartList",mCartList.size()+"");
         setupViews();
         initView();
 
         fabBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Snackbar snackbar = Snackbar.make(drawerLayout, "QR Code", Snackbar.LENGTH_LONG);
+                snackbar.show();
             }
         });
     }
@@ -140,15 +147,16 @@ public class MainActivity extends BaseActivity implements TopMovieListView {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 int id = menuItem.getItemId();
-                switch (id){
+                switch (id) {
                     case R.id.navigation_home:
-                        Intent i =new Intent(getApplication(), Activity_main_PaymentDetail.class);
+                        Intent i = new Intent(getApplication(), Activity_main_PaymentDetail.class);
                         startActivity(i);
                         drawerLayout.closeDrawers();
                         break;
                     case R.id.navigation_my_recipes:
 
                         MainApplication.logout(getApplicationContext());
+                        Toast.makeText(getApplicationContext(),"Logout",Toast.LENGTH_SHORT).show();
                         drawerLayout.closeDrawers();
                         break;
                 }
@@ -162,11 +170,17 @@ public class MainActivity extends BaseActivity implements TopMovieListView {
         querySubscription = AppObservable.bindActivity(this, searchView.observe())
                 .subscribe();
     }
-//
+
+    //
 //    private void updateSuggestions(String query) {
 //        suggestionsSubscription.unsubscribe();
 //        suggestionsSubscription = AppObservable.bindActivity(this, new SuggestionService().get(query))
 //                .subscribe(searchView::updateSuggestions);
 //    }
+    @Override
+    public void onResume() {
+        super.onResume();
 
+
+    }
 }

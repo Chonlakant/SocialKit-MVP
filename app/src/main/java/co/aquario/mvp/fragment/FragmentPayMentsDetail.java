@@ -148,9 +148,6 @@ public class FragmentPayMentsDetail extends BaseFragment {
             @Override
             public void onClick(View view) {
 
-                mCartList.clear();
-
-               // Toast.makeText(getActivity(), mCartList.get(0).getProductId() + "", Toast.LENGTH_LONG).show();
                 uploadProduct();
                 FragmentPayMents oneFragment = new FragmentPayMents();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
@@ -190,7 +187,7 @@ public class FragmentPayMentsDetail extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        Double i = 40.00;
+        double i = 40.00;
         // Refresh the data
         if (mAdapter != null) {
             mAdapter.notifyDataSetChanged();
@@ -199,8 +196,8 @@ public class FragmentPayMentsDetail extends BaseFragment {
         int quantity = 0;
         for (PostDataNew p : mCartList) {
             quantity = ShoppingCartHelper.getProductQuantity(p);
-            subTotal += p.getPrice() * quantity + i;
             sumAll += p.getPrice() * quantity;
+            subTotal = sumAll + i;
             ShoppingCartHelper.setQuantity(p, quantity);
 
 

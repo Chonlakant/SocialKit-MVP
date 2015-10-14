@@ -41,7 +41,7 @@ public class ItemActivity extends AppCompatActivity {
     int productId;
     PostDataNew list;
     MainApplication aController;
-     EditText editTextQuantity;
+    TextView editTextQuantity;
     TextView textCount1 ,textCount2;
     int count;
     int counSum;
@@ -50,14 +50,13 @@ public class ItemActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_viewpager);
 
-        editTextQuantity = (EditText) findViewById(R.id.editTextQuantity);
+        editTextQuantity = (TextView) findViewById(R.id.editTextQuantity);
         editTextQuantity.setGravity(Gravity.CENTER);
         textCount1 = (TextView) findViewById(R.id.textCount1);
         textCount2 = (TextView) findViewById(R.id.textCount2);
         aController = (MainApplication) getApplicationContext();
 
         //editTextQuantity.setInputType(InputType.TYPE_NULL);
-
 
         textCount1.setOnClickListener(new View.OnClickListener() {
             @Override

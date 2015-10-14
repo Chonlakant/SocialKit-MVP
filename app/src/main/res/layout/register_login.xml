@@ -17,7 +17,7 @@
             android:layout_marginRight="15dp"
             android:layout_marginTop="5dp"
             android:text="เข้าสู่ระบบ Folkrice"
-            android:textColor="@color/md_green_600"
+            android:textColor="@color/md_green_800"
             android:textSize="20dp"
             android:textStyle="bold" />
 
@@ -95,7 +95,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="15dp"
-            android:background="@color/md_green_600"
+            android:background="@color/md_green_800"
             android:text="เข้าสู้ระบบ"
             android:textColor="@android:color/white"
             android:textSize="15sp" />
