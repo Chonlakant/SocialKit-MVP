@@ -59,7 +59,6 @@ public class CartFragment extends DialogFragment {
     UserManager mManager;
     PrefManager pref;
     Boolean isLogin = false;
-    PostDataNew productList;
     double subTotal = 0;
     MainApplication aController;
     TextView cancelBtn;
@@ -97,7 +96,6 @@ public class CartFragment extends DialogFragment {
                 mCartList.get(i).selected = false;
             }
         }
-
 
         // Create the list
         list = (ListView) v.findViewById(R.id.cart_items_list);
@@ -163,6 +161,7 @@ public class CartFragment extends DialogFragment {
                                             } else {
                                                 Intent i = new Intent(getActivity(), Activity_main_PaymentDetail.class);
                                                 startActivity(i);
+                                                mMaterialDialog.dismiss();
                                             }
 
                                         }
@@ -212,23 +211,13 @@ public class CartFragment extends DialogFragment {
         alert.setPositiveButton("ตกลง", new OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // TOD O Auto-generated method stub
-
-                // main code on after clicking yes
-
 
                 for(int i = 0 ; i< mCartList.size();i++){
                     Log.e("i",i+"");
                 }
-
-
                 ShoppingCartHelper.removeProduct(mCartList.get(deletePosition));
-
                 mCartList.remove(deletePosition);
                 Log.e("99999", mCartList.size() + "");
-
-
-                // Refresh the data
                 double priceSum1 = 0;
 
                 int quantity = 0;
@@ -241,6 +230,7 @@ public class CartFragment extends DialogFragment {
                     priceSum1 = p.getPrice();
                     productPriceTextView.setText("ราคารวม:" + priceSum1);
                     number_items.setText("จำนวน: " + quantity);
+                    Log.e("ราคารวม",priceSum1+"");
                 }
 
 
@@ -250,6 +240,8 @@ public class CartFragment extends DialogFragment {
                     number_items.setText("จำนวน: " + quantity);
                 }
 
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.detach(CartFragment.this).attach(CartFragment.this).commit();
 
 
             }
@@ -291,9 +283,10 @@ public class CartFragment extends DialogFragment {
 
             ShoppingCartHelper.setQuantity(p, quantity);
 
-            productPriceTextView.setText("ราคารวม:" + subTotal);
-        }
 
+        }
+        productPriceTextView.setText("ราคารวม:" + subTotal);
+        Log.e("subTotal", subTotal + "");
         number_items.setText("จำนวน: " + quantity);
     }
 
