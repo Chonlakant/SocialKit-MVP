@@ -40,12 +40,14 @@
             android:id="@+id/et_contry"
             android:layout_width="fill_parent"
             android:layout_height="40dp"
+            android:textCursorDrawable="@drawable/color_cursor"
             android:layout_marginTop="5dp"
             android:background="@drawable/group_row"
             android:hint="จังหวัด" />
 
 
         <EditText
+            android:textCursorDrawable="@drawable/color_cursor"
             android:id="@+id/et_area"
             android:layout_width="fill_parent"
             android:layout_height="40dp"
@@ -55,6 +57,7 @@
 
 
         <EditText
+            android:textCursorDrawable="@drawable/color_cursor"
             android:id="@+id/et_district"
             android:layout_width="fill_parent"
             android:layout_height="40dp"
@@ -69,13 +72,15 @@
             android:layout_height="40dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/group_top"
-            android:hint="จุดสังเกต" />
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:hint="บ้านเลขที่" />
 
         <EditText
             android:layout_width="fill_parent"
             android:layout_height="40dp"
             android:id="@+id/et_road"
             android:layout_marginTop="5dp"
+            android:textCursorDrawable="@drawable/color_cursor"
             android:background="@drawable/group_top"
             android:hint="ถนน/ซอย" />
 
@@ -84,6 +89,8 @@
             android:id="@+id/et_zip_code"
             android:layout_height="40dp"
             android:layout_marginTop="5dp"
+            android:inputType="number"
+            android:textCursorDrawable="@drawable/color_cursor"
             android:background="@drawable/group_top"
             android:hint="รหัสไปรษณีย์" />
 
@@ -92,6 +99,7 @@
             android:id="@+id/et_home"
             android:layout_height="40dp"
             android:layout_marginTop="5dp"
+            android:textCursorDrawable="@drawable/color_cursor"
             android:background="@drawable/group_top"
             android:hint="ประเภอที่อยู่ บ้าน คอนโด สำนักงาน" />
 

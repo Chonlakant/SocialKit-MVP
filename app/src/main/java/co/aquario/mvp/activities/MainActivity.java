@@ -74,8 +74,9 @@ public class MainActivity extends BaseActivity implements TopMovieListView {
         View header = layoutInflater.inflate(R.layout.list_header_channel_recipe, null);
         recipeListView.addHeaderView(header);
         mCartList = ShoppingCartHelper.getCartList();
-        Log.e("mCartList",mCartList.size()+"");
+        Log.e("mCartList", mCartList.size() + "");
         setupViews();
+        pref = MainApplication.getPrefManager();
         initView();
 
         fabBtn.setOnClickListener(new View.OnClickListener() {
@@ -154,9 +155,14 @@ public class MainActivity extends BaseActivity implements TopMovieListView {
                         drawerLayout.closeDrawers();
                         break;
                     case R.id.navigation_my_recipes:
-
+                        boolean isCheck = pref.isLogin().getOr(false);
                         MainApplication.logout(getApplicationContext());
-                        Toast.makeText(getApplicationContext(),"Logout",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Logout", Toast.LENGTH_SHORT).show();
+                        menuItem.setTitle("Login");
+
+                        if (pref.isLogin().getOr(true) && !isCheck) {
+                            menuItem.setTitle("Logout");
+                        }
                         drawerLayout.closeDrawers();
                         break;
                 }

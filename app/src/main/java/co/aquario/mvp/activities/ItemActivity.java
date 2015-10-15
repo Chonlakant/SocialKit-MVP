@@ -49,7 +49,7 @@ public class ItemActivity extends AppCompatActivity {
     TextView editTextQuantity;
     TextView textCount1, textCount2;
     int count;
-    int counSum;
+    int counSum = 1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -64,7 +64,7 @@ public class ItemActivity extends AppCompatActivity {
 
         //editTextQuantity.setInputType(InputType.TYPE_NULL);
         int one = 0;
-        String i = String.valueOf(one);
+        String i = String.valueOf(counSum);
         editTextQuantity.setText(i);
         textCount1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,23 +136,24 @@ public class ItemActivity extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(ItemActivity.this);
                 builder.setTitle(R.string.add_cart)
                         .setMessage(title + " คุณต้องการเพิ่มในรายการของคุณไหม?")
-                        .setNegativeButton(R.string.ok, new DialogInterface.OnClickListener() {
+                        .setNegativeButton(R.string.show_cart, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 // Close the dialog window
+                                dialog.dismiss();
+                                CartFragment cartFrag = new CartFragment();
+                                cartFrag.show(getSupportFragmentManager(), "My Cart");
+                            }
+                        })
+                        .setPositiveButton( R.string.ok, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Dismiss dialog and open cart
                                 ShoppingCartHelper.setQuantity(list, quantity);
                                 Log.e("lisy33", list.getProductId() + "");
                                 Log.e("lisy33", quantity + "");
                                 dialog.dismiss();
-                            }
-                        })
-                        .setPositiveButton(R.string.show_cart, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                // Dismiss dialog and open cart
-                                dialog.dismiss();
-                                CartFragment cartFrag = new CartFragment();
-                                cartFrag.show(getSupportFragmentManager(), "My Cart");
+
                             }
                         }).create().show();
             }

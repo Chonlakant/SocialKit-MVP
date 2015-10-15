@@ -33,7 +33,7 @@ public class FragmentRegisterOne extends Fragment {
     EditText et_mail;
     EditText et_password;
     EditText et_confirmPassword;
-
+    String userId;
     public static final String ARG_PAGE = "ARG_PAGE";
     Button btn_add;
     //    private int mPage;
@@ -41,6 +41,7 @@ public class FragmentRegisterOne extends Fragment {
     String pass;
     String confirmpassWord;
     PrefManager pref;
+    int id;
     List<AddAddress> list = new ArrayList<>();
 
     public static FragmentRegisterOne newInstance(int page) {
@@ -59,7 +60,6 @@ public class FragmentRegisterOne extends Fragment {
         //  mPage = getArguments().getInt(ARG_PAGE);
 
     }
-
 
 
     @Override
@@ -85,6 +85,8 @@ public class FragmentRegisterOne extends Fragment {
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 uploadProfile();
 
                 FragmentRegisterTwo oneFragment = new FragmentRegisterTwo();
@@ -127,14 +129,21 @@ public class FragmentRegisterOne extends Fragment {
     public void updateProfile(String url, JSONObject jo, AjaxStatus status)
             throws JSONException {
         Log.e("hahaha", jo.toString(4));
-      Toast.makeText(getActivity(),"ขั้นตอนถัดไป",Toast.LENGTH_LONG).show();
+
+        userId = jo.getJSONObject("account").optString("id");
+       // id = Integer.parseInt(userId);
+        pref.userId().put(userId);
+        pref.commit();
+        Log.e("sdsdsd", userId);
+
+        Toast.makeText(getActivity(), "ขั้นตอนถัดไป", Toast.LENGTH_LONG).show();
     }
 
 
     @Override
     public void onResume() {
         super.onResume();
-        if(pref.isAddress().getOr(false)){
+        if (pref.isAddress().getOr(false)) {
             et_mail.setText(pref.email().getOr(""));
             et_password.setText(pref.passWord().getOr(""));
 //            et_confirmPassword.setText(pref.confirmpassWord().getOr(""));

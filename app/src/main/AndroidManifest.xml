@@ -41,7 +41,7 @@
         <activity android:name="co.aquario.mvp.activities.Activity_main_register"/>
         <activity android:name="co.aquario.mvp.activities.Activity_main_login"/>
         <activity android:name="co.aquario.mvp.activities.Activity_main_PaymentDetail"/>
-
+<activity android:name="co.aquario.mvp.activities.Activity_main_edit_adress"/>
     </application>
 
 </manifest>

@@ -1,5 +1,6 @@
 package co.aquario.mvp.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
@@ -37,6 +38,7 @@ import java.util.Map;
 
 import co.aquario.mvp.MainApplication;
 import co.aquario.mvp.PrefManager;
+import co.aquario.mvp.activities.Activity_main_edit_adress;
 import co.aquario.mvp.adapter.ProductAdapter;
 import co.aquario.mvp.model.JsonArr;
 import co.aquario.mvp.model.PostDataNew;
@@ -55,6 +57,7 @@ public class FragmentPayMentsDetail extends BaseFragment {
     PrefManager pref;
     ProductAdapter mAdapter;
     ListView list;
+    String userId;
     double sumAll = 0;
     double subTotal = 0;
     double subTotalAll = 0;
@@ -65,7 +68,7 @@ public class FragmentPayMentsDetail extends BaseFragment {
     private List<PostDataNew> mCartList = new ArrayList<>();
     List<JsonArr> productJson = new ArrayList<>();
     JsonArray myCustomArray;
-    TextView txtName, txtCountry, txtDistrict, txtPostal, txtHome, sumPrice, sum;
+    TextView txtName, txtCountry, txtDistrict, txtPostal, txtHome, sumPrice, sum,Text_edit;
     PostDataNew p;
     public static FragmentPayMentsDetail newInstance(int page) {
         Bundle args = new Bundle();
@@ -82,7 +85,8 @@ public class FragmentPayMentsDetail extends BaseFragment {
         pref = MainApplication.getPrefManager();
         Log.e("aaaaa", (pref == null) + "");
 
-
+        userId = pref.userId().getOr("null");
+        Log.e("OKOKOKOKO",userId);
     }
 
     @Override
@@ -101,6 +105,7 @@ public class FragmentPayMentsDetail extends BaseFragment {
         sumPrice = (TextView) rootView.findViewById(R.id.sum_price);
         sum = (TextView) rootView.findViewById(R.id.sum);
         btn_price = (Button) rootView.findViewById(R.id.btn_price);
+        Text_edit = (TextView) rootView.findViewById(R.id.Text_edit);
 
 
         if (mAdapter != null) {
@@ -109,25 +114,6 @@ public class FragmentPayMentsDetail extends BaseFragment {
                 mCartList.get(i).selected = false;
             }
         }
-
-//        double i = 40.00;
-//        for (PostDataNew p : mCartList) {
-//            sumAll += p.getPrice() ;
-//            subTotal = sumAll + i;
-//        }
-//
-//
-//        sum.setText("ราคารวม:" + subTotal);
-//        Log.e("affffaaa",subTotal+"");
-//        sumPrice.setText(sumAll + "บาท");
-
-
-
-
-//        sum.setText("ราคารวม:" + subTotal);
-//        sumPrice.setText(sumAll + "บาท");
-
-
 
         list.setAdapter(mAdapter);
         String name = pref.name().getOr("");
@@ -160,7 +146,13 @@ public class FragmentPayMentsDetail extends BaseFragment {
         myCustomArray = gson.toJsonTree(productJson).getAsJsonArray();
         Log.e("2222", myCustomArray + "");
 
-
+        Text_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), Activity_main_edit_adress.class);
+                startActivity(i);
+            }
+        });
         btn_price.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -191,17 +183,19 @@ public class FragmentPayMentsDetail extends BaseFragment {
         Charset chars = Charset.forName("UTF-8");
         String url = "http://api.folkrice.com/order/add";
 
+       int id = Integer.parseInt(userId);
+
+        Log.e("NONONONON",id+"");
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("items", myCustomArray);
-        params.put("account", 44);
+        params.put("account", id);
 
 
         AQuery aq = new AQuery(getActivity());
         aq.ajax(url, params, JSONObject.class, this, "updateProduct");
     }
 
-    public void updateProduct(String url, JSONObject jo, AjaxStatus status)
-            throws JSONException {
+    public void updateProduct(String url, JSONObject jo, AjaxStatus status) throws JSONException {
         Log.e("hahaha", jo.toString(4));
     }
 
@@ -211,7 +205,7 @@ public class FragmentPayMentsDetail extends BaseFragment {
         super.onResume();
 
 
-        double i = 40.00;
+        double i = 20.00;
         // Refresh the data
         if (mAdapter != null) {
             mAdapter.notifyDataSetChanged();

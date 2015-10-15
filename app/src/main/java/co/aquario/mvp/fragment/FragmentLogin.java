@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.androidquery.AQuery;
+import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
 import com.google.gson.Gson;
 import com.squareup.okhttp.FormEncodingBuilder;
@@ -36,6 +37,7 @@ import co.aquario.mvp.PrefManager;
 import co.aquario.mvp.activities.Activity_main_register;
 import co.aquario.mvp.activities.AlertDialogManager;
 import co.aquario.mvp.model.AddAddress;
+import co.aquario.mvp.model.Status;
 import co.chonlakant.mvp.R;
 
 
@@ -53,9 +55,10 @@ public class FragmentLogin extends Fragment {
     String confirmpassWord;
     String emailPref;
     String passPref;
+    Status statusLogin;
     AlertDialogManager alert = new AlertDialogManager();
     List<AddAddress> list = new ArrayList<>();
-
+    private AQuery aq;
     public static FragmentLogin newInstance(int page) {
         Bundle args = new Bundle();
         args.putInt(ARG_PAGE, page);
@@ -78,20 +81,14 @@ public class FragmentLogin extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.register_login, container, false);
-
+        aq = new AQuery(getActivity());
         et_mail = (EditText) rootView.findViewById(R.id.email);
         et_mail.setHint("อีเมล์");
         et_password = (EditText) rootView.findViewById(R.id.password);
         et_password.setHint("รหัสผ่าน");
+        statusLogin = new Status();
+        statusLogin.setStatus("ok");
 
-
-
-
-         emailPref = pref.email().getOr("test_folkrice");
-         passPref = pref.passWord().getOr("1234");
-
-        Log.e("prefEmail", emailPref);
-        Log.e("prefPassWold", passPref);
 
         btn_add = (Button) rootView.findViewById(R.id.btn_add);
         btn_register = (Button) rootView.findViewById(R.id.btn_register);
@@ -108,7 +105,7 @@ public class FragmentLogin extends Fragment {
             @Override
             public void onClick(View view) {
 
-                uploadProfile();
+                onLoginButtonClick();
 
             }
         });
@@ -117,45 +114,43 @@ public class FragmentLogin extends Fragment {
     }
 
 
-    private void uploadProfile() {
+    private void onLoginButtonClick() {
 
 
         email = et_mail.getText().toString();
         pass = et_password.getText().toString();
 
+        String url = "http://api.folkrice.com/account/authenticate";
 
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("email", email);
+        params.put("password", pass);
 
+        AjaxCallback<JSONObject> cb = new AjaxCallback<JSONObject>();
+        cb.url(url).type(JSONObject.class).params(params).weakHandler(this, "loginCallback");
+        cb.header("Content-Type", "application/x-www-form-urlencoded");
+        aq.ajax(cb);
 
-        if (email.equals(emailPref) && pass.equals(passPref)) {
+    }
 
-            Charset chars = Charset.forName("UTF-8");
-            String url = "http://api.folkrice.com/account/authenticate";
+    public void loginCallback(String url, JSONObject json, AjaxStatus status) throws JSONException {
 
-            Map<String, Object> params = new HashMap<String, Object>();
-            params.put("email", email);
-            params.put("password", pass);
+        Log.e("fdfd", json.toString(4));
 
+        String ok = json.optString("status");
 
-            AQuery aq = new AQuery(getActivity());
-            aq.ajax(url, params, JSONObject.class, this, "updateProfile");
-
+        if (statusLogin.getStatus().equals(ok)) {
 
             FragmentPayMentsDetail oneFragment = new FragmentPayMentsDetail();
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.container, oneFragment);
             transaction.addToBackStack(null);
             transaction.commit();
-
             Toast.makeText(getActivity(), "เข้าสู่ระบบ", Toast.LENGTH_SHORT).show();
+
         } else {
-            alert.showAlertDialog(getActivity(), "ล๊อกอิน ผิดพลาด..", "อีเมล์/พาสเวิด ผิด", false);
+            Toast.makeText(getActivity(), "เข้าสู่ระบบผิดพลาด", Toast.LENGTH_SHORT).show();
         }
-
-    }
-
-    public void updateProfile(String url, JSONObject jo, AjaxStatus status)
-            throws JSONException {
-        Log.e("hahaha", jo.toString(4));
     }
 
     @Override

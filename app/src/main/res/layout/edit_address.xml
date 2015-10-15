@@ -17,12 +17,13 @@
             android:layout_height="wrap_content"
             android:textSize="25dp"
             android:textColor="@color/md_green_800"
-            android:text="ลงทะเบียน ขั้นตอนที่ 3"
+            android:text="ลงทะเบียน ขั้นตอนที่ 2"
             android:id="@+id/textView3" />
 
         <co.aquario.mvp.MyCustomTextView
             android:layout_marginTop="5dp"
             android:id="@+id/textView7"
+            android:textCursorDrawable="@drawable/color_cursor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ท่านสามารถเชื่อมต่อกับระบบได้อย่างปลอดภัย เนื่องจากข้อมูลส่วนตัวของท่านจะถูกจัดเก็บเป็นความลับ และเข้าถึงได้ด้วยดารเข้ารหัสเท่านั้น"
@@ -30,54 +31,77 @@
 
         <co.aquario.mvp.MyCustomTextView
             android:layout_marginTop="5dp"
+            android:id="@+id/textView12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ข้อมูลส่วนตัว"
-            android:textSize="20dp"/>
-
-        <EditText
-            android:textCursorDrawable="@drawable/color_cursor"
-            android:id="@+id/et_nameTitle"
-            android:layout_width="fill_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/group_row"
-            android:hint="คำนำหน้าชื่อ" />
-
-
-        <EditText
-            android:textCursorDrawable="@drawable/color_cursor"
-            android:id="@+id/et_fristName"
-            android:layout_width="fill_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/group_row"
-            android:hint="ชื่อ" />
-        <co.aquario.mvp.MyCustomTextView
-            android:layout_marginTop="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="รายละเอียดการติดต่อ"
+            android:text="พื้นที่การจัดส่ง"
             android:textSize="20dp" />
 
         <EditText
-            android:textCursorDrawable="@drawable/color_cursor"
-            android:id="@+id/et_phone"
+            android:id="@+id/et_contry"
             android:layout_width="fill_parent"
             android:layout_height="40dp"
-            android:inputType="number"
             android:layout_marginTop="5dp"
+            android:textCursorDrawable="@drawable/color_cursor"
             android:background="@drawable/group_row"
-            android:hint="เบอร์โทรศัพท์" />
+            android:hint="จังหวัด" />
 
 
-        <co.aquario.mvp.MyCustomTextView
-            android:visibility="gone"
+        <EditText
+            android:id="@+id/et_area"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
             android:layout_marginTop="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="อีเมล์ sattaboot11@gmail.com"
-            android:textSize="15dp" />
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:background="@drawable/group_row"
+            android:hint="เขต/อำเภอ" />
+
+
+        <EditText
+            android:id="@+id/et_district"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:background="@drawable/group_row"
+            android:hint="แขวง/ตำบล" />
+
+
+        <EditText
+            android:id="@+id/et_landmarks"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:background="@drawable/group_top"
+            android:hint="จุดสังเกต" />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:id="@+id/et_road"
+            android:layout_marginTop="5dp"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:background="@drawable/group_top"
+            android:hint="ถนน/ซอย" />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:id="@+id/et_zip_code"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:background="@drawable/group_top"
+            android:hint="รหัสไปรษณีย์" />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:id="@+id/et_home"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:background="@drawable/group_top"
+            android:hint="ประเภอที่อยู่ บ้าน คอนโด สำนักงาน" />
 
         <Button
 
@@ -87,7 +111,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="15dp"
             android:background="@color/md_green_800"
-            android:text="ลงทะเบียน"
+            android:text="บันทึกข้อมูล"
             android:textColor="@android:color/white"
             android:textSize="15sp" />
 

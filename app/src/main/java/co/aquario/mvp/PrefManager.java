@@ -3,6 +3,8 @@ package co.aquario.mvp;
 import android.content.SharedPreferences;
 
 import com.tale.prettysharedpreferences.BooleanEditor;
+import com.tale.prettysharedpreferences.IntegerEditor;
+import com.tale.prettysharedpreferences.LongEditor;
 import com.tale.prettysharedpreferences.PrettySharedPreferences;
 import com.tale.prettysharedpreferences.StringEditor;
 
@@ -87,6 +89,11 @@ public class PrefManager extends PrettySharedPreferences<PrefManager> {
         return getStringEditor("fristName");
     }
 
+
+
+    public StringEditor<PrefManager> userId() {
+        return getStringEditor("userId");
+    }
 
 
 
