@@ -40,7 +40,7 @@ public class FragmentRegisterOne extends Fragment {
     String email;
     String pass;
     String confirmpassWord;
-
+    PrefManager pref;
     List<AddAddress> list = new ArrayList<>();
 
     public static FragmentRegisterOne newInstance(int page) {
@@ -60,7 +60,7 @@ public class FragmentRegisterOne extends Fragment {
 
     }
 
-    PrefManager pref;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -93,7 +93,6 @@ public class FragmentRegisterOne extends Fragment {
                 transaction.addToBackStack(null);
                 transaction.commit();
 
-                Toast.makeText(getActivity(), list.size() + "", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -110,7 +109,6 @@ public class FragmentRegisterOne extends Fragment {
         pref.passWord().put(pass);
         pref.isAddress().put(true);
         //pref.confirmpassWord().put(confirmpassWord);
-
         pref.commit();
 
 
@@ -129,7 +127,7 @@ public class FragmentRegisterOne extends Fragment {
     public void updateProfile(String url, JSONObject jo, AjaxStatus status)
             throws JSONException {
         Log.e("hahaha", jo.toString(4));
-      Toast.makeText(getActivity(),"Update complete!",Toast.LENGTH_LONG).show();
+      Toast.makeText(getActivity(),"ขั้นตอนถัดไป",Toast.LENGTH_LONG).show();
     }
 
 

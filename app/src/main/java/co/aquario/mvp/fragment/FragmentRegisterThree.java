@@ -1,5 +1,6 @@
 package co.aquario.mvp.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -9,12 +10,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import co.aquario.mvp.MainApplication;
 import co.aquario.mvp.PrefManager;
+import co.aquario.mvp.activities.Activity_main_PaymentDetail;
 import co.aquario.mvp.model.AddAddress;
 import co.chonlakant.mvp.R;
 
@@ -84,12 +87,14 @@ public class FragmentRegisterThree extends Fragment {
                 pref.isAddressRegister2().put(true);
                 pref.commit();
 
-                FragmentPayMentsDetail oneFragment = new FragmentPayMentsDetail();
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.container, oneFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
-
+//                FragmentPayMentsDetail oneFragment = new FragmentPayMentsDetail();
+//                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                transaction.replace(R.id.container, oneFragment);
+//                transaction.addToBackStack(null);
+//                transaction.commit();
+                Intent i =new Intent(getActivity(), Activity_main_PaymentDetail.class);
+                startActivity(i);
+                Toast.makeText(getActivity(), "ลงทะเบียนสำเร็จ", Toast.LENGTH_LONG).show();
             }
         });
 

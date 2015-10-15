@@ -110,7 +110,7 @@ public class FragmentRegisterTwo extends Fragment {
                 transaction.addToBackStack(null);
                 transaction.commit();
 
-                Toast.makeText(getActivity(), list.size() + "", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"ขั้นตอนถัดไป",Toast.LENGTH_LONG).show();
             }
         });
 

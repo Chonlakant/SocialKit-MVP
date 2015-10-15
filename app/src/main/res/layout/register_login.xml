@@ -4,12 +4,12 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_marginTop="20dp"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_marginTop="20dp"
         android:orientation="vertical">
 
-        <TextView
+        <co.aquario.mvp.MyCustomTextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -18,19 +18,19 @@
             android:layout_marginTop="5dp"
             android:text="เข้าสู่ระบบ Folkrice"
             android:textColor="@color/md_green_800"
-            android:textSize="20dp"
+            android:textSize="25dp"
             android:textStyle="bold" />
 
-        <TextView
-            android:layout_marginTop="10dp"
+        <co.aquario.mvp.MyCustomTextView
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
+            android:layout_marginTop="10dp"
             android:text="อีเมล์"
             android:textColor="#000000"
-            android:textSize="15dp"
+            android:textSize="20dp"
             android:textStyle="bold" />
 
         <EditText
@@ -43,7 +43,7 @@
             android:background="@drawable/group_row"
             android:hint="อีเมล์" />
 
-        <TextView
+        <co.aquario.mvp.MyCustomTextView
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -52,22 +52,21 @@
             android:layout_marginTop="5dp"
             android:text="รหัสผ่าน"
             android:textColor="#000000"
-            android:textSize="15dp"
+            android:textSize="20dp"
             android:textStyle="bold" />
 
         <EditText
             android:id="@+id/password"
-            android:inputType="textPassword"
             android:layout_width="fill_parent"
             android:layout_height="40dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/group_row"
-            android:hint="รหัสผ่าน" />
+            android:hint="รหัสผ่าน"
+            android:inputType="textPassword" />
 
         <EditText
-            android:visibility="gone"
             android:id="@+id/confirm_password"
             android:layout_width="fill_parent"
             android:layout_height="40dp"
@@ -75,9 +74,10 @@
             android:layout_marginRight="15dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/group_row"
-            android:hint="ยืนยันรหัสผ่าน" />
+            android:hint="ยืนยันรหัสผ่าน"
+            android:visibility="gone" />
 
-        <TextView
+        <co.aquario.mvp.MyCustomTextView
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -86,20 +86,52 @@
             android:layout_marginTop="5dp"
             android:text="การใช้ตัวอักษรเล็กหรือใหญ่มีผลต่อรหัสผ่าน และความปลอดภัย รหัสผ่าน ต้องมีตัทั้งตัวอังกษร และ ตัวเลข รวมอย่างน้อย 8  ตัว"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="12dp" />
+            android:textSize="18dp" />
 
-        <Button
-            android:id="@+id/btn_add"
+        <LinearLayout
+            android:layout_marginTop="10dp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="15dp"
-            android:background="@color/md_green_800"
-            android:text="เข้าสู้ระบบ"
-            android:textColor="@android:color/white"
-            android:textSize="15sp" />
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_weight="1"
+                    android:id="@+id/btn_register"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/md_green_800"
+                    android:text="ลงทะเบียน"
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp" />
+
+                <Button
+                    android:layout_weight="1"
+                    android:id="@+id/btn_add"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/md_green_800"
+                    android:text="เข้าสู่ระบบ"
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
     </LinearLayout>
+
 
 </LinearLayout>

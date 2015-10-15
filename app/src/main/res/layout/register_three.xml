@@ -10,25 +10,25 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:orientation="vertical">
-        <TextView
+        <co.aquario.mvp.MyCustomTextView
             android:layout_marginTop="5dp"
             android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
+            android:textSize="25dp"
             android:textColor="@color/md_green_800"
             android:text="ลงทะเบียน ขั้นตอนที่ 3"
             android:id="@+id/textView3" />
 
-        <TextView
+        <co.aquario.mvp.MyCustomTextView
             android:layout_marginTop="5dp"
             android:id="@+id/textView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ท่านสามารถเชื่อมต่อกับระบบได้อย่างปลอดภัย เนื่องจากข้อมูลส่วนตัวของท่านจะถูกจัดเก็บเป็นความลับ และเข้าถึงได้ด้วยดารเข้ารหัสเท่านั้น"
-            android:textSize="12dp" />
+            android:textSize="20dp" />
 
-        <TextView
+        <co.aquario.mvp.MyCustomTextView
             android:layout_marginTop="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -67,7 +67,8 @@
             android:hint="เบอร์โทรศัพท์" />
 
 
-        <TextView
+        <co.aquario.mvp.MyCustomTextView
+            android:visibility="gone"
             android:layout_marginTop="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

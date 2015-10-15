@@ -110,16 +110,16 @@ public class FragmentPayMentsDetail extends BaseFragment {
             }
         }
 
-        double i = 40.00;
-        for (PostDataNew p : mCartList) {
-            sumAll += p.getPrice() ;
-            subTotal = sumAll + i;
-        }
-
-
-        sum.setText("ราคารวม:" + subTotal);
-        Log.e("affffaaa",subTotal+"");
-        sumPrice.setText(sumAll + "บาท");
+//        double i = 40.00;
+//        for (PostDataNew p : mCartList) {
+//            sumAll += p.getPrice() ;
+//            subTotal = sumAll + i;
+//        }
+//
+//
+//        sum.setText("ราคารวม:" + subTotal);
+//        Log.e("affffaaa",subTotal+"");
+//        sumPrice.setText(sumAll + "บาท");
 
 
 
@@ -178,7 +178,6 @@ public class FragmentPayMentsDetail extends BaseFragment {
                 transaction.commit();
 
 
-
             }
         });
 
@@ -212,24 +211,23 @@ public class FragmentPayMentsDetail extends BaseFragment {
         super.onResume();
 
 
-//        double i = 40.00;
-//        // Refresh the data
-//        if (mAdapter != null) {
-//            mAdapter.notifyDataSetChanged();
-//        }
-//
-//        int quantity = 0;
-//        for (PostDataNew p : mCartList) {
-//            quantity = ShoppingCartHelper.getProductQuantity(p);
-//            sumAll += p.getPrice() * quantity;
-//            subTotal = sumAll + i;
-//            ShoppingCartHelper.setQuantity(p, quantity);
-//        }
-//        sum.setText("ราคารวม:" + subTotal);
-//
-//        sumPrice.setText(sumAll + "บาท");
+        double i = 40.00;
+        // Refresh the data
+        if (mAdapter != null) {
+            mAdapter.notifyDataSetChanged();
+        }
 
-//        number_items.setText("จำนวน: " + quantity);
+        int quantity = 0;
+        for (PostDataNew p : mCartList) {
+            quantity = ShoppingCartHelper.getProductQuantity(p);
+            sumAll += p.getPrice() * quantity;
+            subTotal = sumAll + i;
+            ShoppingCartHelper.setQuantity(p, quantity);
+        }
+        sum.setText("ราคารวม:" + subTotal);
+        Log.e("sdsdsd",sumAll+"");
+        sumPrice.setText(sumAll + "บาท");
+
     }
 
 }

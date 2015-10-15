@@ -8,7 +8,7 @@
         android:layout_height="fill_parent"
         android:orientation="vertical">
 
-        <TextView
+        <co.aquario.mvp.MyCustomTextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -17,10 +17,10 @@
             android:layout_marginTop="5dp"
             android:text="ลงทะเบียน ขั้นตอนที่ 1"
             android:textColor="@color/md_green_800"
-            android:textSize="20dp"
+            android:textSize="25dp"
             android:textStyle="bold" />
 
-        <TextView
+        <co.aquario.mvp.MyCustomTextView
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -28,7 +28,7 @@
             android:layout_marginRight="15dp"
             android:text="อีเมล์"
             android:textColor="#000000"
-            android:textSize="15dp"
+            android:textSize="20dp"
             android:textStyle="bold" />
 
         <EditText
@@ -75,7 +75,7 @@
             android:background="@drawable/group_row"
             android:hint="ยืนยันรหัสผ่าน" />
 
-        <TextView
+        <co.aquario.mvp.MyCustomTextView
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -84,7 +84,7 @@
             android:layout_marginTop="5dp"
             android:text="การใช้ตัวอักษรเล็กหรือใหญ่มีผลต่อรหัสผ่าน และความปลอดภัย รหัสผ่าน ต้องมีตัทั้งตัวอังกษร และ ตัวเลข รวมอย่างน้อย 8  ตัว"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="12dp" />
+            android:textSize="18dp" />
 
         <Button
             android:id="@+id/btn_add"

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +33,7 @@ import java.util.Map;
 
 import co.aquario.mvp.MainApplication;
 import co.aquario.mvp.PrefManager;
+import co.aquario.mvp.activities.Activity_main_register;
 import co.aquario.mvp.activities.AlertDialogManager;
 import co.aquario.mvp.model.AddAddress;
 import co.chonlakant.mvp.R;
@@ -44,10 +46,13 @@ public class FragmentLogin extends Fragment {
 
     public static final String ARG_PAGE = "ARG_PAGE";
     Button btn_add;
+    Button btn_register;
     //    private int mPage;
     String email;
     String pass;
     String confirmpassWord;
+    String emailPref;
+    String passPref;
     AlertDialogManager alert = new AlertDialogManager();
     List<AddAddress> list = new ArrayList<>();
 
@@ -79,14 +84,31 @@ public class FragmentLogin extends Fragment {
         et_password = (EditText) rootView.findViewById(R.id.password);
         et_password.setHint("รหัสผ่าน");
 
+
+
+
+         emailPref = pref.email().getOr("test_folkrice");
+         passPref = pref.passWord().getOr("1234");
+
+        Log.e("prefEmail", emailPref);
+        Log.e("prefPassWold", passPref);
+
         btn_add = (Button) rootView.findViewById(R.id.btn_add);
+        btn_register = (Button) rootView.findViewById(R.id.btn_register);
+
+        btn_register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), Activity_main_register.class);
+                startActivity(i);
+            }
+        });
 
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 uploadProfile();
-
 
             }
         });
@@ -97,11 +119,12 @@ public class FragmentLogin extends Fragment {
 
     private void uploadProfile() {
 
+
         email = et_mail.getText().toString();
         pass = et_password.getText().toString();
 
-        String emailPref = pref.email().getOr("");
-        String passPref = pref.passWord().getOr("");
+
+
 
         if (email.equals(emailPref) && pass.equals(passPref)) {
 
@@ -123,7 +146,7 @@ public class FragmentLogin extends Fragment {
             transaction.addToBackStack(null);
             transaction.commit();
 
-            Toast.makeText(getActivity(), list.size() + "", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "เข้าสู่ระบบ", Toast.LENGTH_SHORT).show();
         } else {
             alert.showAlertDialog(getActivity(), "ล๊อกอิน ผิดพลาด..", "อีเมล์/พาสเวิด ผิด", false);
         }
@@ -133,7 +156,15 @@ public class FragmentLogin extends Fragment {
     public void updateProfile(String url, JSONObject jo, AjaxStatus status)
             throws JSONException {
         Log.e("hahaha", jo.toString(4));
-        Toast.makeText(getActivity(), "Update complete!", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (pref.isAddress().getOr(false)) {
+            et_mail.setText(pref.email().getOr(""));
+            et_password.setText(pref.passWord().getOr(""));
+        }
     }
 
 

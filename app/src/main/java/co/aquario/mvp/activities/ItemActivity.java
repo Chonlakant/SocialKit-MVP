@@ -127,34 +127,12 @@ public class ItemActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
 
-
-//             for(int i = 0 ; i < count ; count++){
-//                 final int index = i;
-//                 ProductAquery tempProductObject = aController.getProducts(index);
-//                 if(!aController.getCart().checkProductInCart(tempProductObject)){
-//                     aController.getCart().setProducts(tempProductObject);
-//                 }
-//             }
-
-
         // Set the buy button
         mBuyButton = (TextView) findViewById(R.id.buy_button);
         mBuyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 quantity = counSum;
-
-
-                // If we make it here, a valid quantity was entered
-
-
-//                CartFragment cartFrag = new CartFragment();
-//                cartFrag.show(getSupportFragmentManager(), "My Cart");
-                // Close the activity
-
-
                 AlertDialog.Builder builder = new AlertDialog.Builder(ItemActivity.this);
                 builder.setTitle(R.string.add_cart)
                         .setMessage(title + " คุณต้องการเพิ่มในรายการของคุณไหม?")
@@ -202,7 +180,6 @@ public class ItemActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Toast.makeText(getApplication(),"tt",Toast.LENGTH_SHORT).show();
         int count = getSupportFragmentManager().getBackStackEntryCount();
         // Closes the activity if end of back stack
         if (count <= 1) {
