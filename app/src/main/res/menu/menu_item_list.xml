@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto"
       xmlns:tools="http://schemas.android.com/tools"
-      tools:context="ohjoseph.com.urtuu.Shop.ItemListActivity">
+      tools:context="co.aquario.mvp.activities.ItemActivity">
     <item
         android:id="@+id/cart"
         android:icon="@drawable/bag"

@@ -31,15 +31,26 @@
                     android:hint="@string/feeling_lucky" />
 
                 <IconTextView
-                    android:id="@+id/clear_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                android:id="@+id/clear_button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="@dimen/spacing_large"
+                android:text="{fa-times-circle}"
+                android:textSize="24dp"
+                android:visibility="gone" />
+                <!--<TextView-->
+                    <!--android:id="@+id/clear_button"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:gravity="center"-->
+                    <!--android:layout_marginLeft="30dp"-->
+                    <!--android:padding="@dimen/spacing_large"-->
+                    <!--android:text="0"-->
+                    <!--android:textColor="#b0120a"-->
+                    <!--android:textSize="10dp"-->
+                    <!--android:visibility="visible" />-->
 
-                    android:gravity="center"
-                    android:padding="@dimen/spacing_large"
-                    android:text="{fa-times-circle}"
-                    android:textSize="24dp"
-                    android:visibility="gone" />
             </LinearLayout>
         </android.support.v7.widget.Toolbar>
 

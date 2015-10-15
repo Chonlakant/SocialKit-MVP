@@ -1,5 +1,6 @@
 package co.aquario.mvp.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -72,8 +74,14 @@ public class ItemFragment extends Fragment {
         // Set the ActionBar name to the item
         mToolbar = (Toolbar) getActivity().findViewById(R.id.action_toolbar);
         TextView titleView = (TextView) mToolbar.findViewById(R.id.title);
-
+        ImageView x_button = (ImageView) mToolbar.findViewById(R.id.x_button);
         titleView.setText(title);
+        x_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
+            }
+        });
     }
 
     @Override
@@ -85,7 +93,7 @@ public class ItemFragment extends Fragment {
         TextView nameTitle = (TextView) v.findViewById(R.id.name);
         TextView descTitle = (TextView) v.findViewById(R.id.item_desc);
         nutrition_button = (TextView) v.findViewById(R.id.nutrition_button);
-        priceTitle.setText(price+"บาท");
+        priceTitle.setText(price+" บาท");
         nameTitle.setText(title);
         descTitle.setText(decs);
         // Instantiate the view pager
@@ -107,5 +115,7 @@ public class ItemFragment extends Fragment {
 
         return v;
     }
+
+
 
 }

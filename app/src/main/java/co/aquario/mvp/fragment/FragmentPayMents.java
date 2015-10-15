@@ -40,6 +40,7 @@ import me.drakeet.materialdialog.MaterialDialog;
 public class FragmentPayMents extends StatedFragment {
 
     public static final String ARG_PAGE = "ARG_PAGE";
+    public static final String EXTRA_PRICE = "Item Price";
     Button btn_add;
     private int mPage;
     ImageListAdapter imageListAdapter;
@@ -53,17 +54,20 @@ public class FragmentPayMents extends StatedFragment {
             "http://www.thaidnsservice.com/wp-content/uploads/2015/07/kbang.jpg",
             "http://buzzinmediagroup.com/wp-content/uploads/2015/07/SCB_logo.jpg"
     };
-    String[] title = {"PayPal","ธนาคารกสิกรไทย","ธนาคารไทยพาณิชย์"};
+    String[] title = {"PayPal", "ธนาคารกสิกรไทย", "ธนาคารไทยพาณิชย์"};
 
     private static PayPalConfiguration paypalConfig = new PayPalConfiguration().environment(Config.PAYPAL_ENVIRONMENT).clientId(
             Config.PAYPAL_CLIENT_ID);
     String name;
 
+    double price;
 
-    public static FragmentPayMents newInstance(int page) {
+    public static FragmentPayMents newInstance(int page, double price) {
+        FragmentPayMents fragment = new FragmentPayMents();
         Bundle args = new Bundle();
         args.putInt(ARG_PAGE, page);
-        FragmentPayMents fragment = new FragmentPayMents();
+        args.putDouble(EXTRA_PRICE, price);
+
         fragment.setArguments(args);
         return fragment;
     }
@@ -71,7 +75,16 @@ public class FragmentPayMents extends StatedFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // mPage = getArguments().getInt(ARG_PAGE);
+        mPage = getArguments().getInt(ARG_PAGE);
+        Bundle args = getArguments();
+        //mItem = DataSource.get(getActivity()).getItem(args.getString(EXTRA_NAME));
+
+        if (args != null) {
+
+            price = args.getDouble("Price");
+            Log.e("Price44",price+"");
+
+        }
         mCartList = ShoppingCartHelper.getCartList();
     }
 
@@ -81,7 +94,12 @@ public class FragmentPayMents extends StatedFragment {
         listView = (ListView) rootView.findViewById(R.id.listView);
         btn_back = (Button) rootView.findViewById(R.id.btn_back);
         mMaterialDialog = new MaterialDialog(getActivity());
-        imageListAdapter = new ImageListAdapter(getActivity(),eatFoodyImages,title);
+
+
+        //mItem = DataSource.get(getActivity()).getItem(args.getString(EXTRA_NAME));
+
+
+        imageListAdapter = new ImageListAdapter(getActivity(), eatFoodyImages, title);
         listView.setAdapter(imageListAdapter);
 
         for (int i = 0; i < mCartList.size(); i++) {
@@ -118,7 +136,7 @@ public class FragmentPayMents extends StatedFragment {
             @Override
             public void onClick(View view) {
 
-                for(int i=0; i< mCartList.size();i++){
+                for (int i = 0; i < mCartList.size(); i++) {
                     ShoppingCartHelper.removeProduct(mCartList.get(i));
                 }
                 mCartList.clear();
@@ -134,20 +152,19 @@ public class FragmentPayMents extends StatedFragment {
     public void onResume() {
         super.onResume();
 
-        double i = 40.00;
-        subTotal = 0;
-        int quantity = 0;
-        for (PostDataNew p : mCartList) {
-            quantity = ShoppingCartHelper.getProductQuantity(p);
-            subTotal += p.getPrice() * quantity + i ;
-
-            ShoppingCartHelper.setQuantity(p, quantity);
-            name = p.getName();
-
-        }
-
-        Log.e("ราคารวม", subTotal + "");
-
+//        double i = 40.00;
+//        subTotal = 0;
+//        int quantity = 0;
+//        for (PostDataNew p : mCartList) {
+//            quantity = ShoppingCartHelper.getProductQuantity(p);
+//            subTotal += p.getPrice() * quantity + i ;
+//
+//            ShoppingCartHelper.setQuantity(p, quantity);
+//            name = p.getName();
+//
+//        }
+//
+//        Log.e("ราคารวม", subTotal + "");
 
 
 //        number_items.setText("จำนวน: " + quantity);
@@ -161,7 +178,7 @@ public class FragmentPayMents extends StatedFragment {
         //   - PAYMENT_INTENT_ORDER to create a payment for authorization and capture
         //     later via calls from your server.
 
-        PayPalPayment payment = new PayPalPayment(new BigDecimal(subTotal), "THB", "ราคารวม",
+        PayPalPayment payment = new PayPalPayment(new BigDecimal(price), "THB", "ราคารวม",
                 PayPalPayment.PAYMENT_INTENT_SALE);
 
         Intent intent = new Intent(getActivity(), PaymentActivity.class);
@@ -173,6 +190,7 @@ public class FragmentPayMents extends StatedFragment {
 
         startActivityForResult(intent, 0);
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -199,17 +217,15 @@ public class FragmentPayMents extends StatedFragment {
                     Log.e("Check():", "paymentId: " + paymentId
                             + ", payment_json: " + payment_client);
 
-                    Toast.makeText(getActivity(),payment_client +"" ,Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), payment_client + "", Toast.LENGTH_LONG).show();
 
                 } catch (JSONException e) {
                     Log.e("paymentExample", "an extremely unlikely failure occurred: ", e);
                 }
             }
-        }
-        else if (resultCode == Activity.RESULT_CANCELED) {
+        } else if (resultCode == Activity.RESULT_CANCELED) {
             Log.i("paymentExample", "The user canceled.");
-        }
-        else if (resultCode == PaymentActivity.RESULT_EXTRAS_INVALID) {
+        } else if (resultCode == PaymentActivity.RESULT_EXTRAS_INVALID) {
             Log.i("paymentExample", "An invalid Payment or PayPalConfiguration was submitted. Please see the docs.");
         }
     }

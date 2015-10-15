@@ -1,7 +1,10 @@
 package co.aquario.mvp.activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -17,6 +20,7 @@ import java.util.ArrayList;
 
 import co.aquario.mvp.MainApplication;
 import co.aquario.mvp.fragment.CartFragment;
+import co.aquario.mvp.fragment.FragmentPayMentsDetail;
 import co.aquario.mvp.fragment.ItemFragment;
 import co.aquario.mvp.model.PostDataNew;
 import co.aquario.mvp.model.ShoppingCartHelper;
@@ -39,12 +43,14 @@ public class ItemActivity extends AppCompatActivity {
     String urlImage;
     int ProductsSize;
     int productId;
+    int quantity = 0;
     PostDataNew list;
     MainApplication aController;
     TextView editTextQuantity;
-    TextView textCount1 ,textCount2;
+    TextView textCount1, textCount2;
     int count;
     int counSum;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +73,7 @@ public class ItemActivity extends AppCompatActivity {
                 counSum = count;
                 String strI = String.valueOf(counSum);
                 editTextQuantity.setText(strI);
-                Log.e("counSum1",counSum+"");
+                Log.e("counSum1", counSum + "");
             }
         });
 
@@ -78,7 +84,7 @@ public class ItemActivity extends AppCompatActivity {
                 counSum = count;
                 String strI = String.valueOf(counSum);
                 editTextQuantity.setText(strI);
-                Log.e("counSum2",counSum+"");
+                Log.e("counSum2", counSum + "");
             }
         });
 
@@ -94,7 +100,7 @@ public class ItemActivity extends AppCompatActivity {
 //        curItem = DataSource.get(this).getItem(itemName);
 
 
-        Log.e("ItemActivity_Product",productId+"");
+        Log.e("ItemActivity_Product", productId + "");
         list = new PostDataNew();
         list.setName(title);
         list.setPrice(price);
@@ -111,14 +117,13 @@ public class ItemActivity extends AppCompatActivity {
 
         // Inflate the ItemFragment
 
-        ItemFragment frag = ItemFragment.newInstance(title, price, decs, urlImage , productId);
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.item_container, frag).commit();
+        ItemFragment frag = ItemFragment.newInstance(title, price, decs, urlImage, productId);
+        getSupportFragmentManager().beginTransaction().add(R.id.item_container, frag).commit();
 
         // Initialize and set up the toolbar
         mToolbar = (Toolbar) findViewById(R.id.action_toolbar);
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
 
@@ -132,41 +137,46 @@ public class ItemActivity extends AppCompatActivity {
 //             }
 
 
-
-
-
         // Set the buy button
         mBuyButton = (TextView) findViewById(R.id.buy_button);
         mBuyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                int quantity = 0;
-                try {
-                    quantity = counSum;
 
-                    if (quantity < 0) {
-                        Toast.makeText(getBaseContext(),
-                                "Please enter a quantity of 0 or higher",
-                                Toast.LENGTH_SHORT).show();
-                        return;
-                    }
+                quantity = counSum;
 
-                } catch (Exception e) {
-                    Toast.makeText(getBaseContext(),
-                            "Please enter a numeric quantity",
-                            Toast.LENGTH_SHORT).show();
-
-                    return;
-                }
 
                 // If we make it here, a valid quantity was entered
-                ShoppingCartHelper.setQuantity(list, quantity);
-                Log.e("lisy33", list.getProductId() + "");
-                Log.e("lisy33",quantity+"");
-                // Close the activity
-                finish();
 
+
+//                CartFragment cartFrag = new CartFragment();
+//                cartFrag.show(getSupportFragmentManager(), "My Cart");
+                // Close the activity
+
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(ItemActivity.this);
+                builder.setTitle(R.string.add_cart)
+                        .setMessage(title + " คุณต้องการเพิ่มในรายการของคุณไหม?")
+                        .setNegativeButton(R.string.ok, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Close the dialog window
+                                ShoppingCartHelper.setQuantity(list, quantity);
+                                Log.e("lisy33", list.getProductId() + "");
+                                Log.e("lisy33", quantity + "");
+                                dialog.dismiss();
+                            }
+                        })
+                        .setPositiveButton(R.string.show_cart, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Dismiss dialog and open cart
+                                dialog.dismiss();
+                                CartFragment cartFrag = new CartFragment();
+                                cartFrag.show(getSupportFragmentManager(), "My Cart");
+                            }
+                        }).create().show();
             }
         });
     }
@@ -189,4 +199,18 @@ public class ItemActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(getApplication(),"tt",Toast.LENGTH_SHORT).show();
+        int count = getSupportFragmentManager().getBackStackEntryCount();
+        // Closes the activity if end of back stack
+        if (count <= 1) {
+            finish();
+        } else {
+            getFragmentManager().popBackStack();
+        }
+
+    }
+
 }

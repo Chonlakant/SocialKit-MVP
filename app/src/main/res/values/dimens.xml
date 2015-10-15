@@ -26,4 +26,7 @@
     <dimen name="text_size_xsmall">20sp</dimen>
     <dimen name="text_size_xxsmall">12sp</dimen>
     <dimen name="restart_button_margin">16dp</dimen>
+    <string name="add_cart">เพิ่ม ในคลัง!</string>
+    <string name="ok">ตกลง</string>
+    <string name="show_cart">เปิดคลังสินค้า</string>
 </resources>

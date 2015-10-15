@@ -54,24 +54,25 @@
                 android:layout_height="50dp"
                 android:padding="10dp">
 
-                <TextView
+                <co.aquario.mvp.MyCustomTextView
                     android:id="@+id/name"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentLeft="true"
                     android:gravity="center"
+                    android:textSize="20sp"
                     android:text="SAMSUNG Galaxy S6 Edge"
                     android:textColor="#BC000000" />
 
-                <TextView
+                <co.aquario.mvp.MyCustomTextView
                     android:id="@+id/price"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
                     android:gravity="center"
                     android:text="บาท"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp"
+                    android:textColor="#c41411"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
             </RelativeLayout>
@@ -94,11 +95,10 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <TextView
+                    <co.aquario.mvp.MyCustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                       android:textSize="17dp"
-                        android:textStyle="bold"
+                       android:textSize="20dp"
                         android:text="คุณค่าทางโภชนาการ"
                         android:textColor="#BC000000"
                         android:id="@+id/textView" />
@@ -189,15 +189,16 @@
                     android:background="@android:color/white"
                     android:orientation="vertical">
 
-                    <TextView
+                    <co.aquario.mvp.MyCustomTextView
                         android:id="@+id/item_desc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
+                        android:textSize="20sp"
                         android:text="Brand new, never used or opened. Still in original packaging. Ships with charger, manual, and plastic cover."
                         android:textColor="#BB000000" />
 
-                    <TextView
+                    <co.aquario.mvp.MyCustomTextView
                         android:id="@+id/item_time_ago"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -220,21 +221,23 @@
                         android:layout_marginRight="1dp"
                         android:orientation="horizontal">
 
-                        <TextView
+                        <co.aquario.mvp.MyCustomTextView
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:background="#30bcbcbc"
                             android:gravity="top|left"
+                            android:textSize="20sp"
                             android:padding="10dp"
                             android:text="Category"
                             android:textStyle="bold" />
 
-                        <TextView
+                        <co.aquario.mvp.MyCustomTextView
                             android:id="@+id/category_name"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="2"
+                            android:textSize="18sp"
                             android:gravity="left|center"
                             android:padding="10dp"
                             android:text="rice" />
@@ -255,22 +258,24 @@
                         android:layout_marginRight="1dp"
                         android:orientation="horizontal">
 
-                        <TextView
+                        <co.aquario.mvp.MyCustomTextView
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:background="#30bcbcbc"
                             android:gravity="top|left"
+                            android:textSize="20sp"
                             android:padding="10dp"
                             android:text="Brand"
                             android:textStyle="bold" />
 
-                        <TextView
+                        <co.aquario.mvp.MyCustomTextView
                             android:id="@+id/brand_name"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="2"
                             android:gravity="left|center"
+                            android:textSize="18sp"
                             android:padding="10dp"
                             android:text="Folk rice" />
 
@@ -290,24 +295,26 @@
                         android:layout_marginRight="1dp"
                         android:orientation="horizontal">
 
-                        <TextView
+                        <co.aquario.mvp.MyCustomTextView
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:background="#30bcbcbc"
                             android:gravity="top|left"
                             android:padding="10dp"
+                            android:textSize="20sp"
                             android:text="Payment"
                             android:textStyle="bold" />
 
-                        <TextView
+                        <co.aquario.mvp.MyCustomTextView
                             android:id="@+id/payment_method"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="2"
+                            android:textSize="18sp"
                             android:gravity="left|center"
                             android:padding="10dp"
-                            android:text="Cash / Credit / Debit" />
+                            android:text="โอน / Paypal" />
 
                     </LinearLayout>
 
@@ -325,21 +332,23 @@
                         android:layout_marginRight="1dp"
                         android:orientation="horizontal">
 
-                        <TextView
+                        <co.aquario.mvp.MyCustomTextView
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:background="#30bcbcbc"
                             android:gravity="top|left"
                             android:padding="10dp"
+                            android:textSize="20sp"
                             android:text="Ships from"
                             android:textStyle="bold" />
 
-                        <TextView
+                        <co.aquario.mvp.MyCustomTextView
                             android:id="@+id/ships_from"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="2"
+                            android:textSize="18sp"
                             android:gravity="left|center"
                             android:padding="10dp"
                             android:text="Ulanbataar" />
@@ -361,21 +370,23 @@
                         android:layout_marginRight="1dp"
                         android:orientation="horizontal">
 
-                        <TextView
+                        <co.aquario.mvp.MyCustomTextView
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:background="#30bcbcbc"
                             android:gravity="top|left"
                             android:padding="10dp"
+                            android:textSize="20sp"
                             android:text="Ships within"
                             android:textStyle="bold" />
 
-                        <TextView
+                        <co.aquario.mvp.MyCustomTextView
                             android:id="@+id/ships_within"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="2"
+                            android:textSize="18sp"
                             android:gravity="left|center"
                             android:padding="10dp"
                             android:text="1 - 2 days" />
@@ -393,17 +404,19 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <co.aquario.mvp.MyCustomTextView
+                        android:textSize="20sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Q &amp; A" />
 
-                    <TextView
+                    <co.aquario.mvp.MyCustomTextView
                         android:id="@+id/qa_number"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:text="(3)"
+                        android:textSize="20sp"
                         android:textColor="#2196F3"
                         android:textStyle="bold" />
                 </LinearLayout>

@@ -83,7 +83,7 @@ public class ProductAdapter extends BaseAdapter {
         int priceQuantity;
         priceQuantity =   ShoppingCartHelper.getProductQuantity(curProduct);
         subTotal += curProduct.getPrice() * priceQuantity;
-        item.itemPrice.setText(subTotal + "บาท");
+        item.itemPrice.setText(subTotal + " บาท");
         // Show the quantity in the cart or not
         if (mShowQuantity) {
             item.productQuantity.setText("Quantity: "

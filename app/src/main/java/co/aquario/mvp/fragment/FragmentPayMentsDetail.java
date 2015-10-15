@@ -166,10 +166,18 @@ public class FragmentPayMentsDetail extends BaseFragment {
             public void onClick(View view) {
 
                 uploadProduct();
+
+
+                Bundle bundle = new Bundle();
+
                 FragmentPayMents oneFragment = new FragmentPayMents();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.container, oneFragment);
+                bundle.putDouble("Price", subTotal);
+                oneFragment.setArguments(bundle);
                 transaction.commit();
+
+
 
             }
         });
