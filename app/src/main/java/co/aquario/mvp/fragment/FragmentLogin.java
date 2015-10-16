@@ -45,7 +45,7 @@ public class FragmentLogin extends Fragment {
     EditText et_mail;
     EditText et_password;
     EditText et_confirmPassword;
-
+    String userId;
     public static final String ARG_PAGE = "ARG_PAGE";
     Button btn_add;
     Button btn_register;
@@ -136,7 +136,10 @@ public class FragmentLogin extends Fragment {
     public void loginCallback(String url, JSONObject json, AjaxStatus status) throws JSONException {
 
         Log.e("fdfd", json.toString(4));
-
+        userId = json.getJSONObject("account").optString("id");
+        Log.e("7777",userId);
+        pref.userId().put(userId);
+        pref.commit();
         String ok = json.optString("status");
 
         if (statusLogin.getStatus().equals(ok)) {
