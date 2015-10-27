@@ -176,57 +176,7 @@ public class CartFragment extends DialogFragment {
 
                             }
                         }).create().show();
-//                if (mMaterialDialog != null) {
-//                    mMaterialDialog.setTitle("เข้าสู่ระบบเพื่อดำเนินการต่อ")
-//                            .setMessage("กรุณาเข้าสู่ระบบ หรือสมัคร folkrice เพื่อดำเนินการต่อไป")
-//                                    //mMaterialDialog.setBackgroundResource(R.drawable.background);
-//                            .setPositiveButton(
-//                                    "OK", new View.OnClickListener() {
-//                                        @Override
-//                                        public void onClick(View v) {
-//
-//                                            isLogin = pref.isLogin().getOr(false);
-//                                            if (pref.isLogin().getOr(true) && !isLogin) {
-//                                                Intent i = new Intent(getActivity(), Activity_main_login.class);
-//                                                startActivity(i);
-//                                                isLogin = true;
-//                                                pref.isLogin().put(isLogin);
-//                                                pref.commit();
-//                                                mMaterialDialog.dismiss();
-//                                            } else {
-//                                                Intent i = new Intent(getActivity(), Activity_main_PaymentDetail.class);
-//                                                startActivity(i);
-//                                                FragmentTransaction ft = getFragmentManager().beginTransaction();
-//                                                ft.detach(CartFragment.this).attach(CartFragment.this).commit();
-//                                                mMaterialDialog.dismiss();
-//                                            }
-//
-//                                        }
-//                                    }
-//                            )
-//                            .setNegativeButton(
-//                                    "CANCLE", new View.OnClickListener() {
-//                                        @Override
-//                                        public void onClick(View v) {
-//                                            mMaterialDialog.dismiss();
-////                                            Intent i = new Intent(getActivity(), Activity_main_Buy.class);
-////                                            startActivity(i);
-//                                        }
-//                                    }
-//                            )
-//                            .setCanceledOnTouchOutside(false)
-//                            .setOnDismissListener(
-//                                    new DialogInterface.OnDismissListener() {
-//                                        @Override
-//                                        public void onDismiss(DialogInterface dialog) {
-////                                            Toast.makeText(getActivity(), "onDismiss", Toast.LENGTH_SHORT).show();
-//                                        }
-//                                    }
-//                            )
-//                            .show();
-//                } else {
-//                    Toast.makeText(getActivity(), "", Toast.LENGTH_SHORT).show();
-//                }
+
             }
         });
         return v;

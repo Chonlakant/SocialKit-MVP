@@ -76,6 +76,7 @@ public class FragmentLogin extends Fragment {
 
     }
 
+    
     PrefManager pref;
 
     @Override
