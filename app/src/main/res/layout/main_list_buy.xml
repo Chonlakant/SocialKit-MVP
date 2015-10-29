@@ -245,7 +245,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:text="40 บาท"
+                    android:text="20 บาท"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="#000000" />
             </LinearLayout>

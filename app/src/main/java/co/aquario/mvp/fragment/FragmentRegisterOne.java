@@ -33,7 +33,7 @@ public class FragmentRegisterOne extends Fragment {
     EditText et_mail;
     EditText et_password;
     EditText et_confirmPassword;
-    String userId;
+
     public static final String ARG_PAGE = "ARG_PAGE";
     Button btn_add;
     //    private int mPage;
@@ -41,7 +41,8 @@ public class FragmentRegisterOne extends Fragment {
     String pass;
     String confirmpassWord;
     PrefManager pref;
-    int id;
+    int num;
+    String  userId;
     List<AddAddress> list = new ArrayList<>();
 
     public static FragmentRegisterOne newInstance(int page) {
@@ -89,11 +90,8 @@ public class FragmentRegisterOne extends Fragment {
 
                 uploadProfile();
 
-                FragmentRegisterTwo oneFragment = new FragmentRegisterTwo();
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.container, oneFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
+
+
 
             }
         });
@@ -110,6 +108,7 @@ public class FragmentRegisterOne extends Fragment {
         pref.email().put(email);
         pref.passWord().put(pass);
         pref.isAddress().put(true);
+
         //pref.confirmpassWord().put(confirmpassWord);
         pref.commit();
 
@@ -121,7 +120,6 @@ public class FragmentRegisterOne extends Fragment {
         params.put("email", email);
         params.put("password", pass);
 
-
         AQuery aq = new AQuery(getActivity());
         aq.ajax(url, params, JSONObject.class, this, "updateProfile");
     }
@@ -130,11 +128,21 @@ public class FragmentRegisterOne extends Fragment {
             throws JSONException {
         Log.e("hahaha", jo.toString(4));
 
-        userId = jo.getJSONObject("account").optString("id");
-       // id = Integer.parseInt(userId);
-        pref.userId().put(userId);
-        pref.commit();
-        Log.e("sdsdsd", userId);
+          userId = jo.getJSONObject("account").optString("id");
+        num = Integer.parseInt(userId);
+
+        Bundle bundle = new Bundle();
+
+
+        FragmentRegisterTwo oneFragment = new FragmentRegisterTwo();
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.container, oneFragment);
+        bundle.putString("userId",userId);
+        oneFragment.setArguments(bundle);
+        transaction.addToBackStack(null);
+        transaction.commit();
+
+        Log.e("userId02222", num+"");
 
         Toast.makeText(getActivity(), "ขั้นตอนถัดไป", Toast.LENGTH_LONG).show();
     }

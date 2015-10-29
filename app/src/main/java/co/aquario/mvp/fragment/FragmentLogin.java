@@ -76,7 +76,7 @@ public class FragmentLogin extends Fragment {
 
     }
 
-    
+
     PrefManager pref;
 
     @Override
@@ -138,6 +138,7 @@ public class FragmentLogin extends Fragment {
 
         Log.e("fdfd", json.toString(4));
         userId = json.getJSONObject("account").optString("id");
+        int num = Integer.parseInt(userId);
         Log.e("7777",userId);
         pref.userId().put(userId);
         pref.commit();

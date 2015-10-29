@@ -48,6 +48,12 @@ public class PrefManager extends PrettySharedPreferences<PrefManager> {
     public StringEditor<PrefManager> name() {
         return getStringEditor("name");
     }
+    public StringEditor<PrefManager> lastName() {
+        return getStringEditor("lastName");
+    }
+    public StringEditor<PrefManager> note() {
+        return getStringEditor("note");
+    }
 
     public StringEditor<PrefManager> phone() {
         return getStringEditor("phone");
@@ -94,6 +100,10 @@ public class PrefManager extends PrettySharedPreferences<PrefManager> {
     public StringEditor<PrefManager> userId() {
         return getStringEditor("userId");
     }
+
+//    public IntegerEditor<PrefManager> userId() {
+//        return getIntegerEditor("userId");
+//    }
 
 
 

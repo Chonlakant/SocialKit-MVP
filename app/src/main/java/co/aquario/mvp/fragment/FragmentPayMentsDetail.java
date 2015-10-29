@@ -68,8 +68,20 @@ public class FragmentPayMentsDetail extends BaseFragment {
     private List<PostDataNew> mCartList = new ArrayList<>();
     List<JsonArr> productJson = new ArrayList<>();
     JsonArray myCustomArray;
-    TextView txtName, txtCountry, txtDistrict, txtPostal, txtHome, sumPrice, sum,Text_edit;
+    TextView txtName, txtCountry, txtDistrict, txtPostal, txtHome, sumPrice, sum, Text_edit;
     PostDataNew p;
+    String name;
+    String contry;
+    String district;
+    String postal;
+    String home;
+    String lastName;
+    String note;
+    String email;
+    String landmarks;
+
+
+
     public static FragmentPayMentsDetail newInstance(int page) {
         Bundle args = new Bundle();
         args.putInt(ARG_PAGE, page);
@@ -84,10 +96,22 @@ public class FragmentPayMentsDetail extends BaseFragment {
 //        mPage = getArguments().getInt(ARG_PAGE);
         pref = MainApplication.getPrefManager();
         Log.e("aaaaa", (pref == null) + "");
-
-        userId = pref.userId().getOr("null");
-        Log.e("OKOKOKOKO",userId);
+        userId = pref.userId().getOr("");
+       // userId = pref.userId().getOr("44");
+        Log.e("OKOKOKOKO", userId);
+        Log.e("mmmm",pref.fristName().getOr(""));
+        Log.e("mmmm", pref.lastName().getOr(""));
+        name = pref.fristName().getOr("");
+        contry = pref.country().getOr("");
+        district = pref.district().getOr("");
+        postal = pref.postal().getOr("");
+        home = pref.home().getOr("");
+        lastName = pref.lastName().getOr("");
+        note = pref.note().getOr("");
+        email = pref.email().getOr("");
+        landmarks = pref.landmarks().getOr("");
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -116,11 +140,7 @@ public class FragmentPayMentsDetail extends BaseFragment {
         }
 
         list.setAdapter(mAdapter);
-        String name = pref.name().getOr("");
-        String contry = pref.country().getOr("");
-        String district = pref.district().getOr("");
-        String postal = pref.postal().getOr("");
-        String home = pref.home().getOr("");
+
 
         txtName.setText(name);
         txtCountry.setText(contry);
@@ -141,6 +161,7 @@ public class FragmentPayMentsDetail extends BaseFragment {
         arrProduct.setQuantity(quantityArr);
         productJson.add(arrProduct);
 
+        
 
         Gson gson = new GsonBuilder().create();
         myCustomArray = gson.toJsonTree(productJson).getAsJsonArray();
@@ -158,7 +179,7 @@ public class FragmentPayMentsDetail extends BaseFragment {
             public void onClick(View view) {
 
                 uploadProduct();
-
+                checkOut();
 
                 Bundle bundle = new Bundle();
 
@@ -183,13 +204,12 @@ public class FragmentPayMentsDetail extends BaseFragment {
         Charset chars = Charset.forName("UTF-8");
         String url = "http://api.folkrice.com/order/add";
 
-       int id = Integer.parseInt(userId);
+        int id = Integer.parseInt(userId);
 
-        Log.e("NONONONON",id+"");
+        Log.e("NONONONON", id + "");
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("items", myCustomArray);
         params.put("account", id);
-
 
         AQuery aq = new AQuery(getActivity());
         aq.ajax(url, params, JSONObject.class, this, "updateProduct");
@@ -197,6 +217,39 @@ public class FragmentPayMentsDetail extends BaseFragment {
 
     public void updateProduct(String url, JSONObject jo, AjaxStatus status) throws JSONException {
         Log.e("hahaha", jo.toString(4));
+    }
+
+
+    private void checkOut() {
+        int id = Integer.parseInt(userId);
+        Charset chars = Charset.forName("UTF-8");
+
+       String url =  "http://api.folkrice.com/order/"+id+"/checkout";
+
+        Log.e("99900",url);
+
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("customer[first_name]", name);
+        params.put("customer[last_name]", lastName);
+        params.put("customer[email]", email);
+        params.put("ship_to[first_name]", name);
+        params.put("ship_to[last_name]", lastName);
+        params.put("ship_to[address_1]", landmarks);
+        params.put("ship_to[sub_district]", district);
+        params.put("ship_to[district]", district);
+        params.put("ship_to[province]", contry);
+        params.put("ship_to[postcode]", postal);
+        params.put("ship_to[note]", note);
+        params.put("lat", "100");
+        params.put("lon", "31");
+        params.put("ship_to[method]", "grabtaxi");
+
+        AQuery aq = new AQuery(getActivity());
+        aq.ajax(url, params, JSONObject.class, this, "checkOut");
+    }
+
+    public void checkOut(String url, JSONObject jo, AjaxStatus status) throws JSONException {
+        Log.e("1234567890", jo.toString(4));
     }
 
 
@@ -219,7 +272,7 @@ public class FragmentPayMentsDetail extends BaseFragment {
             ShoppingCartHelper.setQuantity(p, quantity);
         }
         sum.setText("ราคารวม:" + subTotal);
-        Log.e("sdsdsd",sumAll+"");
+        Log.e("sdsdsd", sumAll + "");
         sumPrice.setText(sumAll + "บาท");
 
     }

@@ -53,6 +53,15 @@
             android:layout_marginTop="5dp"
             android:background="@drawable/group_row"
             android:hint="ชื่อ" />
+
+        <EditText
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:id="@+id/et_lastName"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/group_row"
+            android:hint="นามสกุล" />
         <co.aquario.mvp.MyCustomTextView
             android:layout_marginTop="5dp"
             android:layout_width="wrap_content"
@@ -69,6 +78,15 @@
             android:layout_marginTop="5dp"
             android:background="@drawable/group_row"
             android:hint="เบอร์โทรศัพท์" />
+
+        <EditText
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:id="@+id/et_note"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/group_row"
+            android:hint="ข้อความ" />
 
 
         <co.aquario.mvp.MyCustomTextView

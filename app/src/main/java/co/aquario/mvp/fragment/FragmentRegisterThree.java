@@ -26,6 +26,8 @@ public class FragmentRegisterThree extends Fragment {
     EditText et_nameTitle;
     EditText et_fristName;
     EditText et_phone;
+    EditText et_lastName;
+    EditText et_note;
 
     public static final String ARG_PAGE = "ARG_PAGE";
     Button btn_add;
@@ -33,6 +35,8 @@ public class FragmentRegisterThree extends Fragment {
     String nameTitle;
     String fristName;
     String phone;
+    String lastName;
+    String note;
 
 
     List<AddAddress> list = new ArrayList<>();
@@ -51,7 +55,7 @@ public class FragmentRegisterThree extends Fragment {
         pref = MainApplication.getPrefManager();
         Log.e("aaaaa", (pref == null) + "");
         //  mPage = getArguments().getInt(ARG_PAGE);
-
+        Log.e("bbbbbbb",pref.userId().getOr("Error"));
     }
 
     PrefManager pref;
@@ -66,6 +70,8 @@ public class FragmentRegisterThree extends Fragment {
         et_nameTitle = (EditText) rootView.findViewById(R.id.et_nameTitle);
         et_fristName = (EditText) rootView.findViewById(R.id.et_fristName);
         et_phone = (EditText) rootView.findViewById(R.id.et_phone);
+        et_lastName = (EditText) rootView.findViewById(R.id.et_lastName);
+        et_note = (EditText) rootView.findViewById(R.id.et_note);
 
 
 //        if (toolbar != null)
@@ -80,10 +86,15 @@ public class FragmentRegisterThree extends Fragment {
                 nameTitle = et_nameTitle.getText().toString();
                 fristName = et_fristName.getText().toString();
                 phone = et_phone.getText().toString();
+                lastName = et_lastName.getText().toString();
+                note = et_note.getText().toString();
+
 
                 pref.nameTitle().put(nameTitle);
                 pref.fristName().put(fristName);
                 pref.phone().put(phone);
+                pref.lastName().put(lastName);
+                pref.note().put(note);
                 pref.isAddressRegister2().put(true);
                 pref.commit();
 

@@ -39,6 +39,7 @@ public class FragmentRegisterTwo extends Fragment {
     String zipCode;
     String home;
 
+    String userId;
     List<AddAddress> list = new ArrayList<>();
 
     public static FragmentRegisterTwo newInstance(int page) {
@@ -67,6 +68,13 @@ public class FragmentRegisterTwo extends Fragment {
 //        String password = pref.passWord().getOr("");
 //        String username = pref.userName().getOr("");
         //toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
+
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            userId = bundle.getString("userId");
+            Log.e("เหี้ย",userId+"");
+        }
+
         et_contry = (EditText) rootView.findViewById(R.id.et_contry);
         et_area = (EditText) rootView.findViewById(R.id.et_area);
         et_district = (EditText) rootView.findViewById(R.id.et_district);
@@ -101,6 +109,7 @@ public class FragmentRegisterTwo extends Fragment {
                 pref.postal().put(zipCode);
                 pref.home().put(home);
                 pref.isAddressRegister().put(true);
+                pref.userId().put(userId);
                 pref.commit();
 
 
