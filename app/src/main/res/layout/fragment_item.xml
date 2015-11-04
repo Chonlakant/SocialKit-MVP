@@ -54,7 +54,7 @@
                 android:layout_height="50dp"
                 android:padding="10dp">
 
-                <co.aquario.mvp.MyCustomTextView
+                <co.aquario.folkrice.MyCustomTextView
                     android:id="@+id/name"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -64,7 +64,7 @@
                     android:text="SAMSUNG Galaxy S6 Edge"
                     android:textColor="#BC000000" />
 
-                <co.aquario.mvp.MyCustomTextView
+                <co.aquario.folkrice.MyCustomTextView
                     android:id="@+id/price"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -95,7 +95,7 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <co.aquario.mvp.MyCustomTextView
+                    <co.aquario.folkrice.MyCustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                        android:textSize="20dp"
@@ -189,7 +189,7 @@
                     android:background="@android:color/white"
                     android:orientation="vertical">
 
-                    <co.aquario.mvp.MyCustomTextView
+                    <co.aquario.folkrice.MyCustomTextView
                         android:id="@+id/item_desc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -198,7 +198,7 @@
                         android:text="Brand new, never used or opened. Still in original packaging. Ships with charger, manual, and plastic cover."
                         android:textColor="#BB000000" />
 
-                    <co.aquario.mvp.MyCustomTextView
+                    <co.aquario.folkrice.MyCustomTextView
                         android:id="@+id/item_time_ago"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -221,7 +221,7 @@
                         android:layout_marginRight="1dp"
                         android:orientation="horizontal">
 
-                        <co.aquario.mvp.MyCustomTextView
+                        <co.aquario.folkrice.MyCustomTextView
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
@@ -232,7 +232,7 @@
                             android:text="Category"
                             android:textStyle="bold" />
 
-                        <co.aquario.mvp.MyCustomTextView
+                        <co.aquario.folkrice.MyCustomTextView
                             android:id="@+id/category_name"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
@@ -258,7 +258,7 @@
                         android:layout_marginRight="1dp"
                         android:orientation="horizontal">
 
-                        <co.aquario.mvp.MyCustomTextView
+                        <co.aquario.folkrice.MyCustomTextView
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
@@ -269,7 +269,7 @@
                             android:text="Brand"
                             android:textStyle="bold" />
 
-                        <co.aquario.mvp.MyCustomTextView
+                        <co.aquario.folkrice.MyCustomTextView
                             android:id="@+id/brand_name"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
@@ -295,7 +295,7 @@
                         android:layout_marginRight="1dp"
                         android:orientation="horizontal">
 
-                        <co.aquario.mvp.MyCustomTextView
+                        <co.aquario.folkrice.MyCustomTextView
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
@@ -306,7 +306,7 @@
                             android:text="Payment"
                             android:textStyle="bold" />
 
-                        <co.aquario.mvp.MyCustomTextView
+                        <co.aquario.folkrice.MyCustomTextView
                             android:id="@+id/payment_method"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
@@ -332,7 +332,7 @@
                         android:layout_marginRight="1dp"
                         android:orientation="horizontal">
 
-                        <co.aquario.mvp.MyCustomTextView
+                        <co.aquario.folkrice.MyCustomTextView
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
@@ -343,7 +343,7 @@
                             android:text="Ships from"
                             android:textStyle="bold" />
 
-                        <co.aquario.mvp.MyCustomTextView
+                        <co.aquario.folkrice.MyCustomTextView
                             android:id="@+id/ships_from"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
@@ -370,7 +370,7 @@
                         android:layout_marginRight="1dp"
                         android:orientation="horizontal">
 
-                        <co.aquario.mvp.MyCustomTextView
+                        <co.aquario.folkrice.MyCustomTextView
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
@@ -381,7 +381,7 @@
                             android:text="Ships within"
                             android:textStyle="bold" />
 
-                        <co.aquario.mvp.MyCustomTextView
+                        <co.aquario.folkrice.MyCustomTextView
                             android:id="@+id/ships_within"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
@@ -404,13 +404,13 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <co.aquario.mvp.MyCustomTextView
+                    <co.aquario.folkrice.MyCustomTextView
                         android:textSize="20sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Q &amp; A" />
 
-                    <co.aquario.mvp.MyCustomTextView
+                    <co.aquario.folkrice.MyCustomTextView
                         android:id="@+id/qa_number"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

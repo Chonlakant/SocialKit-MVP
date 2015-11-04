@@ -16,7 +16,7 @@
             app:column_count="2"
             app:item_margin="8dp" />
 
-        <co.aquario.mvp.di.components.SearchView
+        <co.aquario.folkrice.di.components.SearchView
             android:id="@+id/search_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

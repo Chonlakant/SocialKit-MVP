@@ -10,7 +10,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:orientation="vertical">
-        <co.aquario.mvp.MyCustomTextView
+        <co.aquario.folkrice.MyCustomTextView
             android:layout_marginTop="5dp"
             android:textStyle="bold"
             android:layout_width="wrap_content"
@@ -20,7 +20,7 @@
             android:text="ลงทะเบียน ขั้นตอนที่ 2"
             android:id="@+id/textView3" />
 
-        <co.aquario.mvp.MyCustomTextView
+        <co.aquario.folkrice.MyCustomTextView
             android:layout_marginTop="5dp"
             android:id="@+id/textView7"
             android:layout_width="wrap_content"
@@ -28,7 +28,7 @@
             android:text="ท่านสามารถเชื่อมต่อกับระบบได้อย่างปลอดภัย เนื่องจากข้อมูลส่วนตัวของท่านจะถูกจัดเก็บเป็นความลับ และเข้าถึงได้ด้วยดารเข้ารหัสเท่านั้น"
             android:textSize="20dp" />
 
-        <co.aquario.mvp.MyCustomTextView
+        <co.aquario.folkrice.MyCustomTextView
             android:layout_marginTop="5dp"
             android:id="@+id/textView12"
             android:layout_width="wrap_content"

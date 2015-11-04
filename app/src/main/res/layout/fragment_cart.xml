@@ -18,7 +18,7 @@
         android:layout_alignParentTop="true"
         android:orientation="horizontal">
 
-        <co.aquario.mvp.MyCustomTextView
+        <co.aquario.folkrice.MyCustomTextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -88,7 +88,7 @@
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp">
 
-                    <co.aquario.mvp.MyCustomTextView
+                    <co.aquario.folkrice.MyCustomTextView
                         android:id="@+id/cancelBtn"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -129,7 +129,7 @@
                         android:background="@color/md_green_800" />
                 </LinearLayout>
 
-                <co.aquario.mvp.MyCustomTextView
+                <co.aquario.folkrice.MyCustomTextView
                     android:id="@+id/checkout_button"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -156,7 +156,7 @@
         android:layout_below="@+id/title_bar"
         android:background="@color/md_green_800">
 
-        <co.aquario.mvp.MyCustomTextView
+        <co.aquario.folkrice.MyCustomTextView
             android:id="@+id/number_items"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -166,7 +166,7 @@
             android:textColor="#ffffff"
             android:textSize="16sp" />
 
-        <co.aquario.mvp.MyCustomTextView
+        <co.aquario.folkrice.MyCustomTextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -179,7 +179,7 @@
             android:textColor="#ffffff"
             android:textStyle="bold" />
 
-        <co.aquario.mvp.MyCustomTextView
+        <co.aquario.folkrice.MyCustomTextView
             android:id="@+id/items_price"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -199,7 +199,7 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/relativeLayout">
 
-        <co.aquario.mvp.MyCustomTextView
+        <co.aquario.folkrice.MyCustomTextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"

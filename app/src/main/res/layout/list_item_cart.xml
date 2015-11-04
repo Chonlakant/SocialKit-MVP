@@ -14,7 +14,7 @@
         android:layout_marginTop="12dp"
         />
 
-    <co.aquario.mvp.MyCustomTextView
+    <co.aquario.folkrice.MyCustomTextView
         android:id="@+id/item_name"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
@@ -25,7 +25,7 @@
         android:textColor="#DD000000"
         android:textSize="20sp" />
 
-    <co.aquario.mvp.MyCustomTextView
+    <co.aquario.folkrice.MyCustomTextView
         android:id="@+id/quantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
         android:layout_toRightOf="@id/item_image"
         android:text="Quantity: 1" />
 
-    <co.aquario.mvp.MyCustomTextView
+    <co.aquario.folkrice.MyCustomTextView
         android:id="@+id/price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

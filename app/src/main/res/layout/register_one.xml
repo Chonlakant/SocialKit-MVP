@@ -8,7 +8,7 @@
         android:layout_height="fill_parent"
         android:orientation="vertical">
 
-        <co.aquario.mvp.MyCustomTextView
+        <co.aquario.folkrice.MyCustomTextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
             android:textSize="25dp"
             android:textStyle="bold" />
 
-        <co.aquario.mvp.MyCustomTextView
+        <co.aquario.folkrice.MyCustomTextView
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -78,7 +78,7 @@
             android:background="@drawable/group_row"
             android:hint="ยืนยันรหัสผ่าน" />
 
-        <co.aquario.mvp.MyCustomTextView
+        <co.aquario.folkrice.MyCustomTextView
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -30,26 +30,26 @@
                     android:background="@null"
                     android:hint="@string/feeling_lucky" />
 
-                <IconTextView
-                android:id="@+id/clear_button"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:padding="@dimen/spacing_large"
-                android:text="{fa-times-circle}"
-                android:textSize="24dp"
-                android:visibility="gone" />
-                <!--<TextView-->
-                    <!--android:id="@+id/clear_button"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:gravity="center"-->
-                    <!--android:layout_marginLeft="30dp"-->
-                    <!--android:padding="@dimen/spacing_large"-->
-                    <!--android:text="0"-->
-                    <!--android:textColor="#b0120a"-->
-                    <!--android:textSize="10dp"-->
-                    <!--android:visibility="visible" />-->
+                <!--<IconTextView-->
+                <!--android:id="@+id/clear_button"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:gravity="center"-->
+                <!--android:padding="@dimen/spacing_large"-->
+                <!--android:text="{fa-times-circle}"-->
+                <!--android:textSize="24dp"-->
+                <!--android:visibility="gone" />-->
+                <ImageView
+                    android:id="@+id/button_search"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/search"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:padding="@dimen/spacing_large"
+                    android:textColor="#b0120a"
+                    android:textSize="10dp"
+                    android:visibility="visible" />
 
             </LinearLayout>
         </android.support.v7.widget.Toolbar>
