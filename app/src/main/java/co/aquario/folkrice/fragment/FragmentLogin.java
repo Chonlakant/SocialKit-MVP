@@ -121,7 +121,7 @@ public class FragmentLogin extends Fragment {
             Toast.makeText(getActivity(),"กรุณาใส่อีเมล์",Toast.LENGTH_SHORT).show();
             return;
         }if(TextUtils.isEmpty(pass)) {
-            Toast.makeText(getActivity(),"กรุณาใส่พาสเวิด",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(),"กรุณาใส่พาสเวิร์ด",Toast.LENGTH_SHORT).show();
             return;
         }
         String url = "http://api.folkrice.com/account/authenticate";
@@ -139,10 +139,9 @@ public class FragmentLogin extends Fragment {
 
     public void loginCallback(String url, JSONObject json, AjaxStatus status) throws JSONException {
 
-
         Log.e("fdfd", json.toString(4));
         userId = json.getJSONObject("account").optString("id");
-        int num = Integer.parseInt(userId);
+
         String emailJosn = json.getJSONObject("account").optString("email");
         Log.e("7777", userId);
         pref.userId().put(userId);
@@ -150,36 +149,15 @@ public class FragmentLogin extends Fragment {
         ok = json.optString("status");
 
         if(email.equals(emailJosn)){
-            Toast.makeText(getActivity(),"4444",Toast.LENGTH_SHORT).show();
             FragmentPayMentsDetail oneFragment = new FragmentPayMentsDetail();
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.container, oneFragment);
             transaction.addToBackStack(null);
             transaction.commit();
             Toast.makeText(getActivity(), "เข้าสู่ระบบ", Toast.LENGTH_SHORT).show();
-        }if(statusLogin.getStatus().equals("error")){
-            Toast.makeText(getActivity(),"อีเมล์หรือพาสเวิดผิด",Toast.LENGTH_LONG).show();
         }
-
-        Log.e("123456", emailJosn);
     }
 
-    public  void checkLogin(){
-
-        if (statusLogin.getStatus().equals(ok)) {
-
-            FragmentPayMentsDetail oneFragment = new FragmentPayMentsDetail();
-            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.container, oneFragment);
-            transaction.addToBackStack(null);
-            transaction.commit();
-            Toast.makeText(getActivity(), "เข้าสู่ระบบ", Toast.LENGTH_SHORT).show();
-
-        }else{
-            Toast.makeText(getActivity(),"asasas",Toast.LENGTH_LONG).show();
-        }
-
-    }
 
     @Override
     public void onResume() {

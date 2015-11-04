@@ -157,10 +157,9 @@ public class CartFragment extends DialogFragment {
                             public void onClick(DialogInterface dialog, int which) {
 
                                 isLogin = pref.isLogin().getOr(false);
-                                isCheckProduct = pref.isCheckProduct().getOr(true);
+                                isCheckProduct = pref.isCheckProduct().getOr(false);
 
                                 if (isCheckProduct != false) {
-                                    Toast.makeText(getActivity(), "OK", Toast.LENGTH_SHORT).show();
                                     isCheckProduct = false;
                                     pref.isCheckProduct().put(isCheckProduct);
                                     pref.commit();

@@ -175,7 +175,8 @@ public class MainActivity extends BaseActivity implements TopMovieListView {
                         MainApplication.logout(getApplicationContext());
                         Toast.makeText(getApplicationContext(), "Logout", Toast.LENGTH_SHORT).show();
                         menuItem.setTitle("Login");
-
+                        pref.isCheckProduct().put(false);
+                        pref.commit();
                         if (pref.isLogin().getOr(true) && !isCheck) {
                             menuItem.setTitle("Logout");
                         }
