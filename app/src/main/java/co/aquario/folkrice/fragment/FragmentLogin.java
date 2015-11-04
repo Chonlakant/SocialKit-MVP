@@ -83,7 +83,7 @@ public class FragmentLogin extends Fragment {
         et_password = (EditText) rootView.findViewById(R.id.password);
         et_password.setHint("รหัสผ่าน");
         statusLogin = new Status();
-        statusLogin.setStatus("ok");
+        statusLogin.setStatus("error");
 
 
         btn_add = (Button) rootView.findViewById(R.id.btn_add);
@@ -157,7 +157,7 @@ public class FragmentLogin extends Fragment {
             transaction.addToBackStack(null);
             transaction.commit();
             Toast.makeText(getActivity(), "เข้าสู่ระบบ", Toast.LENGTH_SHORT).show();
-        }else{
+        }if(statusLogin.getStatus().equals("error")){
             Toast.makeText(getActivity(),"อีเมล์หรือพาสเวิดผิด",Toast.LENGTH_LONG).show();
         }
 
