@@ -83,7 +83,7 @@ public class FragmentLogin extends Fragment {
         et_password = (EditText) rootView.findViewById(R.id.password);
         et_password.setHint("รหัสผ่าน");
         statusLogin = new Status();
-        statusLogin.setStatus("error");
+        statusLogin.setStatus("ok");
 
 
         btn_add = (Button) rootView.findViewById(R.id.btn_add);
@@ -102,7 +102,6 @@ public class FragmentLogin extends Fragment {
             public void onClick(View view) {
                 email = et_mail.getText().toString();
                 pass = et_password.getText().toString();
-
 
 
                 onLoginButtonClick();
@@ -139,16 +138,17 @@ public class FragmentLogin extends Fragment {
 
     public void loginCallback(String url, JSONObject json, AjaxStatus status) throws JSONException {
 
+
         Log.e("fdfd", json.toString(4));
         userId = json.getJSONObject("account").optString("id");
-
+        int num = Integer.parseInt(userId);
         String emailJosn = json.getJSONObject("account").optString("email");
         Log.e("7777", userId);
         pref.userId().put(userId);
         pref.commit();
         ok = json.optString("status");
 
-        if(email.equals(emailJosn)){
+        if(statusLogin.getStatus().equals(ok)) {
             FragmentPayMentsDetail oneFragment = new FragmentPayMentsDetail();
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.container, oneFragment);
@@ -156,6 +156,8 @@ public class FragmentLogin extends Fragment {
             transaction.commit();
             Toast.makeText(getActivity(), "เข้าสู่ระบบ", Toast.LENGTH_SHORT).show();
         }
+
+        Log.e("123456", emailJosn);
     }
 
 
