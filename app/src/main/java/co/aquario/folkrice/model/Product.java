@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 /**
  * Created by root1 on 10/6/15.
  */
-public class PostDataNew {
+public class Product {
 
     @SerializedName("productId")
     private int productId;
@@ -42,11 +42,11 @@ public class PostDataNew {
     private int quantity;
 
     public boolean selected;
-    public PostDataNew(){
+    public Product(){
 
     }
 
-    public PostDataNew(int productId, int lineProductId, int farmerId, int catId, String name, String name2, String nameTh, String desc, double price, String howtouse, String nutrition, int stock, double size, String image, String thumb,int quantity) {
+    public Product(int productId, int lineProductId, int farmerId, int catId, String name, String name2, String nameTh, String desc, double price, String howtouse, String nutrition, int stock, double size, String image, String thumb, int quantity) {
         this.productId = productId;
         this.lineProductId = lineProductId;
         this.farmerId = farmerId;

@@ -53,9 +53,6 @@ public class FragmentRegisterThree extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         pref = MainApplication.getPrefManager();
-        Log.e("aaaaa", (pref == null) + "");
-        //  mPage = getArguments().getInt(ARG_PAGE);
-        Log.e("bbbbbbb",pref.userId().getOr("Error"));
     }
 
     PrefManager pref;
@@ -64,20 +61,12 @@ public class FragmentRegisterThree extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.register_three, container, false);
 
-//        String password = pref.passWord().getOr("");
-//        String username = pref.userName().getOr("");
-        //toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
         et_nameTitle = (EditText) rootView.findViewById(R.id.et_nameTitle);
         et_fristName = (EditText) rootView.findViewById(R.id.et_fristName);
         et_phone = (EditText) rootView.findViewById(R.id.et_phone);
         et_lastName = (EditText) rootView.findViewById(R.id.et_lastName);
         et_note = (EditText) rootView.findViewById(R.id.et_note);
 
-
-//        if (toolbar != null)
-//            getActivity().setTitle("ที่อยู่จัดส่ง");
-
-        //  toolbar.setTitle("ที่อยู่จัดส่ง");
         btn_add = (Button) rootView.findViewById(R.id.btn_add);
 
         btn_add.setOnClickListener(new View.OnClickListener() {
@@ -98,11 +87,6 @@ public class FragmentRegisterThree extends Fragment {
                 pref.isAddressRegister2().put(true);
                 pref.commit();
 
-//                FragmentPayMentsDetail oneFragment = new FragmentPayMentsDetail();
-//                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-//                transaction.replace(R.id.container, oneFragment);
-//                transaction.addToBackStack(null);
-//                transaction.commit();
                 Intent i =new Intent(getActivity(), Activity_main_PaymentDetail.class);
                 startActivity(i);
                 Toast.makeText(getActivity(), "ลงทะเบียนสำเร็จ", Toast.LENGTH_LONG).show();

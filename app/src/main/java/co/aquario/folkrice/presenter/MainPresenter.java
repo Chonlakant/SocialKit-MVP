@@ -12,17 +12,17 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import co.aquario.folkrice.data.TopMovieListView;
-import co.aquario.folkrice.model.PostDataNew;
+import co.aquario.folkrice.data.ListProduct;
+import co.aquario.folkrice.model.Product;
 import cz.msebera.android.httpclient.Header;
 
-public class MainPresenter implements Presenter<TopMovieListView> {
-    private TopMovieListView mMainView;
+public class MainPresenter implements Presenter<ListProduct> {
+    private ListProduct mMainView;
 
-    List<PostDataNew> list = new ArrayList<>();
+    List<Product> list = new ArrayList<>();
 
     @Override
-    public void attachView(TopMovieListView view) {
+    public void attachView(ListProduct view) {
         this.mMainView = view;
     }
 
@@ -122,7 +122,7 @@ public class MainPresenter implements Presenter<TopMovieListView> {
 
                             Log.e("vvvvvv",productId+"");
 
-                            PostDataNew mainModel = new PostDataNew();
+                            Product mainModel = new Product();
                             mainModel.setNameTh(nameTh);
                             mainModel.setName2(name2);
                             mainModel.setName(nameEn);

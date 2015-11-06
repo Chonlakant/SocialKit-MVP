@@ -18,8 +18,8 @@ import co.aquario.folkrice.MainApplication;
 import co.aquario.folkrice.PrefManager;
 import co.aquario.folkrice.R;
 import co.aquario.folkrice.fragment.CartFragment;
-import co.aquario.folkrice.fragment.ItemFragment;
-import co.aquario.folkrice.model.PostDataNew;
+import co.aquario.folkrice.fragment.ItemProductFragment;
+import co.aquario.folkrice.model.Product;
 import co.aquario.folkrice.model.ShoppingCartHelper;
 
 
@@ -27,10 +27,10 @@ import co.aquario.folkrice.model.ShoppingCartHelper;
 /**
  * Created by Joseph on 7/7/15.
  */
-public class ItemActivity extends AppCompatActivity {
+public class ItemChooseActivity extends AppCompatActivity {
 
     Toolbar mToolbar;
-    ArrayList<PostDataNew> person;
+    ArrayList<Product> person;
     TextView countTv;
     TextView mBuyButton;
     PrefManager pref;
@@ -41,7 +41,7 @@ public class ItemActivity extends AppCompatActivity {
     int ProductsSize;
     int productId;
     int quantity = 0;
-    PostDataNew list;
+    Product list;
     MainApplication aController;
     TextView editTextQuantity;
     TextView textCount1, textCount2;
@@ -60,7 +60,6 @@ public class ItemActivity extends AppCompatActivity {
         textCount2 = (TextView) findViewById(R.id.textCount2);
         aController = (MainApplication) getApplicationContext();
 
-        //editTextQuantity.setInputType(InputType.TYPE_NULL);
         int one = 0;
         String i = String.valueOf(counSum);
         editTextQuantity.setText(i);
@@ -71,7 +70,6 @@ public class ItemActivity extends AppCompatActivity {
                 counSum = count;
                 String strI = String.valueOf(counSum);
                 editTextQuantity.setText(strI);
-                Log.e("counSum1", counSum + "");
             }
         });
 
@@ -82,24 +80,20 @@ public class ItemActivity extends AppCompatActivity {
                 counSum = count;
                 String strI = String.valueOf(counSum);
                 editTextQuantity.setText(strI);
-                Log.e("counSum2", counSum + "");
             }
         });
 
 
-        // Get the Item extras
         Bundle extras = getIntent().getExtras();
         productId = extras.getInt("productId");
         title = extras.getString("title");
         price = extras.getDouble("price");
         decs = extras.getString("decs");
         urlImage = extras.getString("urlImage");
-//        String itemName = extras.getString(ItemFragment.EXTRA_NAME);
-//        curItem = DataSource.get(this).getItem(itemName);
 
 
         Log.e("ItemActivity_Product", productId + "");
-        list = new PostDataNew();
+        list = new Product();
         list.setName(title);
         list.setPrice(price);
         list.setImage(urlImage);
@@ -110,12 +104,8 @@ public class ItemActivity extends AppCompatActivity {
 
         ProductsSize = aController.getProductsArraylistSize();
 
-        Log.e("ProductsSize", ProductsSize + "");
 
-
-        // Inflate the ItemFragment
-
-        ItemFragment frag = ItemFragment.newInstance(title, price, decs, urlImage, productId);
+        ItemProductFragment frag = ItemProductFragment.newInstance(title, price, decs, urlImage, productId);
         getSupportFragmentManager().beginTransaction().add(R.id.item_container, frag).commit();
 
         // Initialize and set up the toolbar
@@ -131,7 +121,7 @@ public class ItemActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 quantity = counSum;
-                AlertDialog.Builder builder = new AlertDialog.Builder(ItemActivity.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(ItemChooseActivity.this);
                 builder.setTitle(R.string.add_cart)
                         .setMessage(title + " คุณต้องการเพิ่มในรายการของคุณไหม?")
                         .setNegativeButton(R.string.show_cart, new DialogInterface.OnClickListener() {
@@ -153,8 +143,6 @@ public class ItemActivity extends AppCompatActivity {
                                 pref.isCheckProduct().put(isCheckProduct);
                                 pref.commit();
                                 ShoppingCartHelper.setQuantity(list, quantity);
-                                Log.e("lisy33", list.getProductId() + "");
-                                Log.e("lisy33", quantity + "");
 
                                 dialog.dismiss();
 
@@ -166,7 +154,6 @@ public class ItemActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_item_list, menu);
         return true;
     }
@@ -174,7 +161,7 @@ public class ItemActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.cart) { // Show the cart
+        if (id == R.id.cart) {
             CartFragment cartFrag = new CartFragment();
             cartFrag.show(getSupportFragmentManager(), "My Cart");
             return true;

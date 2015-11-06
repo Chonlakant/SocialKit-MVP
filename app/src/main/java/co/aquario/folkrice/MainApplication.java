@@ -15,7 +15,7 @@ import co.aquario.folkrice.handler.ApiBus;
 import co.aquario.folkrice.handler.ApiHandler;
 import co.aquario.folkrice.handler.ApiService;
 import co.aquario.folkrice.model.ModelCart;
-import co.aquario.folkrice.model.PostDataNew;
+import co.aquario.folkrice.model.Product;
 import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;
 
@@ -28,7 +28,7 @@ public class MainApplication extends Application {
     private ApplicationComponent applicationComponent;
     private ApiHandler someApiHandler;
     private static PrefManager prefManager;
-    private ArrayList<PostDataNew> myProducts = new ArrayList<PostDataNew>();
+    private ArrayList<Product> myProducts = new ArrayList<Product>();
     private ModelCart myCart = new ModelCart();
 
     @Override
@@ -74,12 +74,12 @@ public class MainApplication extends Application {
         return prefManager;
     }
 
-    public PostDataNew getProducts(int pPosition) {
+    public Product getProducts(int pPosition) {
 
         return myProducts.get(pPosition);
     }
 
-    public void setProducts(PostDataNew Products) {
+    public void setProducts(Product Products) {
 
         myProducts.add(Products);
 

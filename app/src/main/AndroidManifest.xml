@@ -53,13 +53,14 @@
             android:name="io.card.payment.CardIOActivity"
             android:configChanges="keyboardHidden|orientation" />
         <activity android:name="co.aquario.folkrice.activities.CustomErrorActivity" />
-        <activity android:name="co.aquario.folkrice.activities.ItemActivity" />
+        <activity android:name=".activities.ItemChooseActivity" />
         <activity android:name="co.aquario.folkrice.activities.Activity_main_Buy" />
         <activity android:name="co.aquario.folkrice.activities.Activity_main_register" />
         <activity android:name="co.aquario.folkrice.activities.Activity_main_login" />
         <activity android:name="co.aquario.folkrice.activities.Activity_main_PaymentDetail" />
         <activity android:name="co.aquario.folkrice.activities.Activity_main_edit_adress" />
         <activity android:name=".activities.DecoderActivity" />
+        <activity android:name=".activities.ActivityAbount" />
 
         <service android:name="com.parse.PushService" />
 

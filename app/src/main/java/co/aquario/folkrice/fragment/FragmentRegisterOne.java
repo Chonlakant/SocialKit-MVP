@@ -37,7 +37,6 @@ public class FragmentRegisterOne extends Fragment {
 
     public static final String ARG_PAGE = "ARG_PAGE";
     Button btn_add;
-    //    private int mPage;
     String email;
     String pass;
     String confirmpassWord;
@@ -58,19 +57,12 @@ public class FragmentRegisterOne extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         pref = MainApplication.getPrefManager();
-        Log.e("aaaaa", (pref == null) + "");
-        //  mPage = getArguments().getInt(ARG_PAGE);
-
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.register_one, container, false);
-
-//        String password = pref.passWord().getOr("");
-//        String username = pref.userName().getOr("");
-        //toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
         et_mail = (EditText) rootView.findViewById(R.id.email);
         et_mail.setHint("อีเมล์");
         et_password = (EditText) rootView.findViewById(R.id.password);
@@ -78,22 +70,13 @@ public class FragmentRegisterOne extends Fragment {
         et_confirmPassword = (EditText) rootView.findViewById(R.id.confirm_password);
         et_confirmPassword.setHint("ยืนยันรหัสผ่าน");
 
-//        if (toolbar != null)
-//            getActivity().setTitle("ที่อยู่จัดส่ง");
-
-        //  toolbar.setTitle("ที่อยู่จัดส่ง");
         btn_add = (Button) rootView.findViewById(R.id.btn_add);
 
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-
                 uploadProfile();
-
-
-
-
             }
         });
 
@@ -104,13 +87,11 @@ public class FragmentRegisterOne extends Fragment {
 
         email = et_mail.getText().toString();
         pass = et_password.getText().toString();
-        //confirmpassWord = et_confirmPassword.getText().toString();
 
         pref.email().put(email);
         pref.passWord().put(pass);
         pref.isAddress().put(true);
 
-        //pref.confirmpassWord().put(confirmpassWord);
         pref.commit();
 
 
@@ -127,13 +108,12 @@ public class FragmentRegisterOne extends Fragment {
 
     public void updateProfile(String url, JSONObject jo, AjaxStatus status)
             throws JSONException {
-        Log.e("hahaha", jo.toString(4));
+        Log.e("Json Return", jo.toString(4));
 
           userId = jo.getJSONObject("account").optString("id");
         num = Integer.parseInt(userId);
 
         Bundle bundle = new Bundle();
-
 
         FragmentRegisterTwo oneFragment = new FragmentRegisterTwo();
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
@@ -142,8 +122,6 @@ public class FragmentRegisterOne extends Fragment {
         oneFragment.setArguments(bundle);
         transaction.addToBackStack(null);
         transaction.commit();
-
-        Log.e("userId02222", num+"");
 
         Toast.makeText(getActivity(), "ขั้นตอนถัดไป", Toast.LENGTH_LONG).show();
     }
@@ -155,7 +133,6 @@ public class FragmentRegisterOne extends Fragment {
         if (pref.isAddress().getOr(false)) {
             et_mail.setText(pref.email().getOr(""));
             et_password.setText(pref.passWord().getOr(""));
-//            et_confirmPassword.setText(pref.confirmpassWord().getOr(""));
 
         }
     }

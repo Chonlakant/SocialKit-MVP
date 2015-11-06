@@ -31,7 +31,6 @@ public class FragmentRegisterTwo extends Fragment {
     EditText et_home;
     public static final String ARG_PAGE = "ARG_PAGE";
     Button btn_add;
-    //    private int mPage;
     String contry;
     String area;
     String district;
@@ -55,9 +54,6 @@ public class FragmentRegisterTwo extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         pref = MainApplication.getPrefManager();
-        Log.e("aaaaa", (pref == null) + "");
-        //  mPage = getArguments().getInt(ARG_PAGE);
-
     }
 
     PrefManager pref;
@@ -66,14 +62,9 @@ public class FragmentRegisterTwo extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.register_two, container, false);
 
-//        String password = pref.passWord().getOr("");
-//        String username = pref.userName().getOr("");
-        //toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
-
         Bundle bundle = this.getArguments();
         if (bundle != null) {
             userId = bundle.getString("userId");
-            Log.e("เหี้ย",userId+"");
         }
 
         et_contry = (EditText) rootView.findViewById(R.id.et_contry);
@@ -84,10 +75,6 @@ public class FragmentRegisterTwo extends Fragment {
         et_zip_code = (EditText) rootView.findViewById(R.id.et_zip_code);
         et_home = (EditText) rootView.findViewById(R.id.et_home);
 
-//        if (toolbar != null)
-//            getActivity().setTitle("ที่อยู่จัดส่ง");
-
-        //  toolbar.setTitle("ที่อยู่จัดส่ง");
         btn_add = (Button) rootView.findViewById(R.id.btn_add);
 
         btn_add.setOnClickListener(new View.OnClickListener() {

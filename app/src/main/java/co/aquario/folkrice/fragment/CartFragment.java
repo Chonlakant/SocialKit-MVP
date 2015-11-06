@@ -30,10 +30,9 @@ import co.aquario.folkrice.R;
 import co.aquario.folkrice.UserManager;
 import co.aquario.folkrice.activities.Activity_main_PaymentDetail;
 import co.aquario.folkrice.activities.Activity_main_login;
-import co.aquario.folkrice.activities.MainActivity;
 import co.aquario.folkrice.adapter.ProductAdapter;
 import co.aquario.folkrice.model.PostData;
-import co.aquario.folkrice.model.PostDataNew;
+import co.aquario.folkrice.model.Product;
 import co.aquario.folkrice.model.ShoppingCartHelper;
 
 import me.drakeet.materialdialog.MaterialDialog;
@@ -46,7 +45,7 @@ import me.drakeet.materialdialog.MaterialDialog;
  */
 public class CartFragment extends DialogFragment {
     private static final int REQUEST_SIMPLE_DIALOG = 42;
-    private List<PostDataNew> mCartList = new ArrayList<>();
+    private List<Product> mCartList = new ArrayList<>();
     ProductAdapter mAdapter;
 
     TextView productPriceTextView, number_items;
@@ -69,7 +68,6 @@ public class CartFragment extends DialogFragment {
         pref = MainApplication.getPrefManager();
         // Initialize items
         userId = pref.userId().getOr("");
-        Log.e("aaaaa", userId);
 
     }
 
@@ -88,12 +86,8 @@ public class CartFragment extends DialogFragment {
         aController = (MainApplication) getActivity().getApplicationContext();
 
 
-        Log.e("IsCheckProduct", pref.isCheckProduct().getOr(false) + "");
-
         productPriceTextView = (TextView) v.findViewById(R.id.textView2);
         number_items = (TextView) v.findViewById(R.id.number_items);
-
-        Log.e("555555", mCartList.size() + "");
 
         if (mAdapter != null) {
             mAdapter.notifyDataSetChanged();
@@ -222,7 +216,7 @@ public class CartFragment extends DialogFragment {
                 double priceSum1 = 0;
 
                 int quantity = 0;
-                for (PostDataNew p : mCartList) {
+                for (Product p : mCartList) {
                     quantity = ShoppingCartHelper.getProductQuantity(p);
                     subTotal += p.getPrice() * quantity;
 
@@ -278,7 +272,7 @@ public class CartFragment extends DialogFragment {
         }
 
         int quantity = 0;
-        for (PostDataNew p : mCartList) {
+        for (Product p : mCartList) {
             quantity = ShoppingCartHelper.getProductQuantity(p);
             subTotal += p.getPrice() * quantity;
 
@@ -287,7 +281,6 @@ public class CartFragment extends DialogFragment {
 
         }
         productPriceTextView.setText("ราคารวม:" + subTotal);
-        Log.e("subTotal", subTotal + "");
         number_items.setText("จำนวน: " + quantity);
     }
 

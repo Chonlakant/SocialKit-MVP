@@ -14,7 +14,7 @@ import butterknife.ButterKnife;
 import co.aquario.folkrice.R;
 
 
-public class SuggestionListAdapter extends BindableAdapter<String> {
+public class SearchListAdapter extends BindableAdapter<String> {
 
     static class ViewHolder {
         @Bind(R.id.suggestion_text)
@@ -25,7 +25,7 @@ public class SuggestionListAdapter extends BindableAdapter<String> {
         }
     }
 
-    public SuggestionListAdapter(Context context) {
+    public SearchListAdapter(Context context) {
         super(context);
     }
 

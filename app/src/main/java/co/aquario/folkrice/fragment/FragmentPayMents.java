@@ -40,7 +40,7 @@ import co.aquario.folkrice.PrefManager;
 import co.aquario.folkrice.R;
 import co.aquario.folkrice.activities.MainActivity;
 import co.aquario.folkrice.adapter.ImageListAdapter;
-import co.aquario.folkrice.model.PostDataNew;
+import co.aquario.folkrice.model.Product;
 import co.aquario.folkrice.model.ShoppingCartHelper;
 
 import me.drakeet.materialdialog.MaterialDialog;
@@ -57,7 +57,7 @@ public class FragmentPayMents extends StatedFragment {
     ListView listView;
     Button btn_back;
     double subTotal = 0;
-    private List<PostDataNew> mCartList = new ArrayList<>();
+    private List<Product> mCartList = new ArrayList<>();
     MaterialDialog mMaterialDialog;
     public static String[] eatFoodyImages = {
             "http://tech.thaivisa.com/wp-content/uploads/2015/07/paypal.jpg",
@@ -103,16 +103,13 @@ public class FragmentPayMents extends StatedFragment {
         if (args != null) {
 
             price = args.getDouble("Price");
-            Log.e("Price44",price+"");
+
 
         }
         pref = MainApplication.getPrefManager();
-        Log.e("aaaaa", (pref == null) + "");
+
         userId = pref.userId().getOr("");
-        // userId = pref.userId().getOr("44");
-        Log.e("OKOKOKOKO", userId);
-        Log.e("mmmm",pref.fristName().getOr(""));
-        Log.e("mmmm", pref.lastName().getOr(""));
+
         name = pref.fristName().getOr("");
         contry = pref.country().getOr("");
         district = pref.district().getOr("");
@@ -193,8 +190,6 @@ public class FragmentPayMents extends StatedFragment {
 
         String url =  "http://api.folkrice.com/order/"+id+"/checkout";
 
-        Log.e("99900",url);
-
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("customer[first_name]", name);
         params.put("customer[last_name]", lastName);
@@ -216,49 +211,21 @@ public class FragmentPayMents extends StatedFragment {
     }
 
     public void checkOut(String url, JSONObject jo, AjaxStatus status) throws JSONException {
-        Log.e("1234567890", jo.toString(4));
+        Log.e("Json Return", jo.toString(4));
     }
 
     @Override
     public void onResume() {
         super.onResume();
 
-//        double i = 40.00;
-//        subTotal = 0;
-//        int quantity = 0;
-//        for (PostDataNew p : mCartList) {
-//            quantity = ShoppingCartHelper.getProductQuantity(p);
-//            subTotal += p.getPrice() * quantity + i ;
-//
-//            ShoppingCartHelper.setQuantity(p, quantity);
-//            name = p.getName();
-//
-//        }
-//
-//        Log.e("ราคารวม", subTotal + "");
-
-
-//        number_items.setText("จำนวน: " + quantity);
     }
 
     public void onBuyPressed() {
 
-        // PAYMENT_INTENT_SALE will cause the payment to complete immediately.
-        // Change PAYMENT_INTENT_SALE to
-        //   - PAYMENT_INTENT_AUTHORIZE to only authorize payment and capture funds later.
-        //   - PAYMENT_INTENT_ORDER to create a payment for authorization and capture
-        //     later via calls from your server.
-
-        PayPalPayment payment = new PayPalPayment(new BigDecimal(price), "THB", "ราคารวม",
-                PayPalPayment.PAYMENT_INTENT_SALE);
-
+        PayPalPayment payment = new PayPalPayment(new BigDecimal(price), "THB", "ราคารวม", PayPalPayment.PAYMENT_INTENT_SALE);
         Intent intent = new Intent(getActivity(), PaymentActivity.class);
-
-        // send the same configuration for restart resiliency
         intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, paypalConfig);
-
         intent.putExtra(PaymentActivity.EXTRA_PAYMENT, payment);
-
         startActivityForResult(intent, 0);
     }
 
@@ -269,26 +236,11 @@ public class FragmentPayMents extends StatedFragment {
             PaymentConfirmation confirm = data.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
             if (confirm != null) {
                 try {
-                    Log.i("paymentExample", confirm.toJSONObject().toString(4));
 
-                    // TODO: send 'confirm' to your server for verification.
-                    // see https://developer.paypal.com/webapps/developer/docs/integration/mobile/verify-mobile-payment/
-                    // for more details.
-
-                    Log.e("2222", confirm.toJSONObject().toString(4));
-                    Log.e("5555", confirm.getPayment().toJSONObject()
-                            .toString(4));
-
-                    String paymentId = confirm.toJSONObject()
-                            .getJSONObject("response").getString("id");
+                    String paymentId = confirm.toJSONObject().getJSONObject("response").getString("id");
 
                     String payment_client = confirm.getPayment()
                             .toJSONObject().toString();
-
-                    Log.e("Check():", "paymentId: " + paymentId
-                            + ", payment_json: " + payment_client);
-
-                    Toast.makeText(getActivity(), payment_client + "", Toast.LENGTH_LONG).show();
 
                 } catch (JSONException e) {
                     Log.e("paymentExample", "an extremely unlikely failure occurred: ", e);

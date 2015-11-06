@@ -8,6 +8,10 @@
             android:id="@+id/navigation_my_recipes"
             android:title="@string/my_recipes" />
 
+        <item
+            android:id="@+id/abount"
+            android:title="@string/abount" />
+
     </group>
 
 

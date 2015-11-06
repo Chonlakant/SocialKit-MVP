@@ -9,14 +9,14 @@ public class ShoppingCartHelper  {
 
     public static final String PRODUCT_INDEX = "PRODUCT_INDEX";
 
-    private static List<PostDataNew> catalog = new Vector<>();
-    private static Map<PostDataNew, ShoppingCartEntry> cartMap = new HashMap<PostDataNew, ShoppingCartEntry>();
+    private static List<Product> catalog = new Vector<>();
+    private static Map<Product, ShoppingCartEntry> cartMap = new HashMap<Product, ShoppingCartEntry>();
 
-    public static List<PostDataNew> getCatalog(){
+    public static List<Product> getCatalog(){
         return catalog;
     }
 
-    public static void setQuantity(PostDataNew product, int quantity) {
+    public static void setQuantity(Product product, int quantity) {
         // Get the current cart entry
         ShoppingCartEntry curEntry = cartMap.get(product);
 
@@ -38,7 +38,7 @@ public class ShoppingCartHelper  {
         curEntry.setQuantity(quantity);
     }
 
-    public static int getProductQuantity(PostDataNew product) {
+    public static int getProductQuantity(Product product) {
         // Get the current cart entry
         ShoppingCartEntry curEntry = cartMap.get(product);
 
@@ -48,13 +48,13 @@ public class ShoppingCartHelper  {
         return 0;
     }
 
-    public static void removeProduct(PostDataNew product) {
+    public static void removeProduct(Product product) {
         cartMap.remove(product);
     }
 
-    public static List<PostDataNew> getCartList() {
-        List<PostDataNew> cartList = new Vector<PostDataNew>(cartMap.keySet().size());
-        for(PostDataNew p : cartMap.keySet()) {
+    public static List<Product> getCartList() {
+        List<Product> cartList = new Vector<Product>(cartMap.keySet().size());
+        for(Product p : cartMap.keySet()) {
             cartList.add(p);
         }
 

@@ -1,11 +1,6 @@
 package co.aquario.folkrice.activities;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.ActivityNotFoundException;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -21,9 +16,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.etsy.android.grid.StaggeredGridView;
-import com.parse.ParseAnalytics;
-import com.parse.ParseInstallation;
-import com.parse.PushService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,12 +25,12 @@ import butterknife.ButterKnife;
 import co.aquario.folkrice.MainApplication;
 import co.aquario.folkrice.PrefManager;
 import co.aquario.folkrice.R;
-import co.aquario.folkrice.adapter.RecipeListAdapter;
-import co.aquario.folkrice.data.TopMovieListView;
+import co.aquario.folkrice.adapter.AdapterListProductMain;
+import co.aquario.folkrice.data.ListProduct;
 import co.aquario.folkrice.di.components.DrawerHeaderView;
 import co.aquario.folkrice.di.components.SearchView;
 import co.aquario.folkrice.fragment.CartFragment;
-import co.aquario.folkrice.model.PostDataNew;
+import co.aquario.folkrice.model.Product;
 import co.aquario.folkrice.model.ShoppingCartHelper;
 import co.aquario.folkrice.presenter.MainPresenter;
 import co.aquario.folkrice.services.ChannelService;
@@ -47,7 +39,7 @@ import rx.android.app.AppObservable;
 import rx.subscriptions.Subscriptions;
 
 
-public class MainActivity extends BaseActivity implements TopMovieListView {
+public class MainActivity extends BaseActivity implements ListProduct {
 
     @Bind(R.id.drawer_layout)
     DrawerLayout drawerLayout;
@@ -60,7 +52,7 @@ public class MainActivity extends BaseActivity implements TopMovieListView {
     @Bind(R.id.channel_recipe_list)
     StaggeredGridView recipeListView;
     private int mNavItemId;
-    private RecipeListAdapter recipeListAdapter;
+    private AdapterListProductMain recipeListAdapter;
     MainPresenter mMainPresenter;
     PrefManager pref;
     FloatingActionButton fabBtn;
@@ -68,9 +60,10 @@ public class MainActivity extends BaseActivity implements TopMovieListView {
     private Subscription querySubscription = Subscriptions.empty();
     private Subscription suggestionsSubscription = Subscriptions.empty();
 
-    private List<PostDataNew> mCartList = new ArrayList<>();
+    private List<Product> mCartList = new ArrayList<>();
 
     static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,7 +89,7 @@ public class MainActivity extends BaseActivity implements TopMovieListView {
             public void onClick(View v) {
                 Snackbar snackbar = Snackbar.make(drawerLayout, "QR Code", Snackbar.LENGTH_LONG);
                 snackbar.show();
-            Intent i = new Intent(getApplicationContext(),DecoderActivity.class);
+                Intent i = new Intent(getApplicationContext(), DecoderActivity.class);
                 startActivity(i);
 
             }
@@ -153,8 +146,8 @@ public class MainActivity extends BaseActivity implements TopMovieListView {
     }
 
     @Override
-    public void setArticles(List<PostDataNew> articles) {
-        recipeListAdapter = new RecipeListAdapter(this, articles);
+    public void setArticles(List<Product> articles) {
+        recipeListAdapter = new AdapterListProductMain(this, articles);
         recipeListView.setAdapter(recipeListAdapter);
     }
 
@@ -180,6 +173,13 @@ public class MainActivity extends BaseActivity implements TopMovieListView {
                         if (pref.isLogin().getOr(true) && !isCheck) {
                             menuItem.setTitle("Logout");
                         }
+                        drawerLayout.closeDrawers();
+                        break;
+
+                    case R.id.abount:
+                        Intent abount = new Intent(getApplication(), ActivityAbount.class);
+                        startActivity(abount);
+
                         drawerLayout.closeDrawers();
                         break;
                 }

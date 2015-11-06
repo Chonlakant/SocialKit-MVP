@@ -13,20 +13,20 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import co.aquario.folkrice.R;
-import co.aquario.folkrice.model.PostDataNew;
+import co.aquario.folkrice.model.Product;
 import co.aquario.folkrice.model.ShoppingCartHelper;
 
 
 
 public class ProductAdapter extends BaseAdapter {
 
-    private List<PostDataNew> mProductList;
+    private List<Product> mProductList;
     private LayoutInflater mInflater;
     private boolean mShowQuantity;
 
     Context context;
 
-    public ProductAdapter(List<PostDataNew> list, LayoutInflater inflater, boolean showQuantity, Context context) {
+    public ProductAdapter(List<Product> list, LayoutInflater inflater, boolean showQuantity, Context context) {
         mProductList = list;
         mInflater = inflater;
         mShowQuantity = showQuantity;
@@ -70,7 +70,7 @@ public class ProductAdapter extends BaseAdapter {
             item = (ViewItem) convertView.getTag();
         }
 
-        PostDataNew curProduct = mProductList.get(position);
+        Product curProduct = mProductList.get(position);
 
         Picasso.with(context)
                 .load(curProduct.getImage())

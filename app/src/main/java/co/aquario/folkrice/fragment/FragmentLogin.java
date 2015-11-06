@@ -106,7 +106,6 @@ public class FragmentLogin extends Fragment {
 
                 onLoginButtonClick();
 
-                // checkLogin();
             }
         });
 
@@ -139,11 +138,9 @@ public class FragmentLogin extends Fragment {
     public void loginCallback(String url, JSONObject json, AjaxStatus status) throws JSONException {
 
 
-        Log.e("fdfd", json.toString(4));
+        Log.e("Json Return", json.toString(4));
+
         userId = json.getJSONObject("account").optString("id");
-        int num = Integer.parseInt(userId);
-        String emailJosn = json.getJSONObject("account").optString("email");
-        Log.e("7777", userId);
         pref.userId().put(userId);
         pref.commit();
         ok = json.optString("status");
@@ -156,18 +153,12 @@ public class FragmentLogin extends Fragment {
             transaction.commit();
             Toast.makeText(getActivity(), "เข้าสู่ระบบ", Toast.LENGTH_SHORT).show();
         }
-
-        Log.e("123456", emailJosn);
     }
 
 
     @Override
     public void onResume() {
         super.onResume();
-//        if (pref.isAddress().getOr(false)) {
-//            et_mail.setText(pref.email().getOr(""));
-//            et_password.setText(pref.passWord().getOr(""));
-//        }
     }
 
 

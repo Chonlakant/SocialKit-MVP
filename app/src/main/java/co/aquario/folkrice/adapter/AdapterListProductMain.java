@@ -16,14 +16,14 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import co.aquario.folkrice.R;
-import co.aquario.folkrice.activities.ItemActivity;
-import co.aquario.folkrice.model.PostDataNew;
+import co.aquario.folkrice.activities.ItemChooseActivity;
+import co.aquario.folkrice.model.Product;
 
 
 
-public class RecipeListAdapter extends BindableAdapter<PostDataNew> {
+public class AdapterListProductMain extends BindableAdapter<Product> {
     Context context;
-    public RecipeListAdapter(Context context, List<PostDataNew> recipes) {
+    public AdapterListProductMain(Context context, List<Product> recipes) {
         super(context, recipes);
     }
 
@@ -46,24 +46,20 @@ public class RecipeListAdapter extends BindableAdapter<PostDataNew> {
 
     @Override
     public View newView(LayoutInflater inflater, int position, ViewGroup container) {
-        View view = inflater.inflate(R.layout.list_item_recipe, null, false);
+        View view = inflater.inflate(R.layout.list_item_product, null, false);
         ViewHolder holder = new ViewHolder(view);
         view.setTag(holder);
         return view;
     }
 
     @Override
-    public void bindView(final PostDataNew recipe, int position, View view) {
+    public void bindView(final Product recipe, int position, View view) {
         final ViewHolder holder = (ViewHolder) view.getTag();
 
 
         Picasso.with(view.getContext())
                 .load(recipe.getImage())
                 .into(holder.recipeImageView);
-
-//        Picasso.with(view.getContext())
-//                .load(recipe.getImage())
-//                .into(holder.userImageView);
 
 
         holder.userNameTextView.setText(recipe.getName());
@@ -73,7 +69,7 @@ public class RecipeListAdapter extends BindableAdapter<PostDataNew> {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), ItemActivity.class);
+                Intent intent = new Intent(getContext(), ItemChooseActivity.class);
                 intent.putExtra("productId",recipe.getProductId());
                 Log.e("AdapterClick",recipe.getProductId()+"");
                 intent.putExtra("title",recipe.getNameTh());

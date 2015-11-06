@@ -3,15 +3,15 @@ package co.aquario.folkrice.model;
 
 public class ShoppingCartEntry {
 
-    private PostDataNew mProduct;
+    private Product mProduct;
     private int mQuantity;
 
-    public ShoppingCartEntry(PostDataNew product, int quantity) {
+    public ShoppingCartEntry(Product product, int quantity) {
         mProduct = product;
         mQuantity = quantity;
     }
 
-    public PostDataNew getProduct() {
+    public Product getProduct() {
         return mProduct;
     }
 

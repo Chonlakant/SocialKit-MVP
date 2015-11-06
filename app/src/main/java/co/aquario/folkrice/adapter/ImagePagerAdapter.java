@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 
 import co.aquario.folkrice.R;
-import co.aquario.folkrice.model.PostDataNew;
+import co.aquario.folkrice.model.Product;
 
 
 /**
@@ -23,10 +23,10 @@ import co.aquario.folkrice.model.PostDataNew;
 public class ImagePagerAdapter extends PagerAdapter {
 
     Context mContext;
-    ArrayList<PostDataNew> mItem;
+    ArrayList<Product> mItem;
     LayoutInflater mLayoutInflater;
 
-    public ImagePagerAdapter(Context context, ArrayList<PostDataNew> mItem) {
+    public ImagePagerAdapter(Context context, ArrayList<Product> mItem) {
         mContext = context;
         this.mItem = mItem;
         mLayoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -46,7 +46,7 @@ public class ImagePagerAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         View itemView = mLayoutInflater.inflate(R.layout.item_pager, container, false);
 
-        PostDataNew i = mItem.get(position);
+        Product i = mItem.get(position);
 
 
         ImageView imageView = (ImageView) itemView.findViewById(R.id.imageView);
