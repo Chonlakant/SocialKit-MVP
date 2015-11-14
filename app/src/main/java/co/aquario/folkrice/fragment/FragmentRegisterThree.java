@@ -16,10 +16,10 @@ import java.util.List;
 
 import co.aquario.folkrice.MainApplication;
 import co.aquario.folkrice.PrefManager;
-import co.aquario.folkrice.R;
 import co.aquario.folkrice.activities.Activity_main_PaymentDetail;
+import co.aquario.folkrice.activities.MainActivity;
 import co.aquario.folkrice.model.AddAddress;
-
+import co.aquario.folkrices.R;
 
 
 public class FragmentRegisterThree extends Fragment {
@@ -87,7 +87,7 @@ public class FragmentRegisterThree extends Fragment {
                 pref.isAddressRegister2().put(true);
                 pref.commit();
 
-                Intent i =new Intent(getActivity(), Activity_main_PaymentDetail.class);
+                Intent i =new Intent(getActivity(), MainActivity.class);
                 startActivity(i);
                 Toast.makeText(getActivity(), "ลงทะเบียนสำเร็จ", Toast.LENGTH_LONG).show();
             }

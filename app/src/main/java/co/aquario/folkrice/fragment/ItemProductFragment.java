@@ -13,9 +13,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import co.aquario.folkrice.R;
 import co.aquario.folkrice.adapter.ImagePagerAdapter;
 import co.aquario.folkrice.model.Product;
+import co.aquario.folkrices.R;
 
 
 /**

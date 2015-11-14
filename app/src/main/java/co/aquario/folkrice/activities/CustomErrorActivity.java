@@ -24,7 +24,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import cat.ereza.customactivityoncrash.CustomActivityOnCrash;
-import co.aquario.folkrice.R;
+import co.aquario.folkrices.R;
 
 
 public class CustomErrorActivity extends Activity {

@@ -24,7 +24,6 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import co.aquario.folkrice.MainApplication;
 import co.aquario.folkrice.PrefManager;
-import co.aquario.folkrice.R;
 import co.aquario.folkrice.adapter.AdapterListProductMain;
 import co.aquario.folkrice.data.ListProduct;
 import co.aquario.folkrice.di.components.DrawerHeaderView;
@@ -34,6 +33,7 @@ import co.aquario.folkrice.model.Product;
 import co.aquario.folkrice.model.ShoppingCartHelper;
 import co.aquario.folkrice.presenter.MainPresenter;
 import co.aquario.folkrice.services.ChannelService;
+import co.aquario.folkrices.R;
 import rx.Subscription;
 import rx.android.app.AppObservable;
 import rx.subscriptions.Subscriptions;
@@ -61,8 +61,10 @@ public class MainActivity extends BaseActivity implements ListProduct {
     private Subscription suggestionsSubscription = Subscriptions.empty();
 
     private List<Product> mCartList = new ArrayList<>();
-
+    boolean check;
     static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
+    String title = "";
+    Boolean isLogin = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,8 +84,8 @@ public class MainActivity extends BaseActivity implements ListProduct {
         Log.e("mCartList", mCartList.size() + "");
         setupViews();
         pref = MainApplication.getPrefManager();
+        Log.e("MainActivity",pref.userId().getOr("มาไหม")+"");
         initView();
-
         fabBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,6 +108,7 @@ public class MainActivity extends BaseActivity implements ListProduct {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_item_list, menu);
+
         return true;
     }
 
@@ -159,20 +162,41 @@ public class MainActivity extends BaseActivity implements ListProduct {
                 int id = menuItem.getItemId();
                 switch (id) {
                     case R.id.navigation_home:
-                        Intent i = new Intent(getApplication(), Activity_main_PaymentDetail.class);
+                        Intent i = new Intent(getApplication(), HistoryActivity.class);
                         startActivity(i);
                         drawerLayout.closeDrawers();
                         break;
                     case R.id.navigation_my_recipes:
-                        boolean isCheck = pref.isLogin().getOr(false);
-                        MainApplication.logout(getApplicationContext());
-                        Toast.makeText(getApplicationContext(), "Logout", Toast.LENGTH_SHORT).show();
-                        menuItem.setTitle("Login");
-                        pref.isCheckProduct().put(false);
-                        pref.commit();
-                        if (pref.isLogin().getOr(true) && !isCheck) {
-                            menuItem.setTitle("Logout");
+//                        boolean isCheck = pref.isLogin().getOr(false);
+//                        MainApplication.logout(getApplicationContext());
+//                        Toast.makeText(getApplicationContext(), "Logout", Toast.LENGTH_SHORT).show();
+//                        pref.isCheckProduct().put(false);
+//                        pref.commit();
+//                        if (pref.isLogin().getOr(true) && !isCheck) {
+//                            menuItem.setTitle("Logout");
+//                        }
+
+//                        login();
+//                        menuItem.setTitle(title);
+
+
+                        isLogin = pref.isLogin().getOr(false);
+
+                        if (pref.isLogin().getOr(true) && !isLogin) {
+                            Toast.makeText(getApplicationContext(), "Login", Toast.LENGTH_SHORT).show();
+                            Intent ai = new Intent(getApplicationContext(), Activity_main_login.class);
+                            startActivity(ai);
+                            isLogin = true;
+                            pref.isLogin().put(isLogin);
+                            pref.commit();
+
                         }
+
+                        drawerLayout.closeDrawers();
+                        break;
+
+                    case R.id.log_out:
+                        MainApplication.logout(getApplicationContext());
                         drawerLayout.closeDrawers();
                         break;
 
@@ -194,17 +218,50 @@ public class MainActivity extends BaseActivity implements ListProduct {
                 .subscribe();
     }
 
-    //
-//    private void updateSuggestions(String query) {
-//        suggestionsSubscription.unsubscribe();
-//        suggestionsSubscription = AppObservable.bindActivity(this, new SuggestionService().get(query))
-//                .subscribe(searchView::updateSuggestions);
-//    }
+    public void login() {
+
+        title = "Logout";
+        isLogin = pref.isLogin().getOr(false);
+
+        if (pref.isLogin().getOr(true) && !isLogin) {
+
+            Toast.makeText(getApplicationContext(), "Login", Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(getApplicationContext(), Activity_main_login.class);
+            startActivity(i);
+            isLogin = true;
+            pref.isLogin().put(isLogin);
+            pref.commit();
+            title = "Logout";
+        } else {
+            MainApplication.logout(getApplicationContext());
+            title = "Logout";
+        }
+    }
+
     @Override
     public void onResume() {
         super.onResume();
 
 
     }
+//    boolean doubleBackToExitPressedOnce = false;
+//    @Override
+//    public void onBackPressed() {
+//        if (doubleBackToExitPressedOnce) {
+//            super.onBackPressed();
+//            return;
+//        }
+//
+//        this.doubleBackToExitPressedOnce = true;
+//        Toast.makeText(this, "แตะ BACK อีกครั้งเพื่อออกจาก Folkrice", Toast.LENGTH_SHORT).show();
+//
+//        new Handler().postDelayed(new Runnable() {
+//
+//            @Override
+//            public void run() {
+//                doubleBackToExitPressedOnce = false;
+//            }
+//        }, 2000);
+//    }
 
 }

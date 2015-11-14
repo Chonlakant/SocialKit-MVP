@@ -82,7 +82,7 @@
                     android:id="@+id/paypal_button"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/selector_paypal"
+                    android:background="@drawable/selector_buy"
                     android:clickable="true"
                     android:gravity="center"
                     android:paddingLeft="8dp"
@@ -134,11 +134,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="1dp"
-                    android:background="@drawable/selector_white_grey"
+                    android:background="@drawable/selector_buy"
                     android:clickable="true"
                     android:gravity="center"
                     android:text="ชำระเงิน"
-                    android:textColor="#000000"
+                    android:textColor="#fff"
                     android:textSize="20sp" />
 
             </RelativeLayout>

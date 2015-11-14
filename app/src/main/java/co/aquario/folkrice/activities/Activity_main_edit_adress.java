@@ -6,9 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.RadioButton;
 
 import co.aquario.folkrice.PrefManager;
-import co.aquario.folkrice.R;
 import co.aquario.folkrice.fragment.FragmentAddressAdd;
-
+import co.aquario.folkrices.R;
 
 
 /**

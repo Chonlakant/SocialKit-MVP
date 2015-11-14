@@ -8,16 +8,16 @@ import android.widget.ArrayAdapter;
 
 import java.util.List;
 
-public abstract class BindableAdapter<T> extends ArrayAdapter<T> {
+public abstract class bleAdapter<T> extends ArrayAdapter<T> {
 
     private LayoutInflater inflater;
 
-    public BindableAdapter(Context context) {
+    public bleAdapter(Context context) {
         super(context, 0);
         setup(context);
     }
 
-    public BindableAdapter(Context context, List<T> items) {
+    public bleAdapter(Context context, List<T> items) {
         super(context, 0, items);
         setup(context);
     }

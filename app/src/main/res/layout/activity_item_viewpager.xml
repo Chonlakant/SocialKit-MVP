@@ -62,7 +62,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#6f5448"
+            android:background="#6d4c41"
             android:gravity="center|left"
             android:orientation="horizontal">
 
@@ -92,7 +92,7 @@
 
                 <co.aquario.folkrice.MyCustomTextView
                     android:id="@+id/editTextQuantity"
-                    android:layout_width="60dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"

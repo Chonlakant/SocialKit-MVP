@@ -29,12 +29,12 @@ import java.util.Map;
 
 import co.aquario.folkrice.MainApplication;
 import co.aquario.folkrice.PrefManager;
-import co.aquario.folkrice.R;
 import co.aquario.folkrice.activities.Activity_main_edit_adress;
 import co.aquario.folkrice.adapter.ProductAdapter;
 import co.aquario.folkrice.model.JsonArr;
 import co.aquario.folkrice.model.Product;
 import co.aquario.folkrice.model.ShoppingCartHelper;
+import co.aquario.folkrices.R;
 
 
 public class FragmentPayMentsDetail extends BaseFragment {
@@ -47,8 +47,7 @@ public class FragmentPayMentsDetail extends BaseFragment {
     private int mPage;
     PrefManager pref;
     ProductAdapter mAdapter;
-    ListView list;
-    String userId;
+    int userId;
     double sumAll = 0;
     double subTotal = 0;
     double subTotalAll = 0;
@@ -59,7 +58,7 @@ public class FragmentPayMentsDetail extends BaseFragment {
     private List<Product> mCartList = new ArrayList<>();
     List<JsonArr> productJson = new ArrayList<>();
     JsonArray myCustomArray;
-    TextView txtName, txtCountry, txtDistrict, txtPostal, txtHome, sumPrice, sum, Text_edit;
+    TextView txtName, txtCountry, txtDistrict, txtPostal, txtHome, sumPrice, sum, Text_edit,price_car;
     Product p;
     String name;
     String contry;
@@ -70,7 +69,7 @@ public class FragmentPayMentsDetail extends BaseFragment {
     String note;
     String email;
     String landmarks;
-
+    int delivery_total;
 
     public static FragmentPayMentsDetail newInstance(int page) {
         Bundle args = new Bundle();
@@ -85,8 +84,10 @@ public class FragmentPayMentsDetail extends BaseFragment {
         super.onCreate(savedInstanceState);
 
         pref = MainApplication.getPrefManager();
-        userId = pref.userId().getOr("");
-        Log.e("userId", userId);
+        userId = pref.order().getOr(1);
+        delivery_total = pref.delivery_total().getOr(0);
+        Log.e("delivery_total",delivery_total+"");
+        Log.e("userId", userId+"");
         name = pref.fristName().getOr("");
         contry = pref.country().getOr("");
         district = pref.district().getOr("");
@@ -102,7 +103,7 @@ public class FragmentPayMentsDetail extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.main_list_buy, container, false);
-        list = (ListView) rootView.findViewById(R.id.cart_items_list);
+
         mCartList = ShoppingCartHelper.getCartList();
 
 
@@ -114,6 +115,7 @@ public class FragmentPayMentsDetail extends BaseFragment {
         txtHome = (TextView) rootView.findViewById(R.id.txt_home);
         sumPrice = (TextView) rootView.findViewById(R.id.sum_price);
         sum = (TextView) rootView.findViewById(R.id.sum);
+        price_car = (TextView) rootView.findViewById(R.id.price_car);
         btn_price = (Button) rootView.findViewById(R.id.btn_price);
         Text_edit = (TextView) rootView.findViewById(R.id.Text_edit);
 
@@ -125,14 +127,12 @@ public class FragmentPayMentsDetail extends BaseFragment {
             }
         }
 
-        list.setAdapter(mAdapter);
-
-
         txtName.setText(name);
         txtCountry.setText(contry);
         txtDistrict.setText(district);
         txtPostal.setText(postal);
         txtHome.setText(home);
+        price_car.setText(delivery_total+"บาท");
 
         for (Product p : mCartList) {
             quantityArr = ShoppingCartHelper.getProductQuantity(p);
@@ -160,7 +160,7 @@ public class FragmentPayMentsDetail extends BaseFragment {
             @Override
             public void onClick(View view) {
 
-                uploadProduct();
+                //uploadProduct();
 
                 Bundle bundle = new Bundle();
 
@@ -180,26 +180,7 @@ public class FragmentPayMentsDetail extends BaseFragment {
 
     }
 
-    private void uploadProduct() {
 
-        Charset chars = Charset.forName("UTF-8");
-        String url = "http://api.folkrice.com/order/add";
-
-        int id = Integer.parseInt(userId);
-
-        Log.e("NONONONON", id + "");
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("items", myCustomArray);
-        params.put("account", id);
-
-        AQuery aq = new AQuery(getActivity());
-        aq.ajax(url, params, JSONObject.class, this, "updateProduct");
-    }
-
-    public void updateProduct(String url, JSONObject jo, AjaxStatus status) throws JSONException {
-        Log.e("Json Return", jo.toString(4));
-
-    }
 
 
     @Override
@@ -217,7 +198,7 @@ public class FragmentPayMentsDetail extends BaseFragment {
         for (Product p : mCartList) {
             quantity = ShoppingCartHelper.getProductQuantity(p);
             sumAll += p.getPrice() * quantity;
-            subTotal = sumAll + i;
+            subTotal = sumAll + delivery_total;
             ShoppingCartHelper.setQuantity(p, quantity);
         }
         sum.setText("ราคารวม:" + subTotal);

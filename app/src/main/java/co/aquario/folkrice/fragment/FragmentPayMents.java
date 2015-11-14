@@ -37,12 +37,12 @@ import java.util.Map;
 import co.aquario.folkrice.Config;
 import co.aquario.folkrice.MainApplication;
 import co.aquario.folkrice.PrefManager;
-import co.aquario.folkrice.R;
 import co.aquario.folkrice.activities.MainActivity;
 import co.aquario.folkrice.adapter.ImageListAdapter;
 import co.aquario.folkrice.model.Product;
 import co.aquario.folkrice.model.ShoppingCartHelper;
 
+import co.aquario.folkrices.R;
 import me.drakeet.materialdialog.MaterialDialog;
 
 
@@ -60,7 +60,6 @@ public class FragmentPayMents extends StatedFragment {
     private List<Product> mCartList = new ArrayList<>();
     MaterialDialog mMaterialDialog;
     public static String[] eatFoodyImages = {
-            "http://tech.thaivisa.com/wp-content/uploads/2015/07/paypal.jpg",
             "http://www.thaidnsservice.com/wp-content/uploads/2015/07/kbang.jpg",
             "http://buzzinmediagroup.com/wp-content/uploads/2015/07/SCB_logo.jpg"
     };
@@ -72,16 +71,7 @@ public class FragmentPayMents extends StatedFragment {
 
     double price;
 
-    String contry;
-    String district;
-    String postal;
-    String home;
-    String lastName;
-    String note;
-    String email;
-    String landmarks;
 
-    String userId;
 
     public static FragmentPayMents newInstance(int page, double price) {
         FragmentPayMents fragment = new FragmentPayMents();
@@ -108,18 +98,7 @@ public class FragmentPayMents extends StatedFragment {
         }
         pref = MainApplication.getPrefManager();
 
-        userId = pref.userId().getOr("");
 
-        name = pref.fristName().getOr("");
-        contry = pref.country().getOr("");
-        district = pref.district().getOr("");
-        postal = pref.postal().getOr("");
-        home = pref.home().getOr("");
-        lastName = pref.lastName().getOr("");
-        note = pref.note().getOr("");
-        email = pref.email().getOr("");
-        landmarks = pref.landmarks().getOr("");
-        mCartList = ShoppingCartHelper.getCartList();
     }
 
     @Override
@@ -128,9 +107,7 @@ public class FragmentPayMents extends StatedFragment {
         listView = (ListView) rootView.findViewById(R.id.listView);
         btn_back = (Button) rootView.findViewById(R.id.btn_back);
         mMaterialDialog = new MaterialDialog(getActivity());
-
-
-        //mItem = DataSource.get(getActivity()).getItem(args.getString(EXTRA_NAME));
+        mCartList = ShoppingCartHelper.getCartList();
 
 
         imageListAdapter = new ImageListAdapter(getActivity(), eatFoodyImages, title);
@@ -147,17 +124,17 @@ public class FragmentPayMents extends StatedFragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                if (i == 0) {
+//                    onBuyPressed();
+//                }
                 if (i == 0) {
-                    onBuyPressed();
-                }
-                if (i == 1) {
                     SimpleDialogFragment.createBuilder(getActivity(), getActivity().getSupportFragmentManager())
                             .setTitle("การชำระเงิน").setMessage
                             ("โอนเงิน เข้าบัญชี ธนสคารกสิกรไทย(KBANK) นายอนุกูล ทรายเพชร และ นาย ธนานนท์ เงินถาวร 730-2-12382-5 เซนทรัลลาดพร้าวแจ้งโอนเงินมาที่ Folkrice.th@gmail.com หรือ Line FolkRice")
                             .setNegativeButtonText("Close")
                             .show();
                 }
-                if (i == 2) {
+                if (i == 1) {
                     SimpleDialogFragment.createBuilder(getActivity(), getActivity().getSupportFragmentManager())
                             .setTitle("การชำระเงิน").setMessage
                             ("โอนเงิน เข้าบัญชี ธนสคารกสิกรไทย(KBANK) นายอนุกูล ทรายเพชร และ นาย ธนานนท์ เงินถาวร 730-2-12382-5 เซนทรัลลาดพร้าวแจ้งโอนเงินมาที่ Folkrice.th@gmail.com หรือ Line FolkRice")
@@ -169,8 +146,6 @@ public class FragmentPayMents extends StatedFragment {
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                checkOut();
 
                 for (int i = 0; i < mCartList.size(); i++) {
                     ShoppingCartHelper.removeProduct(mCartList.get(i));
@@ -184,35 +159,6 @@ public class FragmentPayMents extends StatedFragment {
         return rootView;
     }
 
-    private void checkOut() {
-        int id = Integer.parseInt(userId);
-        Charset chars = Charset.forName("UTF-8");
-
-        String url =  "http://api.folkrice.com/order/"+id+"/checkout";
-
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("customer[first_name]", name);
-        params.put("customer[last_name]", lastName);
-        params.put("customer[email]", email);
-        params.put("ship_to[first_name]", name);
-        params.put("ship_to[last_name]", lastName);
-        params.put("ship_to[address_1]", landmarks);
-        params.put("ship_to[sub_district]", district);
-        params.put("ship_to[district]", district);
-        params.put("ship_to[province]", contry);
-        params.put("ship_to[postcode]", postal);
-        params.put("ship_to[note]", note);
-        params.put("lat", "100");
-        params.put("lon", "31");
-        params.put("ship_to[method]", "grabtaxi");
-
-        AQuery aq = new AQuery(getActivity());
-        aq.ajax(url, params, JSONObject.class, this, "checkOut");
-    }
-
-    public void checkOut(String url, JSONObject jo, AjaxStatus status) throws JSONException {
-        Log.e("Json Return", jo.toString(4));
-    }
 
     @Override
     public void onResume() {

@@ -13,8 +13,8 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 
-import co.aquario.folkrice.R;
 import co.aquario.folkrice.model.Product;
+import co.aquario.folkrices.R;
 
 
 /**

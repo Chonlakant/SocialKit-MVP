@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import co.aquario.folkrice.R;
+import co.aquario.folkrices.R;
 
 
 public class ImageListAdapter extends BaseAdapter {

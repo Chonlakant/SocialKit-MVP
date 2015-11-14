@@ -3,6 +3,7 @@ package co.aquario.folkrice;
 import android.content.SharedPreferences;
 
 import com.tale.prettysharedpreferences.BooleanEditor;
+import com.tale.prettysharedpreferences.IntegerEditor;
 import com.tale.prettysharedpreferences.PrettySharedPreferences;
 import com.tale.prettysharedpreferences.StringEditor;
 
@@ -34,6 +35,12 @@ public class PrefManager extends PrettySharedPreferences<PrefManager> {
     public BooleanEditor<PrefManager> isCheckProduct() {
         return getBooleanEditor("isCheckProduct");
     }
+
+    public BooleanEditor<PrefManager> isCheckDialog() {
+        return getBooleanEditor("isCheckDialog");
+    }
+
+
 
     public BooleanEditor<PrefManager> isAddress() {
         return getBooleanEditor("isAddress");
@@ -107,9 +114,13 @@ public class PrefManager extends PrettySharedPreferences<PrefManager> {
         return getStringEditor("orderId");
     }
 
-//    public IntegerEditor<PrefManager> userId() {
-//        return getIntegerEditor("userId");
-//    }
+    public IntegerEditor<PrefManager> order() {
+        return getIntegerEditor("order");
+    }
+
+    public IntegerEditor<PrefManager> delivery_total() {
+        return getIntegerEditor("delivery_total");
+    }
 
 
 

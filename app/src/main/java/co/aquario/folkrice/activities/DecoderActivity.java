@@ -17,7 +17,7 @@ import android.widget.TextView;
 import com.dlazaro66.qrcodereaderview.QRCodeReaderView;
 import com.dlazaro66.qrcodereaderview.QRCodeReaderView.OnQRCodeReadListener;
 
-import co.aquario.folkrice.R;
+import co.aquario.folkrices.R;
 
 public class DecoderActivity extends Activity implements OnQRCodeReadListener {
 

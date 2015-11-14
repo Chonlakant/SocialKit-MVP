@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="co.aquario.folkrice">
+    package="co.aquario.folkrices">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -8,7 +8,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -23,16 +22,17 @@
     <permission
         android:name="co.aquario.folkrice.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
+
     <uses-permission android:name="co.aquario.folkrice.permission.C2D_MESSAGE" />
 
     <application
         android:name="co.aquario.folkrice.MainApplication"
         android:allowBackup="true"
-        android:icon="@drawable/ic_folkrice"
+        android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme.WithoutActionBar">
         <activity
-            android:name=".activities.MainActivity"
+            android:name="co.aquario.folkrice.activities.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,6 +41,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <service
             android:name="com.paypal.android.sdk.payments.PayPalService"
             android:exported="false" />
@@ -53,14 +54,15 @@
             android:name="io.card.payment.CardIOActivity"
             android:configChanges="keyboardHidden|orientation" />
         <activity android:name="co.aquario.folkrice.activities.CustomErrorActivity" />
-        <activity android:name=".activities.ItemChooseActivity" />
+        <activity android:name="co.aquario.folkrice.activities.ItemChooseActivity" />
         <activity android:name="co.aquario.folkrice.activities.Activity_main_Buy" />
         <activity android:name="co.aquario.folkrice.activities.Activity_main_register" />
         <activity android:name="co.aquario.folkrice.activities.Activity_main_login" />
         <activity android:name="co.aquario.folkrice.activities.Activity_main_PaymentDetail" />
         <activity android:name="co.aquario.folkrice.activities.Activity_main_edit_adress" />
-        <activity android:name=".activities.DecoderActivity" />
-        <activity android:name=".activities.ActivityAbount" />
+        <activity android:name="co.aquario.folkrice.activities.DecoderActivity" />
+        <activity android:name="co.aquario.folkrice.activities.ActivityAbount" />
+        <activity android:name="co.aquario.folkrice.activities.ActivityHistoryDetail" />
 
         <service android:name="com.parse.PushService" />
 
@@ -80,12 +82,15 @@
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                 <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
 
-                <!--
-                  IMPORTANT: Change "com.parse.starter" to match your app's package name.
-                -->
+                <!--                   IMPORTANT: Change "com.parse.starter" to match your app's package name. -->
                 <category android:name="co.aquario.folkrice" />
             </intent-filter>
         </receiver>
+
+        <activity
+            android:name="co.aquario.folkrice.activities.HistoryActivity"
+            android:label="@string/title_activity_history_test"
+            android:theme="@style/AppTheme.WithoutActionBar"></activity>
     </application>
 
 </manifest>

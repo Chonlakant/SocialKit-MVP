@@ -1,6 +1,8 @@
 package co.aquario.folkrice.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,14 +17,18 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import co.aquario.folkrice.R;
+import co.aquario.folkrice.MainApplication;
+import co.aquario.folkrice.PrefManager;
+import co.aquario.folkrice.activities.Activity_main_login;
 import co.aquario.folkrice.activities.ItemChooseActivity;
 import co.aquario.folkrice.model.Product;
+import co.aquario.folkrices.R;
 
 
-
-public class AdapterListProductMain extends BindableAdapter<Product> {
+public class AdapterListProductMain extends bleAdapter<Product> {
     Context context;
+    PrefManager pref;
+
     public AdapterListProductMain(Context context, List<Product> recipes) {
         super(context, recipes);
     }
@@ -56,7 +62,7 @@ public class AdapterListProductMain extends BindableAdapter<Product> {
     public void bindView(final Product recipe, int position, View view) {
         final ViewHolder holder = (ViewHolder) view.getTag();
 
-
+        pref = MainApplication.getPrefManager();
         Picasso.with(view.getContext())
                 .load(recipe.getImage())
                 .into(holder.recipeImageView);
@@ -64,21 +70,42 @@ public class AdapterListProductMain extends BindableAdapter<Product> {
 
         holder.userNameTextView.setText(recipe.getName());
         holder.titleTextView.setText(recipe.getNameTh());
-        holder.text_price.setText(recipe.getPrice()+ " บาท");
+        holder.text_price.setText(recipe.getPrice() + " บาท");
 
         view.setOnClickListener(new View.OnClickListener() {
+            Boolean isLogin = false;
+            boolean isCheckDialog = false;
+
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), ItemChooseActivity.class);
-                intent.putExtra("productId",recipe.getProductId());
-                Log.e("AdapterClick",recipe.getProductId()+"");
-                intent.putExtra("title",recipe.getNameTh());
-                intent.putExtra("price",recipe.getPrice());
-                intent.putExtra("decs",recipe.getDesc());
-                intent.putExtra("urlImage", recipe.getImage());
-                getContext().startActivity(intent);
+
+
+                isLogin = pref.isLogin().getOr(false);
+
+                if (pref.isLogin().getOr(true) && !isLogin) {
+                    Intent i = new Intent(getContext(), Activity_main_login.class);
+                    getContext().startActivity(i);
+                    isLogin = true;
+                    pref.isLogin().put(isLogin);
+                    pref.commit();
+
+                } else {
+                    Intent intent = new Intent(getContext(), ItemChooseActivity.class);
+                    intent.putExtra("productId", recipe.getProductId());
+                    Log.e("AdapterClick", recipe.getProductId() + "");
+                    intent.putExtra("title", recipe.getNameTh());
+                    intent.putExtra("price", recipe.getPrice());
+                    intent.putExtra("decs", recipe.getDesc());
+                    intent.putExtra("urlImage", recipe.getImage());
+                    getContext().startActivity(intent);
+
+                }
+
+
             }
         });
 
     }
+
+
 }

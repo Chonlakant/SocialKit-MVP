@@ -7,15 +7,16 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="#ffffff"
         android:orientation="vertical">
 
 
-        <it.gmariotti.cardslib.library.view.CardListView
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvContacts"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/card_list"/>
+            android:layout_height="match_parent" />
+
     </LinearLayout>
 
 

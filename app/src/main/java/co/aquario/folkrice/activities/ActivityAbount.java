@@ -1,59 +1,34 @@
 package co.aquario.folkrice.activities;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
-import java.util.ArrayList;
+import co.aquario.folkrice.adapter.AdapterAbout;
 
-import co.aquario.folkrice.MainApplication;
-import co.aquario.folkrice.MyCard;
-import co.aquario.folkrice.PrefManager;
-import co.aquario.folkrice.R;
-import co.aquario.folkrice.fragment.CartFragment;
-import co.aquario.folkrice.fragment.ItemProductFragment;
-import co.aquario.folkrice.model.Product;
-import co.aquario.folkrice.model.ShoppingCartHelper;
-import it.gmariotti.cardslib.library.internal.Card;
-import it.gmariotti.cardslib.library.internal.CardArrayAdapter;
-import it.gmariotti.cardslib.library.internal.CardHeader;
-import it.gmariotti.cardslib.library.view.CardListView;
+import co.aquario.folkrices.R;
 
 
 /**
  * Created by Joseph on 7/7/15.
  */
 public class ActivityAbount extends AppCompatActivity {
-
+    RecyclerView rvContacts;
+    AdapterAbout mAdapter;
+    String[] str = {"http://www.androiddom.com/2011/06/android-shopping-cart-tutorial-part-2.html : GitHub https://github.com/dreamdom/Shopping-Cart-Tutorial-part-2"
+            , "etsy/AndroidStaggeredGrid GiiHub:https://github.com/etsy/AndroidStaggeredGrid", "dlazaro66/QRCodeReaderView Github:https://github.com/dlazaro66/QRCodeReaderView"};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.abount);
+        mAdapter = new AdapterAbout(getApplicationContext(), str);
+        rvContacts = (RecyclerView) findViewById(R.id.rvContacts);
+        // Set layout manager to position the items
+        rvContacts.setLayoutManager(new LinearLayoutManager(getApplication()));
 
-        ArrayList<Card> cards = new ArrayList<Card>();
-
-
-        MyCard c = new MyCard(this);
-
-        cards.add(c);
-
-
-        CardArrayAdapter mCardArrayAdapter = new CardArrayAdapter(this, cards);
-
-        CardListView listView = (CardListView) findViewById(R.id.card_list);
-        if (listView != null) {
-            listView.setAdapter(mCardArrayAdapter);
-        }
-
+        rvContacts.setAdapter(mAdapter);
     }
 
 }

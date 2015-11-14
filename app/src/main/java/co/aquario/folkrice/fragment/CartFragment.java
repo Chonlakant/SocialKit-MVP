@@ -21,20 +21,34 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.androidquery.AQuery;
+import com.androidquery.callback.AjaxStatus;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import co.aquario.folkrice.MainApplication;
 import co.aquario.folkrice.PrefManager;
-import co.aquario.folkrice.R;
 import co.aquario.folkrice.UserManager;
 import co.aquario.folkrice.activities.Activity_main_PaymentDetail;
 import co.aquario.folkrice.activities.Activity_main_login;
 import co.aquario.folkrice.adapter.ProductAdapter;
+import co.aquario.folkrice.model.JsonArr;
 import co.aquario.folkrice.model.PostData;
 import co.aquario.folkrice.model.Product;
 import co.aquario.folkrice.model.ShoppingCartHelper;
 
+import co.aquario.folkrices.R;
 import me.drakeet.materialdialog.MaterialDialog;
 
 
@@ -60,6 +74,11 @@ public class CartFragment extends DialogFragment {
     TextView cancelBtn;
     boolean isCheckProduct = false;
     String userId;
+    JsonArray myCustomArray;
+    int quantityArr;
+    List<JsonArr> productJson = new ArrayList<>();
+    int productIdArr;
+    int orderId;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -68,6 +87,23 @@ public class CartFragment extends DialogFragment {
         pref = MainApplication.getPrefManager();
         // Initialize items
         userId = pref.userId().getOr("");
+        Log.e("Chonlaant", userId);
+
+        for (Product p : mCartList) {
+            quantityArr = ShoppingCartHelper.getProductQuantity(p);
+            productIdArr = p.getProductId();
+            Log.e("123456790", quantityArr + "");
+        }
+
+
+        JsonArr arrProduct = new JsonArr();
+        arrProduct.setProduct_id(productIdArr);
+        arrProduct.setQuantity(quantityArr);
+        productJson.add(arrProduct);
+
+
+        Gson gson = new GsonBuilder().create();
+        myCustomArray = gson.toJsonTree(productJson).getAsJsonArray();
 
     }
 
@@ -112,6 +148,7 @@ public class CartFragment extends DialogFragment {
                 for (int i = 0; i < mCartList.size(); i++) {
                     ShoppingCartHelper.removeProduct(mCartList.get(i));
                 }
+                mCartList.clear();
                 getDialog().dismiss();
             }
         });
@@ -141,11 +178,11 @@ public class CartFragment extends DialogFragment {
             @Override
             public void onClick(View v) {
 
-
+                uploadProduct();
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-                builder.setTitle("เข้าสู่ระบบเพื่อดำเนินการต่อ")
-                        .setMessage("กรุณาเข้าสู่ระบบ หรือสมัคร folkrice เพื่อดำเนินการต่อไป")
+                builder.setTitle("ดำเนินการต่อ")
+                        .setMessage("คุณต้องการชำระเงินเพื่อซื้อสินค้าหรือไม่?")
                         .setNegativeButton("ตกลง", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -156,24 +193,17 @@ public class CartFragment extends DialogFragment {
                                 if (isCheckProduct != false) {
                                     isCheckProduct = false;
                                     pref.isCheckProduct().put(isCheckProduct);
+
                                     pref.commit();
 
-                                    if (pref.isLogin().getOr(true) && !isLogin) {
-                                        Intent i = new Intent(getActivity(), Activity_main_login.class);
-                                        startActivity(i);
-                                        isLogin = true;
-                                        pref.isLogin().put(isLogin);
-                                        pref.commit();
-                                        dialog.dismiss();
-                                    } else {
-                                        Intent i = new Intent(getActivity(), Activity_main_PaymentDetail.class);
-                                        startActivity(i);
-                                        FragmentTransaction ft = getFragmentManager().beginTransaction();
-                                        ft.detach(CartFragment.this).attach(CartFragment.this).commit();
-                                        dialog.dismiss();
-                                    }
+
+                                    Intent i = new Intent(getActivity(), Activity_main_PaymentDetail.class);
+                                    startActivity(i);
+                                    FragmentTransaction ft = getFragmentManager().beginTransaction();
+                                    ft.detach(CartFragment.this).attach(CartFragment.this).commit();
+                                    dialog.dismiss();
                                 } else {
-                                    Toast.makeText(getActivity(), "คุณยังไม่ได้เลือกสินค้า", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getActivity(), "กรุณาเลือกซื้อสินค้าก่อน", Toast.LENGTH_SHORT).show();
                                     dialog.dismiss();
                                 }
 
@@ -250,6 +280,33 @@ public class CartFragment extends DialogFragment {
         });
 
         alert.show();
+
+    }
+
+    private void uploadProduct() {
+
+        Charset chars = Charset.forName("UTF-8");
+        String url = "http://api.folkrice.com/order/add";
+
+//        int id = Integer.parseInt(userId);
+
+        Log.e("NONONONON", userId + "");
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("items", myCustomArray);
+        params.put("account", userId);
+
+        AQuery aq = new AQuery(getActivity());
+        aq.ajax(url, params, JSONObject.class, this, "updateProduct");
+    }
+
+    public void updateProduct(String url, JSONObject jo, AjaxStatus status) throws JSONException {
+        Log.e("Json Return", jo.toString(4));
+
+        orderId = jo.getJSONObject("order").optInt("id");
+
+        Log.e("091", orderId + "");
+        pref.order().put(orderId);
+        pref.commit();
 
     }
 

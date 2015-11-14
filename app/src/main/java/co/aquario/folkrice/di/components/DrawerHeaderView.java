@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
 
-import co.aquario.folkrice.R;
+import co.aquario.folkrices.R;
 
 
 public class DrawerHeaderView extends FrameLayout {

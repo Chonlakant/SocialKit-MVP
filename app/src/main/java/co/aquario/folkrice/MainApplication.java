@@ -3,6 +3,7 @@ package co.aquario.folkrice;
 import android.app.Application;
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.parse.Parse;
 import com.parse.ParseInstallation;
@@ -103,6 +104,7 @@ public class MainApplication extends Application {
 
 //        ParsePush.unsubscribeInBackground("EN");
         Log.e("isLogin", ":::" + isLogin);
+        Toast.makeText(context, "Logout", Toast.LENGTH_SHORT).show();
     }
 
 }

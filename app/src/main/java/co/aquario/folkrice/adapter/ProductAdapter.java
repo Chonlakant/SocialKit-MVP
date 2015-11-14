@@ -12,10 +12,9 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import co.aquario.folkrice.R;
 import co.aquario.folkrice.model.Product;
 import co.aquario.folkrice.model.ShoppingCartHelper;
-
+import co.aquario.folkrices.R;
 
 
 public class ProductAdapter extends BaseAdapter {

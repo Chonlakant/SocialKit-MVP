@@ -6,13 +6,15 @@ package co.aquario.folkrice.model;
 public class Status {
 
     String status ;
+    String error;
 
     public Status(){
 
     }
 
-    public Status(String status) {
+    public Status(String status, String error) {
         this.status = status;
+        this.error = error;
     }
 
     public String getStatus() {
@@ -21,5 +23,13 @@ public class Status {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
     }
 }

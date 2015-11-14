@@ -6,11 +6,14 @@
             android:title="@string/home" />
         <item
             android:id="@+id/navigation_my_recipes"
-            android:title="@string/my_recipes" />
-
+            android:title="Login" />
+        <item
+            android:id="@+id/log_out"
+            android:title="Logout" />
         <item
             android:id="@+id/abount"
             android:title="@string/abount" />
+
 
     </group>
 

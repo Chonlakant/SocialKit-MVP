@@ -11,10 +11,10 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import co.aquario.folkrice.R;
+import co.aquario.folkrices.R;
 
 
-public class SearchListAdapter extends BindableAdapter<String> {
+public class SearchtAdapter extends bleAdapter<String> {
 
     static class ViewHolder {
         @Bind(R.id.suggestion_text)
@@ -25,7 +25,7 @@ public class SearchListAdapter extends BindableAdapter<String> {
         }
     }
 
-    public SearchListAdapter(Context context) {
+    public SearchtAdapter(Context context) {
         super(context);
     }
 

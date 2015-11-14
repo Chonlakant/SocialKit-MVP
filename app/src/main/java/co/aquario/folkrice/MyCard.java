@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 
+import co.aquario.folkrices.R;
 import it.gmariotti.cardslib.library.internal.Card;
 
 
@@ -25,7 +26,7 @@ public class MyCard extends Card {
 
         TextView title = (TextView) view.findViewById(R.id.title);
         TextView header = (TextView) view.findViewById(R.id.header);
-        title.setText("http://www.androiddom.com/2011/06/android-shopping-cart-tutorial-part-2.html : GitHub https://github.com/dreamdom/Shopping-Cart-Tutorial-part-2");
+        title.setText("http://www.androiddom.com/2011/06/android-shopping-cart-tutorial-part-2.html : GitHub https://github.com/dreamdom/Shopping-Cart-Tutorial-part-2  , etsy/AndroidStaggeredGrid GiiHub:https://github.com/etsy/AndroidStaggeredGrid , dlazaro66/QRCodeReaderView Github:https://github.com/dlazaro66/QRCodeReaderView");
         header.setText("Credit");
     }
 }

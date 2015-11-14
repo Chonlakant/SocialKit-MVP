@@ -351,7 +351,7 @@
                             android:textSize="18sp"
                             android:gravity="left|center"
                             android:padding="10dp"
-                            android:text="Ulanbataar" />
+                            android:text="สุรินทร์" />
 
                     </LinearLayout>
 

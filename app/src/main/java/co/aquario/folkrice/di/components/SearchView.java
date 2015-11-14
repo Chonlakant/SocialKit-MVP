@@ -18,9 +18,9 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import co.aquario.folkrice.R;
-import co.aquario.folkrice.adapter.SearchListAdapter;
+import co.aquario.folkrice.adapter.SearchtAdapter;
 import co.aquario.folkrice.adapter.TextWatcherAdapter;
+import co.aquario.folkrices.R;
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.internal.Assertions;
@@ -38,7 +38,7 @@ public class SearchView extends FrameLayout implements Observable.OnSubscribe<St
     @Bind(R.id.suggestion_list)
     ListView suggestionListView;
 
-    private SearchListAdapter suggestionListAdapter;
+    private SearchtAdapter suggestionListAdapter;
 
     public SearchView(Context context) {
         super(context);
@@ -59,7 +59,7 @@ public class SearchView extends FrameLayout implements Observable.OnSubscribe<St
         View.inflate(getContext(), R.layout.view_search, this);
         ButterKnife.bind(this);
 
-        suggestionListAdapter = new SearchListAdapter(getContext());
+        suggestionListAdapter = new SearchtAdapter(getContext());
         suggestionListView.setAdapter(suggestionListAdapter);
     }
 

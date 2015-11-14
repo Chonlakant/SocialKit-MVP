@@ -16,9 +16,8 @@ import java.util.List;
 
 import co.aquario.folkrice.MainApplication;
 import co.aquario.folkrice.PrefManager;
-import co.aquario.folkrice.R;
 import co.aquario.folkrice.model.AddAddress;
-
+import co.aquario.folkrices.R;
 
 
 public class FragmentRegisterTwo extends Fragment {

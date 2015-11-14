@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             app:elevation="5dp"
             android:layout_gravity="bottom|right"
-            android:src="@drawable/ic_plus"
+            android:src="@drawable/recode"
             app:backgroundTint="@color/md_green_800"
             app:fabSize="normal" />
     </FrameLayout>

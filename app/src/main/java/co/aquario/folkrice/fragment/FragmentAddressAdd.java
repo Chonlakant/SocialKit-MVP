@@ -16,10 +16,9 @@ import java.util.List;
 
 import co.aquario.folkrice.MainApplication;
 import co.aquario.folkrice.PrefManager;
-import co.aquario.folkrice.R;
 import co.aquario.folkrice.activities.Activity_main_PaymentDetail;
 import co.aquario.folkrice.model.AddAddress;
-
+import co.aquario.folkrices.R;
 
 
 public class FragmentAddressAdd extends Fragment {

@@ -16,12 +16,11 @@ import java.util.ArrayList;
 
 import co.aquario.folkrice.MainApplication;
 import co.aquario.folkrice.PrefManager;
-import co.aquario.folkrice.R;
 import co.aquario.folkrice.fragment.CartFragment;
 import co.aquario.folkrice.fragment.ItemProductFragment;
 import co.aquario.folkrice.model.Product;
 import co.aquario.folkrice.model.ShoppingCartHelper;
-
+import co.aquario.folkrices.R;
 
 
 /**
