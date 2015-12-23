@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="@color/md_green_800"
-            android:text="กลับหน้าซื้อสินค้า"
+            android:text="ชำระเงิน"
             android:textColor="@android:color/white"
             android:textSize="15sp" />
     </LinearLayout>

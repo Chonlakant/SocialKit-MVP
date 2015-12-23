@@ -64,4 +64,8 @@
     <string name="title_friends">Friends</string>
     <string name="title_home">Home</string>
     <string name="title_activity_history_test">HistoryTest</string>
+    <string name="dialog_default_title">Here\'s a message!</string>
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="LOADING">Loading...</string>
 </resources>

@@ -8,16 +8,21 @@ public class HistoryDetail {
     double sub_total;
     double total_price;
     String state;
+    String name;
+    String product_id;
 
     public  HistoryDetail(){
 
     }
 
-    public HistoryDetail(double sub_total, double total_price, String state) {
+    public HistoryDetail(double sub_total, double total_price, String state, String name,String product_id) {
         this.sub_total = sub_total;
         this.total_price = total_price;
         this.state = state;
+        this.name = name;
+        this.product_id = product_id;
     }
+
 
     public double getSub_total() {
         return sub_total;
@@ -41,5 +46,21 @@ public class HistoryDetail {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getProduct_id() {
+        return product_id;
+    }
+
+    public void setProduct_id(String product_id) {
+        this.product_id = product_id;
     }
 }

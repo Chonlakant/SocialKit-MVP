@@ -84,6 +84,7 @@ public class FragmentRegisterThree extends Fragment {
                 pref.phone().put(phone);
                 pref.lastName().put(lastName);
                 pref.note().put(note);
+                pref.isCheckView().put(true);
                 pref.isAddressRegister2().put(true);
                 pref.commit();
 

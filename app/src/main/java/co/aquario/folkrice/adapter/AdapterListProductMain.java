@@ -79,17 +79,6 @@ public class AdapterListProductMain extends bleAdapter<Product> {
             @Override
             public void onClick(View view) {
 
-
-                isLogin = pref.isLogin().getOr(false);
-
-                if (pref.isLogin().getOr(true) && !isLogin) {
-                    Intent i = new Intent(getContext(), Activity_main_login.class);
-                    getContext().startActivity(i);
-                    isLogin = true;
-                    pref.isLogin().put(isLogin);
-                    pref.commit();
-
-                } else {
                     Intent intent = new Intent(getContext(), ItemChooseActivity.class);
                     intent.putExtra("productId", recipe.getProductId());
                     Log.e("AdapterClick", recipe.getProductId() + "");
@@ -98,9 +87,6 @@ public class AdapterListProductMain extends bleAdapter<Product> {
                     intent.putExtra("decs", recipe.getDesc());
                     intent.putExtra("urlImage", recipe.getImage());
                     getContext().startActivity(intent);
-
-                }
-
 
             }
         });

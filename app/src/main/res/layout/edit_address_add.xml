@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:orientation="vertical">
+        <co.aquario.folkrice.MyCustomTextView
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22dp"
+            android:textColor="@color/md_green_800"
+            android:text="เพิ่มที่อยู่การจัดส่ง"
+            android:id="@+id/textView3" />
+
+        <co.aquario.folkrice.MyCustomTextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="พื้นที่การจัดส่ง"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/et_contry"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:background="@drawable/group_row"
+            android:hint="จังหวัด" />
+
+
+        <EditText
+            android:id="@+id/et_area"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:background="@drawable/group_row"
+            android:hint="เขต/อำเภอ" />
+
+
+        <EditText
+            android:id="@+id/et_district"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:background="@drawable/group_row"
+            android:hint="แขวง/ตำบล" />
+
+
+        <EditText
+            android:id="@+id/et_landmarks"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:background="@drawable/group_top"
+            android:hint="จุดสังเกต" />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:id="@+id/et_road"
+            android:layout_marginTop="5dp"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:background="@drawable/group_top"
+            android:hint="ถนน/ซอย" />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:id="@+id/et_zip_code"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:background="@drawable/group_top"
+            android:hint="รหัสไปรษณีย์" />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:id="@+id/et_home"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:background="@drawable/group_top"
+            android:hint="ประเภอที่อยู่ บ้าน คอนโด สำนักงาน" />
+
+        <Button
+
+            android:id="@+id/btn_add"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:background="@color/md_green_800"
+            android:text="บันทึกข้อมูล"
+            android:textColor="@android:color/white"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

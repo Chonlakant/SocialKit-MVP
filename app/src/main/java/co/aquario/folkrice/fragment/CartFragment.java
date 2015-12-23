@@ -1,12 +1,14 @@
 package co.aquario.folkrice.fragment;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.os.Handler;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
@@ -16,6 +18,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -49,7 +52,7 @@ import co.aquario.folkrice.model.Product;
 import co.aquario.folkrice.model.ShoppingCartHelper;
 
 import co.aquario.folkrices.R;
-import me.drakeet.materialdialog.MaterialDialog;
+
 
 
 /**
@@ -61,24 +64,22 @@ public class CartFragment extends DialogFragment {
     private static final int REQUEST_SIMPLE_DIALOG = 42;
     private List<Product> mCartList = new ArrayList<>();
     ProductAdapter mAdapter;
-
+    Dialog dialog2;
     TextView productPriceTextView, number_items;
     ListView list;
-    PostData curProduct;
-    MaterialDialog mMaterialDialog;
     UserManager mManager;
     PrefManager pref;
     Boolean isLogin = false;
     double subTotal = 0;
     MainApplication aController;
-    TextView cancelBtn;
+    RelativeLayout cancelBtn;
     boolean isCheckProduct = false;
     String userId;
     JsonArray myCustomArray;
     int quantityArr;
     List<JsonArr> productJson = new ArrayList<>();
     int productIdArr;
-    int orderId;
+    String orderId;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -87,23 +88,23 @@ public class CartFragment extends DialogFragment {
         pref = MainApplication.getPrefManager();
         // Initialize items
         userId = pref.userId().getOr("");
+        pref.userId().put(userId);
+        pref.commit();
         Log.e("Chonlaant", userId);
 
         for (Product p : mCartList) {
             quantityArr = ShoppingCartHelper.getProductQuantity(p);
             productIdArr = p.getProductId();
             Log.e("123456790", quantityArr + "");
+            JsonArr arrProduct = new JsonArr();
+            arrProduct.setProduct_id(productIdArr);
+            arrProduct.setQuantity(quantityArr);
+            productJson.add(arrProduct);
+            Log.e("productJson", productJson + "");
+            Gson gson = new GsonBuilder().create();
+            myCustomArray = gson.toJsonTree(productJson).getAsJsonArray();
         }
 
-
-        JsonArr arrProduct = new JsonArr();
-        arrProduct.setProduct_id(productIdArr);
-        arrProduct.setQuantity(quantityArr);
-        productJson.add(arrProduct);
-
-
-        Gson gson = new GsonBuilder().create();
-        myCustomArray = gson.toJsonTree(productJson).getAsJsonArray();
 
     }
 
@@ -115,12 +116,11 @@ public class CartFragment extends DialogFragment {
 
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_cart, container, false);
-        cancelBtn = (TextView) v.findViewById(R.id.cancelBtn);
+        cancelBtn = (RelativeLayout) v.findViewById(R.id.cancelBtn);
         pref = MainApplication.getPrefManager();
-        mMaterialDialog = new MaterialDialog(getActivity());
         mManager = new UserManager(getActivity());
         aController = (MainApplication) getActivity().getApplicationContext();
-
+        dialog2 = new Dialog(getActivity());
 
         productPriceTextView = (TextView) v.findViewById(R.id.textView2);
         number_items = (TextView) v.findViewById(R.id.number_items);
@@ -145,70 +145,29 @@ public class CartFragment extends DialogFragment {
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for (int i = 0; i < mCartList.size(); i++) {
-                    ShoppingCartHelper.removeProduct(mCartList.get(i));
-                }
-                mCartList.clear();
-                getDialog().dismiss();
-            }
-        });
-        // Cancel button
-        ImageView cancelButton = (ImageView) v.findViewById(R.id.x_button);
-        cancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Close dialog
-                getDialog().dismiss();
-            }
-        });
 
-        // Set Paypal buttons
-        RelativeLayout paypalButton = (RelativeLayout) v.findViewById(R.id.paypal_button);
-        paypalButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Open paypal
-                getDialog().dismiss();
-            }
-        });
+//                new Handler().postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//
+//
+//                    }
+//                }, 500);
 
-        // Set Normal Checkout Button
-        TextView checkoutButton = (TextView) v.findViewById(R.id.checkout_button);
-        checkoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                uploadProduct();
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-
-                builder.setTitle("ดำเนินการต่อ")
-                        .setMessage("คุณต้องการชำระเงินเพื่อซื้อสินค้าหรือไม่?")
+                builder.setTitle("ลบสินค้า")
+                        .setMessage("คุณต้องการลบสินค้าหรือไม่?")
                         .setNegativeButton("ตกลง", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 
-                                isLogin = pref.isLogin().getOr(false);
-                                isCheckProduct = pref.isCheckProduct().getOr(false);
-
-                                if (isCheckProduct != false) {
-                                    isCheckProduct = false;
-                                    pref.isCheckProduct().put(isCheckProduct);
-
-                                    pref.commit();
-
-
-                                    Intent i = new Intent(getActivity(), Activity_main_PaymentDetail.class);
-                                    startActivity(i);
-                                    FragmentTransaction ft = getFragmentManager().beginTransaction();
-                                    ft.detach(CartFragment.this).attach(CartFragment.this).commit();
-                                    dialog.dismiss();
-                                } else {
-                                    Toast.makeText(getActivity(), "กรุณาเลือกซื้อสินค้าก่อน", Toast.LENGTH_SHORT).show();
-                                    dialog.dismiss();
+                                for (int i = 0; i < mCartList.size(); i++) {
+                                    ShoppingCartHelper.removeProduct(mCartList.get(i));
                                 }
+                                mCartList.clear();
+                                getDialog().dismiss();
 
 
-                                dialog.dismiss();
                             }
                         })
                         .setPositiveButton("ยกเลิก", new DialogInterface.OnClickListener() {
@@ -219,6 +178,95 @@ public class CartFragment extends DialogFragment {
 
                             }
                         }).create().show();
+
+            }
+        });
+        // Cancel button
+        ImageView cancelButton = (ImageView) v.findViewById(R.id.x_button);
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Close dialog
+                getDialog().dismiss();
+                getActivity().finish();
+            }
+        });
+
+
+        // Set Normal Checkout Button
+        TextView checkoutButton = (TextView) v.findViewById(R.id.checkout_button);
+        checkoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog2 = new Dialog(getActivity(), R.style.FullHeightDialog);
+                dialog2.setContentView(R.layout.dialog_check);
+
+                uploadProduct();
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+                builder.setTitle("ดำเนินการต่อ")
+                        .setMessage("คุณต้องการชำระเงินเพื่อซื้อสินค้าหรือไม่?")
+                        .setNegativeButton("ตกลง", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(final DialogInterface dialog, int which) {
+
+                                isLogin = pref.isLogin().getOr(false);
+                                isCheckProduct = pref.isCheckProduct().getOr(false);
+
+                                if (isLogin != true) {
+                                    dialog2.show();
+                                    new Handler().postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Intent i = new Intent(getContext(), Activity_main_login.class);
+                                            startActivity(i);
+                                            pref.isLogin().put(true);
+                                            dialog.dismiss();
+                                            dialog2.dismiss();
+                                        }
+                                    }, 2000);
+
+                                } else {
+                                    if (isCheckProduct != false) {
+                                        dialog2.show();
+                                        new Handler().postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+
+                                                isCheckProduct = false;
+                                                pref.isCheckProduct().put(isCheckProduct);
+                                                pref.commit();
+
+                                                Intent i = new Intent(getActivity(), Activity_main_PaymentDetail.class);
+                                                startActivity(i);
+                                                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                                                ft.detach(CartFragment.this).attach(CartFragment.this).commit();
+                                                dialog.dismiss();
+                                                dialog2.dismiss();
+
+                                            }
+                                        }, 2500);
+
+
+                                    } else {
+                                        Toast.makeText(getActivity(), "กรุณาเลือกซื้อสินค้าก่อน", Toast.LENGTH_SHORT).show();
+                                        dialog.dismiss();
+                                    }
+                                }
+
+
+                            }
+                        })
+                        .setPositiveButton("ยกเลิก", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Dismiss dialog and open cart
+                                dialog.dismiss();
+
+                            }
+                        }).create().show();
+
 
             }
         });
@@ -283,12 +331,11 @@ public class CartFragment extends DialogFragment {
 
     }
 
+
     private void uploadProduct() {
 
         Charset chars = Charset.forName("UTF-8");
         String url = "http://api.folkrice.com/order/add";
-
-//        int id = Integer.parseInt(userId);
 
         Log.e("NONONONON", userId + "");
         Map<String, Object> params = new HashMap<String, Object>();
@@ -301,11 +348,9 @@ public class CartFragment extends DialogFragment {
 
     public void updateProduct(String url, JSONObject jo, AjaxStatus status) throws JSONException {
         Log.e("Json Return", jo.toString(4));
-
-        orderId = jo.getJSONObject("order").optInt("id");
-
+        orderId = jo.getJSONObject("order").optString("id");
         Log.e("091", orderId + "");
-        pref.order().put(orderId);
+        pref.orderId().put(orderId);
         pref.commit();
 
     }

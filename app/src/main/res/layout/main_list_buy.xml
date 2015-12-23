@@ -26,23 +26,37 @@
     </android.support.v7.widget.Toolbar>
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:id="@+id/layout_add"
+        android:visibility="visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingLeft="20dp"
-        android:paddingRight="20dp">
+        android:paddingRight="20dp"
+        android:layout_gravity="center_horizontal">
 
-
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/txt_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="เพิ่มที่อยู่การจัดส่ง"
+            android:textColor="@color/md_green_800"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+        </LinearLayout>
         <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/layout_view"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingLeft="20dp"
             android:paddingRight="20dp">
 
-
             <LinearLayout
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -53,7 +67,7 @@
                     android:layout_height="wrap_content"
                     android:text="ที่อยู่ในการจัดส่ง"
                     android:textColor="@color/md_green_800"
-                    android:textSize="25dp"
+                    android:textSize="18dp"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -69,8 +83,8 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
                         android:text="แก้ไข"
-                        android:textColor="#000000"
-                        android:textSize="20dp"
+                        android:textColor="#b0120a"
+                        android:textSize="18dp"
                         android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>
@@ -88,7 +102,7 @@
                     android:layout_marginTop="5dp"
                     android:text="chnalaknt"
                     android:textColor="#000000"
-                    android:textSize="20dp" />
+                    android:textSize="15dp" />
 
                 <TextView
                     android:id="@+id/txt_contry"
@@ -97,7 +111,7 @@
                     android:layout_marginTop="5dp"
                     android:text="201"
                     android:textColor="#000000"
-                    android:textSize="20dp" />
+                    android:textSize="15dp" />
 
                 <TextView
                     android:id="@+id/txt_district"
@@ -106,7 +120,7 @@
                     android:layout_marginTop="5dp"
                     android:text="กรุงเทพมหานคร"
                     android:textColor="#000000"
-                    android:textSize="20dp" />
+                    android:textSize="15dp" />
 
                 <TextView
                     android:id="@+id/txt_postal"
@@ -115,7 +129,7 @@
                     android:layout_marginTop="5dp"
                     android:text="10520"
                     android:textColor="#000000"
-                    android:textSize="20dp" />
+                    android:textSize="15dp" />
 
                 <TextView
                     android:id="@+id/txt_home"
@@ -124,12 +138,11 @@
                     android:layout_marginTop="5dp"
                     android:text="0910833820"
                     android:textColor="#000000"
-                    android:textSize="20dp" />
+                    android:textSize="15dp" />
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
-
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -141,7 +154,7 @@
                 android:layout_marginTop="5dp"
                 android:text="วันที่จัดส่ง"
                 android:textColor="@color/md_green_800"
-                android:textSize="25dp"
+                android:textSize="18dp"
                 android:textStyle="bold" />
 
 
@@ -171,7 +184,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
             android:text="สรุปออเดอร์"
-            android:textSize="25dp"
+            android:textSize="18dp"
             android:textColor="@color/md_green_800"
             android:textStyle="bold" />
 
@@ -187,7 +200,7 @@
                 android:layout_marginLeft="20dp"
                 android:text="ราคาสินค้า"
                 android:textColor="@color/md_green_800"
-                android:textSize="25dp"
+                android:textSize="18dp"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -220,7 +233,7 @@
                 android:layout_marginLeft="20dp"
                 android:text="ราคาค่าจัดส่ง"
                 android:textColor="@color/md_green_800"
-                android:textSize="25dp"
+                android:textSize="18dp"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -251,9 +264,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:text="รวม"
+                android:text="ราคารวม"
                 android:textColor="@color/md_green_800"
-                android:textSize="25dp"
+                android:textSize="18dp"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -291,10 +304,12 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:background="@color/md_green_800"
-                android:text="ชำระเงิน"
+                android:text="ดำเนินการต่อ"
                 android:textColor="@android:color/white"
                 android:textSize="15sp" />
         </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+

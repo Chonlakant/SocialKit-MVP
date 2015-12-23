@@ -30,4 +30,7 @@
     <string name="ok">ตกลง</string>
     <string name="show_cart">เปิดตะกร้า</string>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="alert_width">290dp</dimen>
+    <dimen name="common_circle_width">3dp</dimen>
+    <dimen name="progress_circle_radius">34dp</dimen>
 </resources>

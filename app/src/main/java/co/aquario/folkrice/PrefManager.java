@@ -7,6 +7,8 @@ import com.tale.prettysharedpreferences.IntegerEditor;
 import com.tale.prettysharedpreferences.PrettySharedPreferences;
 import com.tale.prettysharedpreferences.StringEditor;
 
+import org.eclipse.mat.collect.ArrayInt;
+
 /**
  * Created by TALE on 10/28/2014.
  */
@@ -118,10 +120,21 @@ public class PrefManager extends PrettySharedPreferences<PrefManager> {
         return getIntegerEditor("order");
     }
 
+    public IntegerEditor<PrefManager> total_price() {
+        return getIntegerEditor("total_price");
+    }
+
     public IntegerEditor<PrefManager> delivery_total() {
         return getIntegerEditor("delivery_total");
     }
 
+    public BooleanEditor<PrefManager> isCheckView() {
+        return getBooleanEditor("isCheckView");
+    }
+
+    public IntegerEditor<PrefManager> sub_total() {
+        return getIntegerEditor("sub_total");
+    }
 
 
 }

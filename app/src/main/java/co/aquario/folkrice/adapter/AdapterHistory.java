@@ -43,7 +43,7 @@ public class AdapterHistory extends RecyclerView.Adapter<AdapterHistory.ViewHold
         AccountHistory item = list.get(position);
 
 
-        holder.txt_name.setText("รหัสผู้ซื้อ : "+ item.getAccount_id());
+        holder.txt_name.setText("รหัสสินค้า : "+ item.getAccount_id());
         holder.txt_price.setText("รหัสออเดอร์ : "+item.getOrder_id());
         holder.txt_create.setText("วันที่ซื้อ: " + item.getCreated_at());
         holder.txt_state.setText("สถานะการจัดส่ง: "+item.getState());

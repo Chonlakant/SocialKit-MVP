@@ -29,39 +29,48 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp">
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp">
 
         <LinearLayout
-            android:layout_marginTop="5dp"
-            android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
             android:orientation="vertical">
 
             <ListView
-                android:layout_weight="1"
                 android:id="@+id/cart_items_list"
                 android:layout_width="wrap_content"
-                android:layout_height="450dp" />
+                android:layout_height="450dp"
+                android:layout_weight="1" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/btn_price"
-                android:layout_width="fill_parent"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_marginTop="5dp"
-                android:background="@color/md_green_800"
-                android:text="ต่อไป"
-                android:textColor="@android:color/white"
-                android:textSize="15sp" />
+                android:orientation="vertical"
+                android:layout_gravity="bottom">
+
+                <Button
+                    android:id="@+id/btn_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/md_green_800"
+                    android:text="ดำเนินการต่อ"
+                    android:layout_marginBottom="5dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
         </LinearLayout>
 
 

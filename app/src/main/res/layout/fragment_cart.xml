@@ -79,24 +79,23 @@
                 android:paddingTop="10dp">
 
                 <RelativeLayout
-                    android:id="@+id/paypal_button"
+                    android:id="@+id/cancelBtn"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/selector_buy"
+                    android:background="@drawable/btn"
                     android:clickable="true"
                     android:gravity="center"
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp">
 
                     <co.aquario.folkrice.MyCustomTextView
-                        android:id="@+id/cancelBtn"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginRight="4dp"
                         android:gravity="center"
                         android:text="ยกเลิกสินค้า"
-                        android:textColor="#ffffff"
-                        android:textSize="20sp" />
+                        android:textColor="#056f00"
+                        android:textSize="18sp" />
 
                     <!--<ImageView-->
                         <!--android:id="@+id/button_1"-->
@@ -126,7 +125,7 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@color/md_green_800" />
+                        android:background="#b0120a" />
                 </LinearLayout>
 
                 <co.aquario.folkrice.MyCustomTextView
@@ -134,12 +133,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="1dp"
-                    android:background="@drawable/selector_buy"
+                    android:background="@drawable/selector_buy2"
                     android:clickable="true"
                     android:gravity="center"
                     android:text="ชำระเงิน"
                     android:textColor="#fff"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
 
             </RelativeLayout>
 

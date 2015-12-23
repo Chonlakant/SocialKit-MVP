@@ -351,7 +351,7 @@
                             android:textSize="18sp"
                             android:gravity="left|center"
                             android:padding="10dp"
-                            android:text="สุรินทร์" />
+                            android:text="Surin,Bangkok" />
 
                     </LinearLayout>
 
@@ -389,7 +389,7 @@
                             android:textSize="18sp"
                             android:gravity="left|center"
                             android:padding="10dp"
-                            android:text="1 - 2 days" />
+                            android:text="7 days" />
 
                     </LinearLayout>
 

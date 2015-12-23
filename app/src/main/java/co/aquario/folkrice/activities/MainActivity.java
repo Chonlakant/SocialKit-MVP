@@ -1,10 +1,15 @@
 package co.aquario.folkrice.activities;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
@@ -13,6 +18,9 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.etsy.android.grid.StaggeredGridView;
@@ -40,7 +48,7 @@ import rx.subscriptions.Subscriptions;
 
 
 public class MainActivity extends BaseActivity implements ListProduct {
-
+    private int count = 0;
     @Bind(R.id.drawer_layout)
     DrawerLayout drawerLayout;
     @Bind(R.id.navigation_view)
@@ -51,6 +59,10 @@ public class MainActivity extends BaseActivity implements ListProduct {
     Toolbar toolbar;
     @Bind(R.id.channel_recipe_list)
     StaggeredGridView recipeListView;
+
+    @Bind(R.id.query_input)
+    public EditText queryInput;
+
     private int mNavItemId;
     private AdapterListProductMain recipeListAdapter;
     MainPresenter mMainPresenter;
@@ -65,6 +77,7 @@ public class MainActivity extends BaseActivity implements ListProduct {
     static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
     String title = "";
     Boolean isLogin = false;
+    String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +86,7 @@ public class MainActivity extends BaseActivity implements ListProduct {
         ButterKnife.bind(this);
         setupActionBar();
         LayoutInflater layoutInflater = getLayoutInflater();
+        hideKeyboard(queryInput);
 //        ParseAnalytics.trackAppOpened(getIntent());
 //
 //        ParseInstallation.getCurrentInstallation().saveInBackground();
@@ -81,10 +95,19 @@ public class MainActivity extends BaseActivity implements ListProduct {
         View header = layoutInflater.inflate(R.layout.list_header_channel_recipe, null);
         recipeListView.addHeaderView(header);
         mCartList = ShoppingCartHelper.getCartList();
-        Log.e("mCartList", mCartList.size() + "");
+
+
+        for (int i = 0; i < mCartList.size(); i++) {
+            Log.e("mCartList", mCartList.get(i) + "");
+            count = i;
+        }
+
         setupViews();
         pref = MainApplication.getPrefManager();
-        Log.e("MainActivity",pref.userId().getOr("มาไหม")+"");
+        Log.e("MainActivity", pref.userId().getOr("มาไหม") + "");
+        userId = pref.userId().getOr("มาไหม");
+        pref.userId().put(userId);
+        pref.commit();
         initView();
         fabBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,19 +132,54 @@ public class MainActivity extends BaseActivity implements ListProduct {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_item_list, menu);
 
+        MenuItem menuItem = menu.findItem(R.id.testAction);
+        menuItem.setIcon(buildCounterDrawable(count, R.drawable.shopping_bag));
+
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.cart) { // Show the cart
+
+        if (id == R.id.testAction) { // Show the cart
             CartFragment cartFrag = new CartFragment();
             cartFrag.show(getSupportFragmentManager(), "My Cart");
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private Drawable buildCounterDrawable(int count, int backgroundImageId) {
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View view = inflater.inflate(R.layout.counter_menuitem_layout, null);
+        view.setBackgroundResource(backgroundImageId);
+
+        if (count == 0) {
+            View counterTextPanel = view.findViewById(R.id.counterValuePanel);
+            counterTextPanel.setVisibility(View.GONE);
+        } else {
+            TextView textView = (TextView) view.findViewById(R.id.count);
+            textView.setText("" + count);
+        }
+
+        view.measure(
+                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
+                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+        view.layout(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
+
+        view.setDrawingCacheEnabled(true);
+        view.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
+        Bitmap bitmap = Bitmap.createBitmap(view.getDrawingCache());
+        view.setDrawingCacheEnabled(false);
+
+        return new BitmapDrawable(getResources(), bitmap);
+    }
+
+    private void doIncrease() {
+        count++;
+        invalidateOptionsMenu();
     }
 
     private void setupActionBar() {
@@ -243,6 +301,10 @@ public class MainActivity extends BaseActivity implements ListProduct {
         super.onResume();
 
 
+    }
+    public void hideKeyboard(View view) {
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 //    boolean doubleBackToExitPressedOnce = false;
 //    @Override

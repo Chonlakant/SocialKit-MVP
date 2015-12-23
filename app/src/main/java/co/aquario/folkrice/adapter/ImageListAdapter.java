@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -53,6 +54,7 @@ public class ImageListAdapter extends BaseAdapter {
 
             item.productImageView = (ImageView) convertView
                     .findViewById(R.id.item_image);
+            item.checkBox = (CheckBox) convertView.findViewById(R.id.checkBox);
 
             item.productTitle = (TextView) convertView
                     .findViewById(R.id.item_name);
@@ -72,11 +74,13 @@ public class ImageListAdapter extends BaseAdapter {
         item.productTitle.setText(title[position]);
 
 
+
         return convertView;
     }
 
     private class ViewItem {
         ImageView productImageView;
         TextView productTitle;
+        CheckBox checkBox;
     }
 }

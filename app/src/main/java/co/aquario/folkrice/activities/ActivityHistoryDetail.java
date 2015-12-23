@@ -49,9 +49,9 @@ public class ActivityHistoryDetail extends AppCompatActivity {
     String titleProductId4 = "White folk rice";
     ArrayList<HistoryDetail> list = new ArrayList<>();
 
-    String url2 = "http://ihdmovie.xyz/root/api_movie/get_movie2.php?uid=1&cat=1";
     Toolbar toolbar;
-
+    String name_product;
+    String product_id;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,8 +62,10 @@ public class ActivityHistoryDetail extends AppCompatActivity {
         setSupportActionBar(toolbar);
         AQuery aq = new AQuery(getApplicationContext());
 
-        int order_id = getIntent().getIntExtra("order_id", 0);
-        Log.e("ID", order_id + "");
+        String order_id = getIntent().getStringExtra("order_id");
+        name_product = getIntent().getStringExtra("name_product");
+        product_id = getIntent().getStringExtra("product_id");
+        Log.e("ID", product_id + "");
 
         String url = "http://api.folkrice.com/order/" + order_id;
         Log.e("12345", url);
@@ -88,16 +90,16 @@ public class ActivityHistoryDetail extends AppCompatActivity {
             double sub_total = jo.optDouble("sub_total");
             double total_price = jo.optDouble("total_price");
             String state = jo.optString("state");
+
             Log.e("sdsdsd", sub_total + "");
-
-
-
 
 
             HistoryDetail item = new HistoryDetail();
             item.setSub_total(sub_total);
             item.setTotal_price(total_price);
             item.setState(state);
+            item.setName(name_product);
+            item.setProduct_id(product_id);
             list.add(item);
 
 

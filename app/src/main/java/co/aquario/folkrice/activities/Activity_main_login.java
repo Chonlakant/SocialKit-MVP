@@ -132,9 +132,13 @@ public class Activity_main_login extends AppCompatActivity {
 
     public void loginCallback(String url, JSONObject json, AjaxStatus status) throws JSONException {
 
-
         Log.e("Json Return", json.toString(4));
-
+        if(json.get("status").equals("error")){
+            Log.e("Json Faile","ผิด");
+            Toast.makeText(getApplication(),"อีเมล์หรือพาสเวิดผิด",Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(getApplication(),"ล๊อกอินสำเร็จ",Toast.LENGTH_SHORT).show();
+        }
         userId = json.getJSONObject("account").optString("id");
         Log.e("accountID",userId);
         pref.userId().put(userId);
@@ -143,7 +147,6 @@ public class Activity_main_login extends AppCompatActivity {
         error = json.optString("status");
 
         if (statusLogin.getStatus().equals(ok)) {
-
 
             Intent intentMain = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intentMain);

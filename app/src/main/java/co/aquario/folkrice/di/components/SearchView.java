@@ -1,11 +1,13 @@
 package co.aquario.folkrice.di.components;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ListView;
@@ -32,7 +34,7 @@ public class SearchView extends FrameLayout implements Observable.OnSubscribe<St
     private static final int DEBOUNCE_WAIT = 300;
 
     @Bind(R.id.query_input)
-    EditText queryInput;
+    public EditText queryInput;
     @Bind(R.id.button_search)
     View button_search;
     @Bind(R.id.suggestion_list)
@@ -43,6 +45,8 @@ public class SearchView extends FrameLayout implements Observable.OnSubscribe<St
     public SearchView(Context context) {
         super(context);
         setup();
+        hideKeyboard(queryInput);
+        queryInput.setInputType(0);
     }
 
     public SearchView(Context context, AttributeSet attrs) {
@@ -53,6 +57,11 @@ public class SearchView extends FrameLayout implements Observable.OnSubscribe<St
     public SearchView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         setup();
+    }
+
+    public void hideKeyboard(View view) {
+        InputMethodManager inputMethodManager = (InputMethodManager) getContext().getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
     private void setup() {
@@ -89,10 +98,9 @@ public class SearchView extends FrameLayout implements Observable.OnSubscribe<St
     }
 
 
-
     @OnClick(R.id.button_search)
     void onClearButtonClick() {
-        Toast.makeText(getContext(),"ค้าหา",Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), "ค้าหา", Toast.LENGTH_LONG).show();
         String url = "http://www.folkrice.com";
         Intent i = new Intent(Intent.ACTION_VIEW);
         i.setData(Uri.parse(url));

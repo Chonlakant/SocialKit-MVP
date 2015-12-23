@@ -68,16 +68,20 @@ public class ItemProductFragment extends Fragment {
             list_item.setImage(urlImage);
             mItem.add(list_item);
         }
-        mToolbar = (Toolbar) getActivity().findViewById(R.id.action_toolbar);
-        TextView titleView = (TextView) mToolbar.findViewById(R.id.title);
-        ImageView x_button = (ImageView) mToolbar.findViewById(R.id.x_button);
-        titleView.setText(title);
-        x_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().finish();
-            }
-        });
+        if (mToolbar != null) {
+            mToolbar = (Toolbar) getActivity().findViewById(R.id.action_toolbar);
+            TextView titleView = (TextView) mToolbar.findViewById(R.id.title);
+            ImageView x_button = (ImageView) mToolbar.findViewById(R.id.x_button);
+            titleView.setText(title);
+            x_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    getActivity().finish();
+                }
+            });
+        }
+
+
     }
 
     @Override

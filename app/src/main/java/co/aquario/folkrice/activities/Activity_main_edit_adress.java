@@ -7,6 +7,7 @@ import android.widget.RadioButton;
 
 import co.aquario.folkrice.PrefManager;
 import co.aquario.folkrice.fragment.FragmentAddressAdd;
+import co.aquario.folkrice.fragment.FragmentAddressAddEdit;
 import co.aquario.folkrices.R;
 
 
@@ -23,7 +24,7 @@ public class Activity_main_edit_adress extends AppCompatActivity {
         setContentView(R.layout.main_edit_address);
 
 
-        FragmentAddressAdd fragment = new FragmentAddressAdd();
+        FragmentAddressAddEdit fragment = new FragmentAddressAddEdit();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.container, fragment);
         transaction.commit();

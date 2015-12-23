@@ -80,6 +80,7 @@
             android:hint="เบอร์โทรศัพท์" />
 
         <EditText
+            android:visibility="gone"
             android:textCursorDrawable="@drawable/color_cursor"
             android:id="@+id/et_note"
             android:layout_width="fill_parent"

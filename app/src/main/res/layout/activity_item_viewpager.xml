@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_gravity="top"
-        android:background="#FFFFFF"
+        android:background="#056f00"
         android:elevation="1dp"
         android:gravity="center">
 
@@ -17,13 +17,12 @@
             android:id="@+id/x_button"
             android:layout_width="42dp"
             android:layout_height="42dp"
-
             android:background="@drawable/selector_transparent_grey"
             android:clickable="true"
             android:padding="6dp"
             android:layout_alignParentLeft="true"
             android:scaleType="fitXY"
-            android:src="@drawable/x_icon" />
+            android:src="@drawable/x" />
 
         <co.aquario.folkrice.MyCustomTextView
             android:id="@+id/title"
@@ -31,9 +30,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/app_name"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="20sp" />
-
     </android.support.v7.widget.Toolbar>
 
     <View
@@ -63,64 +61,23 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="#6d4c41"
-            android:gravity="center|left"
             android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="fill_parent"
+            <TextView
+                android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:layout_weight="0.25"
+                android:gravity="center_vertical|end"
+                android:text="quantity"
+                android:textColor="@android:color/white"
+                android:layout_gravity="center_vertical" />
 
-                <co.aquario.folkrice.MyCustomTextView
-                    android:id="@+id/textCount2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="-"
-                    android:textColor="#ffffff"
-                    android:textSize="45dp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="fill_parent"
+            <Spinner
+                android:id="@+id/spQuantity"
+                android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <co.aquario.folkrice.MyCustomTextView
-                    android:id="@+id/editTextQuantity"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:inputType="number"
-                    android:text="0"
-                    android:textColor="#ffffff"
-                    android:textSize="30dp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-
-                <co.aquario.folkrice.MyCustomTextView
-                    android:id="@+id/textCount1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="+"
-                    android:textColor="#ffffff"
-                    android:textSize="38dp"
-                    android:textStyle="bold" />
-            </LinearLayout>
+                android:layout_weight="0.25"
+                android:layout_gravity="center_vertical" />
 
 
         </LinearLayout>
@@ -138,6 +95,8 @@
             android:textSize="20sp" />
 
     </LinearLayout>
+
+
 
 </RelativeLayout>
 
