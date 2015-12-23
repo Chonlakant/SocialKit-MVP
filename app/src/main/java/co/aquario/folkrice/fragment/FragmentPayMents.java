@@ -156,7 +156,7 @@ public class FragmentPayMents extends StatedFragment {
         ArrayList<Country> countryList = new ArrayList<Country>();
         Country country = new Country("ธนาคารกสิกรไทย", "http://www.thaidnsservice.com/wp-content/uploads/2015/07/kbang.jpg", false);
         countryList.add(country);
-        country = new Country("ธนาคารไทยพาณิชย์", "http://buzzinmediagroup.com/wp-content/uploads/2015/07/SCB_logo.jpg", false);
+        country = new Country("ธนาคารไทยพาณิชย์", "http://job168.fahsiam.com/wp-content/uploads/2015/05/%E0%B8%98%E0%B8%99%E0%B8%B2%E0%B8%84%E0%B8%B2%E0%B8%A3%E0%B9%84%E0%B8%97%E0%B8%A2%E0%B8%9E%E0%B8%B2%E0%B8%93%E0%B8%B4%E0%B8%8A%E0%B8%A2%E0%B9%8C.jpg", false);
         countryList.add(country);
         dialog = new Dialog(getActivity());
         //create an ArrayAdaptar from the String Array
@@ -193,8 +193,6 @@ public class FragmentPayMents extends StatedFragment {
                 dialog.show();
                 final LinearLayout linearLayout_progress = (LinearLayout) dialog.findViewById(R.id.linearLayout_progress);
                 final LinearLayout linearLayout_check = (LinearLayout) dialog.findViewById(R.id.linearLayout_check);
-                final LinearLayout view_button = (LinearLayout) dialog.findViewById(R.id.view_button);
-                final Button button = (Button) dialog.findViewById(R.id.button);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -203,23 +201,26 @@ public class FragmentPayMents extends StatedFragment {
                         if (isCheck != false) {
                             linearLayout_progress.setVisibility(View.GONE);
                             linearLayout_check.setVisibility(View.VISIBLE);
-                            view_button.setVisibility(View.VISIBLE);
+
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    for (int i = 0; i < mCartList.size(); i++) {
+                                        ShoppingCartHelper.removeProduct(mCartList.get(i));
+                                    }
+                                    mCartList.clear();
+                                    Intent i = new Intent(getActivity(), MainActivity.class);
+                                    startActivity(i);
+                                    getActivity().finish();
+                                }
+                            }, 2500);
+
+
                         }
                     }
                 }, 2500);
 
-                button.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        for (int i = 0; i < mCartList.size(); i++) {
-                            ShoppingCartHelper.removeProduct(mCartList.get(i));
-                        }
-                        mCartList.clear();
-                        Intent i = new Intent(getActivity(), MainActivity.class);
-                        startActivity(i);
-                        getActivity().finish();
-                    }
-                });
+
             }
         });
         return rootView;
