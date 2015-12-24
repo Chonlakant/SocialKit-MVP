@@ -188,7 +188,6 @@ public class CartFragment extends DialogFragment {
             public void onClick(View v) {
                 // Close dialog
                 getDialog().dismiss();
-                getActivity().finish();
             }
         });
 
@@ -225,7 +224,7 @@ public class CartFragment extends DialogFragment {
                                             dialog.dismiss();
                                             dialog2.dismiss();
                                         }
-                                    }, 2000);
+                                    }, 2600);
 
                                 } else {
                                     if (isCheckProduct != false) {
@@ -246,7 +245,7 @@ public class CartFragment extends DialogFragment {
                                                 dialog2.dismiss();
 
                                             }
-                                        }, 2500);
+                                        }, 2600);
 
 
                                     } else {
@@ -348,8 +347,11 @@ public class CartFragment extends DialogFragment {
 
     public void updateProduct(String url, JSONObject jo, AjaxStatus status) throws JSONException {
         Log.e("Json Return", jo.toString(4));
-        orderId = jo.getJSONObject("order").optString("id");
-        Log.e("091", orderId + "");
+        if(jo != null){
+            orderId = jo.optJSONObject("order").optString("id");
+            Log.e("091", orderId + "");
+        }
+
         pref.orderId().put(orderId);
         pref.commit();
 

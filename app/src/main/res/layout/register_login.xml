@@ -88,7 +88,6 @@
             android:layout_marginRight="15dp"
             android:layout_marginTop="5dp"
             android:text="การใช้ตัวอักษรเล็กหรือใหญ่มีผลต่อรหัสผ่าน และความปลอดภัย รหัสผ่าน ต้องมีตัทั้งตัวอังกษร และ ตัวเลข รวมอย่างน้อย 8  ตัว"
-            android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="18dp" />
 
         <LinearLayout
@@ -111,9 +110,9 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="15dp"
-                    android:background="@color/md_green_800"
+                    android:background="@drawable/btn"
                     android:text="ลงทะเบียน"
-                    android:textColor="@android:color/white"
+                    android:textColor="#056f00"
                     android:textSize="15sp" />
 
                 <Button
@@ -127,7 +126,7 @@
                     android:layout_marginTop="15dp"
                     android:background="@color/md_green_800"
                     android:text="เข้าสู่ระบบ"
-                    android:textColor="@android:color/white"
+                    android:textColor="#fff"
                     android:textSize="15sp" />
             </LinearLayout>
 

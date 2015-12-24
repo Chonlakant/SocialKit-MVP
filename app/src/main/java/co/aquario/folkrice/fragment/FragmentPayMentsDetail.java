@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 
@@ -195,7 +194,7 @@ public class FragmentPayMentsDetail extends BaseFragment {
 
                         Bundle bundle = new Bundle();
 
-                        FragmentPayMents oneFragment = new FragmentPayMents();
+                        FragmentCheckout oneFragment = new FragmentCheckout();
                         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                         transaction.replace(R.id.container, oneFragment);
                         bundle.putDouble("Price", subTotal);

@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DecoderActivity" >
+    tools:context=".DecoderActivity">
 
     <com.dlazaro66.qrcodereaderview.QRCodeReaderView
         android:id="@+id/qrdecoderview"
@@ -18,16 +18,19 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:textColor="#fff"
-        android:text="Folk rice"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:text="สแกน code บนฉลากผลิตภัณฑ์์"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#fff" />
 
-    <ImageView
+
+    <View
+        android:layout_marginTop="10dp"
         android:id="@+id/red_line_image"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="3dp"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/exampleTextView"
-        android:src="@drawable/red_line" />
+        android:background="#d01716" />
+
 
 </RelativeLayout>

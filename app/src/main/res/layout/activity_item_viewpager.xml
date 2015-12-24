@@ -61,23 +61,15 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="#6d4c41"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dip"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.25"
-                android:gravity="center_vertical|end"
-                android:text="quantity"
-                android:textColor="@android:color/white"
-                android:layout_gravity="center_vertical" />
+            android:orientation="vertical">
 
             <Spinner
                 android:id="@+id/spQuantity"
-                android:layout_width="0dip"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.25"
-                android:layout_gravity="center_vertical" />
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="2"
+                android:layout_height="35dp"
+                android:gravity="center_vertical|center_horizontal" />
 
 
         </LinearLayout>

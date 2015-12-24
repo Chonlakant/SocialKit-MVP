@@ -164,7 +164,7 @@ public class FragmentListProductDetail extends BaseFragment {
                         dialog.dismiss();
 
                     }
-                }, 2500);
+                }, 2600);
 
             }
         });

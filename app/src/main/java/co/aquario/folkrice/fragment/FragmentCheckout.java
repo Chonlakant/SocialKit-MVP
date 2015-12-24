@@ -1,24 +1,20 @@
 package co.aquario.folkrice.fragment;
 
-import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -59,7 +55,7 @@ import co.aquario.folkrice.model.ShoppingCartHelper;
 import co.aquario.folkrices.R;
 
 
-public class FragmentPayMents extends StatedFragment {
+public class FragmentCheckout extends StatedFragment {
     private int i = -1;
     public static final String ARG_PAGE = "ARG_PAGE";
     public static final String EXTRA_PRICE = "Item Price";
@@ -102,8 +98,9 @@ public class FragmentPayMents extends StatedFragment {
     int total_price;
     int sub_total;
 
-    public static FragmentPayMents newInstance(int page, double price) {
-        FragmentPayMents fragment = new FragmentPayMents();
+
+    public static FragmentCheckout newInstance(int page, double price) {
+        FragmentCheckout fragment = new FragmentCheckout();
         Bundle args = new Bundle();
         args.putInt(ARG_PAGE, page);
         args.putDouble(EXTRA_PRICE, price);
@@ -152,6 +149,7 @@ public class FragmentPayMents extends StatedFragment {
         final View rootView = inflater.inflate(R.layout.payments, container, false);
         listView = (ListView) rootView.findViewById(R.id.listView);
         btn_back = (Button) rootView.findViewById(R.id.btn_back);
+
         mCartList = ShoppingCartHelper.getCartList();
         ArrayList<Country> countryList = new ArrayList<Country>();
         Country country = new Country("ธนาคารกสิกรไทย", "http://www.thaidnsservice.com/wp-content/uploads/2015/07/kbang.jpg", false);
@@ -177,10 +175,8 @@ public class FragmentPayMents extends StatedFragment {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 // When clicked, show a toast with the TextView text
-                Country country = (Country) parent.getItemAtPosition(position);
-                Toast.makeText(getActivity(),
-                        "Clicked on Row: " + country.getName(),
-                        Toast.LENGTH_LONG).show();
+
+
             }
         });
         btn_back.setOnClickListener(new View.OnClickListener() {
@@ -205,13 +201,12 @@ public class FragmentPayMents extends StatedFragment {
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    for (int i = 0; i < mCartList.size(); i++) {
-                                        ShoppingCartHelper.removeProduct(mCartList.get(i));
-                                    }
-                                    mCartList.clear();
-                                    Intent i = new Intent(getActivity(), MainActivity.class);
-                                    startActivity(i);
-                                    getActivity().finish();
+
+                                    FragmentFinal oneFragment = new FragmentFinal();
+                                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                                    transaction.replace(R.id.container, oneFragment);
+                                    transaction.commit();
+                                    dialog.dismiss();
                                 }
                             }, 2500);
 
@@ -303,8 +298,14 @@ public class FragmentPayMents extends StatedFragment {
                     public void onClick(View v) {
                         CheckBox cb = (CheckBox) v;
                         Country country = (Country) cb.getTag();
-                        country.setSelected(cb.isChecked());
-                        bank = cb.getText().toString();
+                        if (cb.isChecked() == true) {
+                            country.setSelected(cb.isChecked());
+                            bank = cb.getText().toString();
+                        } else {
+                            country.setSelected(cb.isChecked());
+                            bank = cb.getText().toString();
+                        }
+
                         Log.e("bank", bank);
                     }
                 });

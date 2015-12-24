@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.PointF;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.TranslateAnimation;
@@ -23,7 +24,7 @@ public class DecoderActivity extends Activity implements OnQRCodeReadListener {
 
     private TextView myTextView;
     private QRCodeReaderView mydecoderview;
-    private ImageView line_image;
+    private View line_image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,7 @@ public class DecoderActivity extends Activity implements OnQRCodeReadListener {
 
         myTextView = (TextView) findViewById(R.id.exampleTextView);
 
-        line_image = (ImageView) findViewById(R.id.red_line_image);
+        line_image = (View) findViewById(R.id.red_line_image);
 
         TranslateAnimation mAnimation = new TranslateAnimation(
                 TranslateAnimation.ABSOLUTE, 0f,
